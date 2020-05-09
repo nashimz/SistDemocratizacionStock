@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.controllers;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 //import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,8 +50,11 @@ public class HomeController {
 			return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
 		}
 		
-		
-		
+		@GetMapping("/local")
+		public RedirectView redirectToLocalIndex() {
+			return new RedirectView(ViewRouteHelper.LOCAL_INDEX);
+		}
+			
 	
 
 }
