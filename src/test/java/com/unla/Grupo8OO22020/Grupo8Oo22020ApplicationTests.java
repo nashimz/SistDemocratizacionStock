@@ -6,8 +6,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Grupo8Oo22020ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
 
 }
