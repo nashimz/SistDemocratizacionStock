@@ -1,6 +1,8 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,7 +15,6 @@ import com.unla.Grupo8OO22020.entities.Producto;
 import com.unla.Grupo8OO22020.models.ProductoModel;
 import com.unla.Grupo8OO22020.repositories.IProductoRepository;
 import com.unla.Grupo8OO22020.services.IProductoService;
-
 
 
 @Service("productoService")
@@ -47,6 +48,30 @@ public class ProductoService implements IProductoService {
 	public ProductoModel findByDescripcion(String descripcion) {
 		return productoConverter.entityToModel(productoRepository.findByDescripcion(descripcion));
 	}
+	
+	@Override
+	public ProductoModel findByTalle(String talle) {
+		return productoConverter.entityToModel(productoRepository.findByTalle(talle));
+	}
+	
+	@Override
+	public List<ProductoModel> findByDescripcionName(String descripcionName) {
+		List<ProductoModel> models = new ArrayList<ProductoModel>();
+		for (Producto producto : productoRepository.findByDescripcionName(descripcionName)) {
+			models.add(productoConverter.entityToModel(producto));
+		}
+		return models;
+	}
+	
+	@Override
+	public List<ProductoModel> findByTalleName(String talleName) {
+		List<ProductoModel> models = new ArrayList<ProductoModel>();
+		for (Producto producto : productoRepository.findByTalleName(talleName)) {
+			models.add(productoConverter.entityToModel(producto));
+		}
+		return models;
+	}
+	
 	
 	@Override
 	public boolean remove(long idProducto) {

@@ -23,18 +23,23 @@ public class Producto {
 	
 	@Column(name="precio")
 	double precio;
+	
+	@Column(name="talle")
+	String talle;
 
 	public Producto() {}
 
-	public Producto(long idProducto, String descripcion, double precio) {
+	public Producto(long idProducto, String descripcion, double precio,String talle) {
 		this.idProducto = idProducto;
 		this.descripcion = descripcion;
 		this.precio = precio;
+		this.talle=talle;
 	}
 
-	public Producto(String descripcion, double precio) {
+	public Producto(String descripcion, double precio,String talle) {
 		this.descripcion = descripcion;
 		this.precio = precio;
+		this.talle=talle;
 	}
 
 	public long getIdProducto() {
@@ -60,4 +65,14 @@ public class Producto {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+
+	public String getTalle() {
+		return talle;
+	}
+
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
+	
+	
 }
