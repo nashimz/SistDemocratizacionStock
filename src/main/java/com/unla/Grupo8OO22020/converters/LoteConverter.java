@@ -9,7 +9,7 @@ import com.unla.Grupo8OO22020.entities.Lote;
 @Component("loteconverter")
 public class LoteConverter {
 	
-	@Autowired
+	@Autowired()
 	@Qualifier("productoConverter")
 	private ProductoConverter productoConverter;
 	
