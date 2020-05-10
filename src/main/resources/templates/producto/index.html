@@ -7,9 +7,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr th:each="person : ${persons}">
-			<td><span th:text="${person.descripcion}" /></td>
-			<td><span th:text="${person.precio}" /></td>
+		<tr th:each="producto : ${productos}">
+			<td><span th:text="${producto.descripcion}" /></td>
+			<td><span th:text="${producto.precio}" /></td>
 			<td>
 				<a th:href="@{/producto/{idProducto}(idProducto=${producto.idProducto})}">View</a>
 			</td>

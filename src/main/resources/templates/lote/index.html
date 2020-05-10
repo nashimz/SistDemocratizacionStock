@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<table border="1px">
+	<thead>
+		<tr>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>CantidadTotal</th>
+			<th>fechaIngreso</th>
+			<th>View</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="lote : ${lotes}">
+			<td><span th:text="${lote.producto}" /></td>
+			<td><span th:text="${lote.cantidad}" /></td>
+			<td><span th:text="${lote.cantidadTotal}" /></td>
+			<td><span th:text="${lote.fechaIngreso}" /></td>
+			<td>
+				<a th:href="@{/lote/{idLote}(idLote=${lote.idlote})}">View</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<a href="/lote/new">Create new lote</a>
