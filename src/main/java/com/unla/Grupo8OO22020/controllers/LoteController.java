@@ -23,9 +23,7 @@ import com.unla.Grupo8OO22020.services.IProductoService;
 @Controller
 @RequestMapping("/lote")
 public class LoteController {
-	
-	
-	
+
 	@Autowired
 	@Qualifier("LoteService")
 	private ILoteService loteService;
@@ -63,4 +61,11 @@ public class LoteController {
 	 loteService.update(loteModel);
 	 return new RedirectView(ViewRouteHelper.LOTE_ROOT);
 	}
+	
+	//metodo para poder eliminar un producto
+		@PostMapping("/delete/{idLote}")
+		public RedirectView delete(@PathVariable("idLote") long idLote) {
+			productoService.remove(idLote);
+			return new RedirectView(ViewRouteHelper.LOTE_ROOT);
+		}
 }

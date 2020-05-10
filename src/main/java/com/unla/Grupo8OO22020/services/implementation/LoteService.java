@@ -22,8 +22,7 @@ public class LoteService implements  ILoteService{
 	@Autowired
 	@Qualifier("ProductoService")
 	private IProductoService productoService;
-	
-	
+
 	@Autowired
 	@Qualifier("LoteRepository")
 	private ILoteRepository loteRepository;

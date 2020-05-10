@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Lote {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	long idLote;
 	
 	@OneToOne(cascade=CascadeType.MERGE)

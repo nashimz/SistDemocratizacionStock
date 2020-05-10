@@ -26,7 +26,6 @@ public class ProductoController {
 	@Qualifier("productoService")
 	private IProductoService productoService;
 	
-	
 	//metodo simple que me trae una vista que me lista a todos los productos existentes y me permite hacer consultas
 	@GetMapping("")
 	public ModelAndView index() {
@@ -61,7 +60,7 @@ public class ProductoController {
 	}
 	
 	
-	//metodo para rutear por otra variabel que no sea el id 
+	//metodo para rutear por otra variable que no sea el id 
 	@GetMapping("/by_descripcion/{descripcion}")
 	public ModelAndView getByName(@PathVariable("descripcion") String descripcion) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCTO_UPDATE);
@@ -83,8 +82,4 @@ public class ProductoController {
 		productoService.remove(idProducto);
 		return new RedirectView(ViewRouteHelper.PRODUCTO_ROOT);
 	}
-	
-	
-	
-
 }
