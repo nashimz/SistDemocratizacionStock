@@ -62,21 +62,21 @@ public class ProductoController {
 	
 	
 	//metodo para rutear por otra variable que no sea el id 
-	@GetMapping("/descripcion/{descripcion}")
+	@GetMapping("/by_descripcion/{descripcion}")
 	public ModelAndView getByDescripcion(@PathVariable("descripcion") String descripcion) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCTO_UPDATE);
 		mAV.addObject("producto", productoService.findByDescripcion(descripcion));
 		return mAV;
 	}
 	
-	@GetMapping("/talle/{talle}")
+	@GetMapping("/by_talle/{talle}")
 	public ModelAndView getByTalle(@PathVariable("talle") String talle) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCTO_UPDATE);
 		mAV.addObject("producto", productoService.findByTalle(talle));
 		return mAV;
 	}
 	
-	@GetMapping("/by_descripcion/{descripcion_name}")
+	@GetMapping("/descripcion/{descripcion_name}")
 	public ModelAndView getByDescripcionName(@PathVariable("descripcion_name") String descripcionName) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCTO_INDEX);
 		mAV.addObject("productos", productoService.findByDescripcionName(descripcionName));
@@ -84,7 +84,7 @@ public class ProductoController {
 	}
 	
 	
-	@GetMapping("/by_talle/{talle_name}")
+	@GetMapping("/talle/{talle_name}")
 	public ModelAndView getByTalleName(@PathVariable("talle_name") String talleName) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCTO_INDEX);
 		mAV.addObject("productos", productoService.findByTalleName(talleName));
