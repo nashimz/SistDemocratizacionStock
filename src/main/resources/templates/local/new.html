@@ -1,85 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
-
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>LOCALES</title>
-
-<!-- Bootstrap core CSS -->
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="/css/modern-business.css" rel="stylesheet">
-
+<link rel="stylesheet" href="/css/estilos.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 </head>
 
-<body>
-
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">Start Bootstrap</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/local/index">Local</a></li>
-				
-
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<header> </header>
-
-	<!-- Page Content -->
-	<div class="container">
-
-		<h1 class="my-4">Locales</h1>
 
 
-
-		<!-- Features Section -->
-		<div class="row">
-			<div class="col-lg-6">
-				<form action="#" th:action="@{/local/create}" th:object="${local}"
-					method="post">
-					<p>
-						Telefono: <input type="text" th:field="*{telefono}" />
-						<h2>UBICACION</h2>
-						Direccion: <input type="text" th:field="*{direccion}" />
-						Latitud: <input type="text" th:field="*{latitud}" />
-						Longitud: <input type="text" th:field="*{longitud}" />
-
-						<h2></h2>
-						Gerente: <input type="text" th:field="*{gerente}" />
-					</p>
-					<input class="btn btn-lg btn-secondary btn-block" type="submit" value="crear" />
-				</form>
-			</div>
-
-		</div>
+<!-- Navigation -->
+<nav class="site-header sticky-top py-1">
+	<div
+		class="container d-flex flex-column flex-md-row justify-content-between">
+		<a class="py-2" href="#"> <svg xmlns="http://www.w3.org/2000/svg"
+				width="24" height="24" viewBox="0 0 24 24" fill="none"
+				stroke="currentColor" stroke-width="2" stroke-linecap="round"
+				stroke-linejoin="round" class="d-block mx-auto">
+				<circle cx="12" cy="12" r="10"></circle>
+				<line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+				<line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+				<line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+				<line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+				<line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+				<line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+		</a> <a class="py-2 d-md-inline-block" href="/client">Adm. Clientes</a> <a
+			class="py-2 d-md-inline-block" href="#">Adm.Personas</a> <a
+			class="py-2 d-md-inline-block" href="#">Adm.Locales</a>
 	</div>
-	<!-- /.row -->
-
-	<hr>
+</nav>
 
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
+<h2>Agregar Local</h2>
+<div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
 
-</html>
+	<form action="#" th:action="@{/local/create}" th:object="${local}"
+		method="post">
+
+		<div class="form-group">
+			<label for="name">Telefono</label> <input type="text"
+				class="form-control" name="telefono" value="" th:field="*{telefono}"
+				placeholder="Escribi el telefono..." />
+		</div>
+		<label for="name">Ubicacion:</label>
+		<div class="form-group">
+			<label for="surname">Direccion</label> <input type="text"
+				class="form-control" name="direccion" th:field="*{direccion}"
+				placeholder="Escribi la direccion..." />
+		</div>
+		<div class="form-group">
+			<label for="surname">Latitud</label> <input type="text"
+				class="form-control" name="latitud" value="" th:field="*{latitud}"
+				placeholder="Escribi la latitud...">
+		</div>
+		<div class="form-group">
+			<label for="surname">Longitud</label> <input type="text"
+				class="form-control" name="longitud" value="" th:field="*{longitud}"
+				placeholder="Escribi la longitud...">
+		</div>
+		
+		<br>
+		
+		<div class="form-group">
+                <label for="surname">Gerente</label>
+                <input type="text" class="form-control" name="surname"  value="" th:field="*{gerente}" placeholder="Escribi el gerente..." >
+            </div>
+		<br>
+		 <button type="submit" class="btn btn-dark px-4">
+                <i class="far fa-plus-square fa-lg mr-2"></i>
+                Agregar Local
+            </button>
+            
+		 <a href="/local/index" class="btn btn-outline-secondary ml-3">
+                Volver al panel de Locales
+            </a>
+	</form>
+</div>
+
+</div>
