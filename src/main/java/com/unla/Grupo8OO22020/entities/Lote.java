@@ -1,6 +1,7 @@
 package com.unla.Grupo8OO22020.entities;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name="lote")
@@ -28,24 +32,30 @@ public class Lote {
 	@Column(name="cantidadTotal")
 	int cantidadTotal;
 	
-	@Column(name="fechaIngreso")
-	private LocalDate fechaIngreso;
+	@Column(name="createdat")
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
+	@Column(name="updatedat")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+
 
 	public Lote() {}
 
-	public Lote(long idLote,Producto producto, int cantidad, int cantidadTotal,LocalDate fechaIngreso) {
+	public Lote(long idLote,Producto producto, int cantidad, int cantidadTotal) {
 		this.idLote=idLote;
 		this.producto = producto;
 		this.cantidad = cantidad;
 		this.cantidadTotal = cantidadTotal;
-		this.fechaIngreso=fechaIngreso;
+
 	}
 	
-	public Lote(Producto producto, int cantidad, int cantidadTotal,LocalDate fechaIngreso) {
+	public Lote(Producto producto, int cantidad, int cantidadTotal) {
 		this.producto = producto;
 		this.cantidad = cantidad;
 		this.cantidadTotal = cantidadTotal;
-		this.fechaIngreso=fechaIngreso;
+
 	}
 
 	public long getIdLote() {
@@ -80,11 +90,19 @@ public class Lote {
 		this.cantidadTotal = cantidadTotal;
 	}
 
-	public LocalDate getFechaIngreso() {
-		return fechaIngreso;
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setFechaIngreso(LocalDate fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 }

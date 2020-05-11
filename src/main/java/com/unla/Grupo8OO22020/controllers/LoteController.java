@@ -34,9 +34,9 @@ public class LoteController {
 	
 	@GetMapping("")
 	public ModelAndView index() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.LOTE_INDEX);
-		mAV.addObject("lotes", loteService.getAll());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.LOTE_INDEX);
+		mV.addObject("lotes", loteService.getAll());
+		return mV;
 	}
 	
 	@GetMapping("/new")
