@@ -62,16 +62,17 @@
 						Direccion:<input type="text" th:field="*{direccion}" /> 
 						Latitud:<input type="text" th:field="*{latitud}" /> 
 						Longitud:<input type="text" th:field="*{longitud}" /> 
-						<h2></h2>
+						<br>
 						Gerente: <input type="text" th:field="*{gerente}" />
 
 					</p>
-					<input type="submit" value="Edit" />
+					<input class="btn btn-lg btn-secondary btn-block" type="submit" value="Edit" />
 				</form>
 
 				<form action="#" th:action="@{/local/delete/{id}(id=${local.id})}"
 					method="post">
-					<input type="submit" value="delete local" />
+					<br>
+					<input class="btn btn-lg btn-secondary btn-block" type="submit" value="Delete local" />
 				</form>
 			</div>
 
