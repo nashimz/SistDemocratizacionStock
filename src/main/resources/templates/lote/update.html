@@ -1,6 +1,6 @@
 <form action="#" th:action="@{/lote/update}" th:object="${lote}"
 	method="post">
-	<input type="hidden" th:field="*{idLote}" />
+	<input type="hidden"  th:field="*{idLote}" th:value="*{idLote}" />
 	
 	<p>
 	   Cantidad: <input type="text" th:field="*{cantidad}" />
