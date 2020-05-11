@@ -3,15 +3,19 @@ package com.unla.Grupo8OO22020.models;
 public class LocalModel {
 	private int id;
 	private long telefono;
-	private String ubicacion;
+	private String direccion;
+	private float latitud;
+	private float longitud;
 	private String gerente;
 	
 	public LocalModel () {}
 	
-	public LocalModel (int id, long telefono,String ubicacion, String gerente) {
+	public LocalModel (int id, long telefono,String direccion,float latitud, float longitud, String gerente) {
 		this.setId(id);
 		this.telefono = telefono;
-		this.ubicacion = ubicacion;
+		this.direccion = direccion;
+		this.latitud = latitud;
+		this.longitud = longitud;
 		this.gerente = gerente;
 	}
 	
@@ -31,12 +35,28 @@ public class LocalModel {
 		this.telefono = telefono;
 	}
 
-	public String getUbicacion() {
-		return ubicacion;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public float getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(float latitud) {
+		this.latitud = latitud;
+	}
+
+	public float getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(float longitud) {
+		this.longitud = longitud;
 	}
 
 	public String getGerente() {

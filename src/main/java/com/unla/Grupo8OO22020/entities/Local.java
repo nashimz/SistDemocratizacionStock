@@ -18,19 +18,27 @@ public class Local {
 	@Column(name="telefono")
 	private long telefono;
 	
-	@Column(name="ubicacion")
-	private String ubicacion;
+	@Column(name="direccion")
+	private String direccion;
+	
+	@Column(name="latitud")
+	private float latitud;
+	
+	@Column(name="longitud")
+	private float longitud;
 	
 	@Column(name="gerente")
 	private String gerente;
 	
 	public Local() {}
 	
-	public Local(int id, long telefono, String ubicacion, String gerente) {
+	public Local(int id, long telefono, String direccion,float latitud, float longitud , String gerente) {
 		super();
 		this.id = id;
 		this.telefono = telefono;
-		this.ubicacion = ubicacion;
+		this.direccion = direccion;
+		this.latitud=latitud;
+		this.longitud = longitud;
 		this.gerente = gerente;
 	}
 	
@@ -49,15 +57,31 @@ public class Local {
 	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
-
-	public String getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
-	}
          
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public float getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(float latitud) {
+		this.latitud = latitud;
+	}
+
+	public float getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(float longitud) {
+		this.longitud = longitud;
+	}
+
 	public String getGerente() {
 		return gerente;
 	}
@@ -69,14 +93,3 @@ public class Local {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-

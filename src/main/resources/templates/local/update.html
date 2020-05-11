@@ -54,18 +54,21 @@
 		<!-- Features Section -->
 		<div class="row">
 			<div class="col-lg-6">
-				<form action="#" th:action="@{/local/update}" th:object="${local}"
-					method="post">
+				<form action="#" th:action="@{/local/update}" th:object="${local}" method="post">
 					<input type="hidden" th:field="*{id}" />
-					</p>
 					<p>
-						Telefono: <input type="text" th:field="*{telefono}" /> Ubicacion:
-						<input type="text" th:field="*{ubicacion}" /> Gerente: <input
-							type="text" th:field="*{gerente}" />
+						Telefono: <input type="text" th:field="*{telefono}" /> 
+						<h2>Ubicacion</h2>
+						Direccion:<input type="text" th:field="*{direccion}" /> 
+						Latitud:<input type="text" th:field="*{latitud}" /> 
+						Longitud:<input type="text" th:field="*{longitud}" /> 
+						<h2></h2>
+						Gerente: <input type="text" th:field="*{gerente}" />
 
 					</p>
 					<input type="submit" value="Edit" />
 				</form>
+
 				<form action="#" th:action="@{/local/delete/{id}(id=${local.id})}"
 					method="post">
 					<input type="submit" value="delete local" />

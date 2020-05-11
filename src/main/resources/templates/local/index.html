@@ -57,7 +57,9 @@
 					<thead>
 						<tr>
 							<th>Telefono</th>
-							<th>Ubicacion</th>
+							<th>Direccion</th>
+							<th>Latitud</th>
+							<th>Longitud</th>
 							<th>Gerente</th>
 							<th>View</th>
 
@@ -66,7 +68,9 @@
 					<tbody>
 						<tr th:each="local : ${locales}">
 							<td><span th:text="${local.telefono}" /></td>
-							<td><span th:text="${local.ubicacion}" /></td>
+							<td><span th:text="${local.direccion}" /></td>
+							<td><span th:text="${local.latitud}" /></td>
+							<td><span th:text="${local.longitud}" /></td>
 							<td><span th:text="${local.gerente}" /></td>
 							<td><a th:href="@{/local/{id}(id=${local.id})}">View</a></td>
 
