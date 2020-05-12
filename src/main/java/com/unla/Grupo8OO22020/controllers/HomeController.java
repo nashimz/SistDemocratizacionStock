@@ -27,23 +27,6 @@ public class HomeController {
 	public String helloWorld() {
 		return ViewRouteHelper.INDEX;
 	}
-	
-	//GET Example: SERVER/hello?name=someName  , petición con parametros.
-		@GetMapping("/hello")
-		public ModelAndView helloParams1(@RequestParam(name="name", required=false, defaultValue="null") String name) {
-			ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
-			mV.addObject("name", name);
-			return mV;
-		}
-		
-		//GET Example: SERVER/hello/someName , petición con construcción de la ruta.
-		@GetMapping("/hello/{name}")
-		public ModelAndView helloParams2(@PathVariable("name") String name) {
-			ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
-			mV.addObject("name", name);
-			return mV;
-		}
-		
 		
 		@GetMapping("/")
 		public RedirectView redirectToHomeIndex() {
