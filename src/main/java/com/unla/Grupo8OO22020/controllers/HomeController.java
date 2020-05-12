@@ -33,9 +33,9 @@ public class HomeController {
 			return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
 		}
 		
-		@GetMapping("/local")
-		public RedirectView redirectToLocalIndex() {
-			return new RedirectView(ViewRouteHelper.LOCAL_INDEX);
+		@GetMapping("/store")
+		public RedirectView redirectToStoreIndex() {
+			return new RedirectView(ViewRouteHelper.STORE_INDEX);
 		}
 			
 	

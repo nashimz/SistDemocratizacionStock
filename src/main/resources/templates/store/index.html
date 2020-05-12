@@ -47,20 +47,20 @@
 			<th>Latitud</th>
 			<th>Longitud</th>
 			<th>Gerente</th>
-			<th colspan="2" class="text-center"><a href="/local/new"
+			<th colspan="2" class="text-center"><a href="/store/new"
 				class="btn btn-outline-light px-4"> <i
 					class="far fa-plus-square fa-lg mr-2"></i> Agregar
 			</a></th>
 
 		</tr>
 	<tbody>
-		<tr th:each="local : ${locales}">
-			<td><span th:text="${local.telefono}" /></td>
-			<td><span th:text="${local.direccion}" /></td>
-			<td><span th:text="${local.latitud}" /></td>
-			<td><span th:text="${local.longitud}" /></td>
-			<td><span th:text="${local.gerente}" /></td>
-			<td><a th:href="@{/local/{id}(id=${local.id})}"
+		<tr th:each="store : ${stores}">
+			<td><span th:text="${store.phone}" /></td>
+			<td><span th:text="${store.address}" /></td>
+			<td><span th:text="${store.latitude}" /></td>
+			<td><span th:text="${store.longitude}" /></td>
+			<td><span th:text="${store.manager}" /></td>
+			<td><a th:href="@{/store/{id}(id=${store.id})}"
 				class="btn btn-outline-secondary px-4"><i
 					class="far fa-edit fa-lg mr-1"></i> Ver</a></td>
 

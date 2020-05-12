@@ -7,13 +7,13 @@ public class ViewRouteHelper {
 	public final static String INDEX="home/index";
 	
 	//locales 
-	public final static String LOCAL_INDEX="local/index";
-	public final static String LOCAL_NEW="local/new";
-	public final static String LOCAL_UPDATE="local/update";
+	public final static String STORE_INDEX="store/index";
+	public final static String STORE_NEW="store/new";
+	public final static String STORE_UPDATE="store/update";
 	
 	
 	//Redirects
 	public final static String ROUTE_INDEX="/index";
-	public final static String LOCAL_ROOT="/local";
+	public final static String STORE_ROOT="/store";
 
 }

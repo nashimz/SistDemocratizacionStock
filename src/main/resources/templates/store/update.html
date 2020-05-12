@@ -10,22 +10,22 @@
 
 <body>
 
-	<form action="#" th:action="@{/local/update}" th:object="${local}"
+	<form action="#" th:action="@{/store/update}" th:object="${store}"
 		method="post">
 		<input type="hidden" th:field="*{id}" />
 		<p>
-			Telefono: <input type="text" th:field="*{telefono}" />
+			Telefono: <input type="text" th:field="*{phone}" />
 		<h2>Ubicacion</h2>
-		Direccion:<input type="text" th:field="*{direccion}" /> Latitud:<input
-			type="text" th:field="*{latitud}" /> Longitud:<input type="text"
-			th:field="*{longitud}" /> <br> Gerente: <input type="text"
-			th:field="*{gerente}" />
+		Direccion:<input type="text" th:field="*{address}" /> Latitud:<input
+			type="text" th:field="*{latitude}" /> Longitud:<input type="text"
+			th:field="*{longitude}" /> <br> Gerente: <input type="text"
+			th:field="*{manager}" />
 
 		</p>
 		<input type="submit" value="Edit Local" />
 	</form>
 
-	<form action="#" th:action="@{/local/delete/{id}(id=${local.id})}"
+	<form action="#" th:action="@{/store/delete/{id}(id=${store.id})}"
 		method="post">
 		<br> <input class="btn btn-lg btn-secondary btn-block"
 			type="submit" value="Borrar Local" />

@@ -11,22 +11,22 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
-import com.unla.Grupo8OO22020.services.ILocalService;
-import com.unla.Grupo8OO22020.models.LocalModel;
+import com.unla.Grupo8OO22020.services.IStoreService;
+import com.unla.Grupo8OO22020.models.StoreModel;
 
 @Controller
-@RequestMapping("/local")
+@RequestMapping("/store") 
 
-public class LocalController {
+public class StoreController {
 
 	@Autowired
-	@Qualifier("localService")
-	private ILocalService localService;
+	@Qualifier("storeService")
+	private IStoreService storeService;
 
 	@GetMapping("/index")
 	public ModelAndView index() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.LOCAL_INDEX);
-		mAV.addObject("locales", localService.getAll());
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
+		mAV.addObject("stores", storeService.getAll());
 		return mAV;
 
 	}
@@ -34,34 +34,34 @@ public class LocalController {
 	
 	@GetMapping("/new")
 	public ModelAndView create() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.LOCAL_NEW);
-		mAV.addObject("local", new LocalModel());
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_NEW);
+		mAV.addObject("store", new StoreModel());
 		return mAV;
 	}
 	
 	@PostMapping("/create")
-	public RedirectView create(@ModelAttribute("local") LocalModel localModel) {
-		localService.insertOrUpdate(localModel);
-		return new RedirectView(ViewRouteHelper.LOCAL_ROOT);
+	public RedirectView create(@ModelAttribute("store") StoreModel storeModel) {
+		storeService.insertOrUpdate(storeModel);
+		return new RedirectView(ViewRouteHelper.STORE_ROOT);
 	}
 	
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") int id) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.LOCAL_UPDATE);
-		mAV.addObject("local", localService.findById(id));
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_UPDATE);
+		mAV.addObject("store", storeService.findById(id));
 		return mAV;
 	}
 	
 	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("local") LocalModel localModel) {
-		localService.insertOrUpdate(localModel);
-		return new RedirectView(ViewRouteHelper.LOCAL_ROOT);
+	public RedirectView update(@ModelAttribute("store") StoreModel storeModel) {
+		storeService.insertOrUpdate(storeModel);
+		return new RedirectView(ViewRouteHelper.STORE_ROOT);
 	}
 	
 	@PostMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
-		localService.remove(id);
-		return new RedirectView(ViewRouteHelper.LOCAL_ROOT);
+		storeService.remove(id);
+		return new RedirectView(ViewRouteHelper.STORE_ROOT);
 	}
 	
 }
