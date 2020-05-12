@@ -1,4 +1,4 @@
- <!doctype html>
+   <!doctype html>
 <html lang="en">
 <head>
      <link rel="stylesheet" href="/css/estilos.css">
@@ -10,19 +10,19 @@
                 <a class="py-2" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
                 </a>
-                <a class="py-2 d-md-inline-block" href="/panel">Inicio</a>
+                <a class="py-2 d-md-inline-block" href="/panel">Start</a>
      
-                <a class="py-2 d-md-inline-block" href="#">Contacto</a>
+                <a class="py-2 d-md-inline-block" href="#">Contact</a>
             </div>
         </nav>
-        <h2>Administracion de Lotes</h2>
+        <h2>Product Management</h2>
      <table class="table table-bordered table-stripped table-hover table-sm">
      
             <thead class="thead-dark">
                 <tr>
-                    <th>IdProducto</th>
-                    <th>Cantidad</th>
-                    <th>CantidadTotal</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Size</th>
                
                     
                     
@@ -31,22 +31,22 @@
                     
                     
                     <th colspan="2" class="text-center">
-                        <a href="/lote/new" class="btn btn-outline-light px-4">
+                        <a href="/product/new" class="btn btn-outline-light px-4">
                             <i class="far fa-plus-square fa-lg mr-2"></i>
-                            Agregar
+                            Add
                         </a>
                     </th>
                 </tr>
 	<tbody>
-		<tr th:each="lote : ${lotes}">
-			<td><span th:text="${lote.producto.idProducto}" /></td>
-			<td><span th:text="${lote.cantidad}" /> </td>
-			<td><span th:text="${lote.cantidadTotal}" /> </td>
+		<tr th:each="product : ${products}">
+			<td><span th:text="${product.description}" /></td>
+			<td><span th:text="${product.price}" /> </td>
+			<td><span th:text="${product.size}" /> </td>
 			
 			<td>
-                        <a th:href="@{/lote/{idLote}(idLote=${lote.idLote})}" class="btn btn-outline-secondary px-4">
+                        <a th:href="@{/product/{idProduct}(idProduct=${product.idProduct})}" class="btn btn-outline-secondary px-4">
                             <i class="far fa-edit fa-lg mr-1"></i>
-                            Ver
+                            View
                         </a>
                     </td>
      

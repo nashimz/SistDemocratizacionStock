@@ -1,0 +1,38 @@
+   <html>
+  <head>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    
+    <body> 
+  
+  
+  <form action="#" th:action="@{/batch/update}" th:object="${batch}"
+	method="post">
+	<input type="hidden"  th:field="*{idBatch}" th:value="*{idBatch}" />
+	
+	<p>
+	   Quantity: <input type="text" th:field="*{quantity}" />
+	</p>
+	
+	<p>
+	   Quantities: <input type="text" th:field="*{quantities}" />
+	</p>
+	
+	<p>
+	   Product: 
+	</p>
+	
+	<select placeholder="product" th:field="*{product.idProduct}">
+	  <option th:each="p : ${products}" th:value="${p.idProduct}" th:text="${p.description}"></option>
+	</select>
+	<input type="submit" value="Edit" />
+	
+</form>
+<form action="#" th:action="@{/batch/delete/{id}(id=${batch.idBatch})}" method="post">
+	<input type="submit" value="delete lote" />
+</form>
+
+ 
+    </body>
+</html> 

@@ -1,0 +1,29 @@
+  <html>
+  <head>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    
+    <body>
+    
+   <form action="#" th:action="@{/product/update}" th:object="${product}"
+	method="post">
+	<input type="hidden" th:field="*{idProduct}" />
+	</p>
+	<p>
+	    Description: <input type="text" th:field="*{description}" />
+	    Price: <input type="text" th:field="*{price}" />
+	    Size: <input type="text" th:field="*{size}" />
+	    
+		
+	</p>
+	<input type="submit" value="Edit Product" />
+</form>
+<form action="#" th:action="@{/product/delete/{id}(id=${product.idProduct})}" method="post">
+	<input type="submit" value="Delete Product" />
+</form>
+
+
+    
+    </body>
+</html> 

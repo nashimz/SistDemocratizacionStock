@@ -16,21 +16,21 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name="lote")
-public class Lote {
+@Table(name="batch")
+public class Batch {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long idLote;
+	long idBatch;
 	
 	@OneToOne(cascade=CascadeType.MERGE)
-	private Producto producto;
+	private Product product;
 	
-	@Column(name="cantidad")
-	int cantidad;
+	@Column(name="quantity")
+	int quantity;
 	
-	@Column(name="cantidadTotal")
-	int cantidadTotal;
+	@Column(name="quantities")
+	int quantities;
 	
 	@Column(name="createdat")
 	@CreationTimestamp
@@ -41,53 +41,53 @@ public class Lote {
 	private LocalDateTime updatedAt;
 
 
-	public Lote() {}
+	public Batch() {}
 
-	public Lote(long idLote,Producto producto, int cantidad, int cantidadTotal) {
-		this.idLote=idLote;
-		this.producto = producto;
-		this.cantidad = cantidad;
-		this.cantidadTotal = cantidadTotal;
+	public Batch(long idBatch,Product product, int quantity, int quantities) {
+		this.idBatch=idBatch;
+		this.product = product;
+		this.quantity = quantity;
+		this.quantities = quantities;
 
 	}
 	
-	public Lote(Producto producto, int cantidad, int cantidadTotal) {
-		this.producto = producto;
-		this.cantidad = cantidad;
-		this.cantidadTotal = cantidadTotal;
+	public Batch(Product product, int quantity, int quantities) {
+		this.product = product;
+		this.quantity = quantity;
+		this.quantities = quantities;
 
 	}
 
-	public long getIdLote() {
-		return idLote;
+	public long getIdBatch() {
+		return idBatch;
 	}
 
-	public void setIdLote(long idLote) {
-		this.idLote = idLote;
+	public void setIdBatch(long idBatch) {
+		this.idBatch = idBatch;
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
-	public int getCantidadTotal() {
-		return cantidadTotal;
+	public int getQuantities() {
+		return quantities;
 	}
 
-	public void setCantidadTotal(int cantidadTotal) {
-		this.cantidadTotal = cantidadTotal;
+	public void setQuantities(int quantities) {
+		this.quantities = quantities;
 	}
 
 	public LocalDateTime getCreatedAt() {

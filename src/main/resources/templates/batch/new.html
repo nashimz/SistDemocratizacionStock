@@ -8,38 +8,40 @@
                 <a class="py-2" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
                 </a>
-                <a class="py-2 d-md-inline-block" href="/panel">Inicio</a>
+                <a class="py-2 d-md-inline-block" href="/panel">Start</a>
      
-                <a class="py-2 d-md-inline-block" href="#">Contacto</a>
+                <a class="py-2 d-md-inline-block" href="#">Contact</a>
             </div>
         </nav>
         
-        <h2>Agregar Producto</h2>
+        <h2>Add Lote</h2>
 <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
-        <form action="#" th:action="@{/producto/create}" th:object="${producto}" method="post">
+        <form action="#" th:action="@{/batch/create}" th:object="${batch}" method="post">
             
             <div class="form-group">
-                <label for="descripcion">Descripcion</label>
-                <input type="text" class="form-control" name="descripcion"  value="" th:field="*{descripcion}" placeholder="Ingresar descripcion..." >
+                <label for="quantity">Quantity</label>
+                <input type="text" class="form-control" name="quantity"  value="" th:field="*{quantity}" placeholder="Ingresar cantidad..." >
             </div>
             
              <div class="form-group">
-                <label for="precio">Precio</label>
-                <input type="text" class="form-control" name="precio"  value="" th:field="*{precio}" placeholder="Ingresar precio..." >
+                <label for="quantities">Quantities</label>
+                <input type="text" class="form-control" name="quantities"  value="" th:field="*{quantities}" placeholder="Ingresar cntidad total..." >
             </div>
             
             <div class="form-group">
-                <label for="talle">Talle</label>
-                <input type="text" class="form-control" name="talle"  value="" th:field="*{talle}" placeholder="Ingresar talle..." >
+                <label for="product">Product</label>
+                <select placeholder="product" th:field="*{product.idProduct}">
+	            <option th:each="p : ${products}" th:value="${p.idProduct}" th:text="${p.description}"></option>
+	             </select>     
             </div>
               
             <br>
             <button type="submit" class="btn btn-dark px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
-                Agregar Producto
+                Add Product
             </button>
-            <a href="/producto" class="btn btn-outline-secondary ml-3">
-                Volver al panel de Producto
+            <a href="/batch" class="btn btn-outline-secondary ml-3">
+                 Return to control panel
             </a>
 
 
