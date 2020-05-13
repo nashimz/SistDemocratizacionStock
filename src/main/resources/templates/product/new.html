@@ -8,38 +8,41 @@
                 <a class="py-2" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
                 </a>
-                <a class="py-2 d-md-inline-block" href="/panel">Start</a>
-     
-                <a class="py-2 d-md-inline-block" href="#">Contact</a>
+                <a class="py-2 d-md-inline-block" href="#">Adm.Clientes</a> 
+                <a class="py-2 d-md-inline-block" href="#">Adm.Empleados</a>
+                <a class="py-2 d-md-inline-block" href="#">Adm.Personas</a> 
+                <a class="py-2 d-md-inline-block" href="#">Adm.Locales</a>
+                <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
+                <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
             </div>
         </nav>
         
-        <h2>Add Product</h2>
+        <h2>Agregar Producto</h2>
 <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
         <form action="#" th:action="@{/product/create}" th:object="${product}" method="post">
             
             <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" name="description"  value="" th:field="*{description}" placeholder="Enter the description..." >
+                <label for="description">Descripcion</label>
+                <input type="text" class="form-control" name="description"  value="" th:field="*{description}" placeholder="Escribi la descripcion..." >
             </div>
             
              <div class="form-group">
-                <label for="price">Price</label>
-                <input type="text" class="form-control" name="price"  value="" th:field="*{price}" placeholder="Enter the price..." >
+                <label for="price">Precio</label>
+                <input type="text" class="form-control" name="price"  value="" th:field="*{price}" placeholder="Escribi el precio..." >
             </div>
             
             <div class="form-group">
-                <label for="size">Size</label>
-                <input type="text" class="form-control" name="size"  value="" th:field="*{size}" placeholder="Enter the size..." >
+                <label for="size">Talle</label>
+                <input type="text" class="form-control" name="size"  value="" th:field="*{size}" placeholder="Escribi el talle..." >
             </div>
               
             <br>
             <button type="submit" class="btn btn-dark px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
-                Add Product
+                Agregar Producto
             </button>
             <a href="/product" class="btn btn-outline-secondary ml-3">
-                Return to control panel
+                Volver al panel de control
             </a>
 
 

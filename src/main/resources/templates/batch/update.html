@@ -1,38 +1,71 @@
-   <html>
-  <head>
-   
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    </head>
-    
-    <body> 
-  
-  
-  <form action="#" th:action="@{/batch/update}" th:object="${batch}"
-	method="post">
-	<input type="hidden"  th:field="*{idBatch}" th:value="*{idBatch}" />
-	
-	<p>
-	   Quantity: <input type="text" th:field="*{quantity}" />
-	</p>
-	
-	<p>
-	   Quantities: <input type="text" th:field="*{quantities}" />
-	</p>
-	
-	<p>
-	   Product: 
-	</p>
-	
-	<select placeholder="product" th:field="*{product.idProduct}">
-	  <option th:each="p : ${products}" th:value="${p.idProduct}" th:text="${p.description}"></option>
-	</select>
-	<input type="submit" value="Edit" />
-	
-</form>
-<form action="#" th:action="@{/batch/delete/{id}(id=${batch.idBatch})}" method="post">
-	<input type="submit" value="delete lote" />
-</form>
+<html>
+<head>
+<link rel="stylesheet" href="/css/estilos.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
 
- 
-    </body>
-</html> 
+<body>
+	<nav class="site-header sticky-top py-1">
+		<div
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2" href="#"> <svg xmlns="http://www.w3.org/2000/svg"
+					width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round"
+					stroke-linejoin="round" class="d-block mx-auto">
+					<circle cx="12" cy="12" r="10"></circle>
+					<line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+					<line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+					<line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+					<line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+					<line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+					<line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+			</a> 
+			<a class="py-2 d-md-inline-block" href="#">Adm.Clientes</a> 
+                <a class="py-2 d-md-inline-block" href="#">Adm.Empleados</a>
+                <a class="py-2 d-md-inline-block" href="#">Adm.Personas</a> 
+                <a class="py-2 d-md-inline-block" href="#">Adm.Locales</a>
+                <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
+                <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
+		</div>
+	</nav>
+	<h2>Actualizacion de Lotes</h2>
+
+	<div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
+  
+       <form action="#" th:action="@{/batch/update}" th:object="${batch}"
+			method="post">
+			<input type="hidden" th:field="*{idBatch}" th:value="*{idBatch}" />
+
+			<div class="form-group">
+				<label for="quantity">Cantidad</label> <input type="text"
+					class="form-control" name="quantity" value="" th:field="*{quantity}"
+					placeholder="Escribi la cantidad..." />
+			</div>
+
+			<div class="form-group">
+				<label for="quantities">CantidadTotal</label> <input type="text"
+					class="form-control" name="quantities" th:field="*{quantities}"
+					placeholder="Escribi  cantidad total..." />
+			</div>
+
+			<div class="form-group">
+				<label for="product">Producto</label> 
+				<select placeholder="product" th:field="*{product.idProduct}">
+	            <option th:each="p : ${products}" th:value="${p.idProduct}" th:text="${p.description}"></option>
+	             </select>
+            </div>
+				<input class="update" type="submit" value="Editar Lote" />
+		</form>
+
+		<form action="#" th:action="@{/batch/delete/{id}(id=${batch.idBatch})}"
+			method="post">
+			<br>
+			<input class="update" type="submit" value="Borrar Lote" />
+		</form>
+	</div>
+</body>
+
+</html>
