@@ -46,7 +46,7 @@ public class PersonController {
 	}
 	
 	@GetMapping("/{id}")
-	public ModelAndView get(@PathVariable("id") int id) {
+	public ModelAndView get(@PathVariable("id") long id) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
 		mAV.addObject("person", personService.findById(id));
 		return mAV;
@@ -69,7 +69,7 @@ public class PersonController {
 	}
 	
 	@PostMapping("/delete/{id}")
-	public RedirectView delete(@PathVariable("id") int id) {
+	public RedirectView delete(@PathVariable("id") long id) {
 		personService.remove(id);
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);
 	}

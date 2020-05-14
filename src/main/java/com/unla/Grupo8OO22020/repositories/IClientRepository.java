@@ -12,7 +12,7 @@ import com.unla.Grupo8OO22020.entities.*;
 @Repository("clientRepository")
 public interface IClientRepository extends JpaRepository<Client, Serializable> {
 	
-	public abstract Client findById(int id);
+	public abstract Client findById(long id);
 	
 	
 	

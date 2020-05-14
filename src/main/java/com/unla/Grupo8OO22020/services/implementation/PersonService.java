@@ -33,7 +33,7 @@ import java.util.*;
 		}
 
 		@Override
-		public boolean remove(int id) {
+		public boolean remove(long id) {
 			try {
 				personRepository.deleteById(id);
 				return true;
@@ -43,7 +43,7 @@ import java.util.*;
 		}
 
 		@Override
-		public PersonModel findById(int id) {
+		public PersonModel findById(long id) {
 			return personConverter.entityToModel(personRepository.findById(id));
 		}
 

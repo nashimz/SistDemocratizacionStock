@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 public class Client extends Person {
-	private int id;
+	private long id;
 	private String name;
 	private String surname;
 	private LocalDate dateBirth;
@@ -18,7 +18,7 @@ public class Client extends Person {
 	public Client() {
 		super();
 	}
-	public Client(int id,String name,String surname,LocalDate dateBirth,long dni, String mail) {
+	public Client(long id,String name,String surname,LocalDate dateBirth,long dni, String mail) {
 		this.setId(id);
 		this.name = name;
 		this.surname = surname;
@@ -28,14 +28,12 @@ public class Client extends Person {
 		
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-
 	public String getMail() {
 		return mail;
 	}

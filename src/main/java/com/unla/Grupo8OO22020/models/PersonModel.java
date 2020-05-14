@@ -4,7 +4,7 @@ import java.time.*;
 public class PersonModel {
 
 	
-	private int id;
+	private long id;
 	
 	private String name;
 	private String surname;
@@ -13,7 +13,7 @@ public class PersonModel {
 	
 	public PersonModel() {}
 	
-	public PersonModel(int id, String name,String surname,LocalDate dateBirth,long dni) {
+	public PersonModel(long id, String name,String surname,LocalDate dateBirth,long dni) {
 		this.setId(id);
 		this.name = name;
 		this.surname = surname;
@@ -28,11 +28,11 @@ public class PersonModel {
 		this.name = name;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

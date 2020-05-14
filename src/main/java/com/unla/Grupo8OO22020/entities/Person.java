@@ -16,7 +16,7 @@ public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	private String name;
 	
@@ -36,7 +36,7 @@ public class Person {
 	
 	public Person() {}
 	
-	public Person(int id, String name,String surname, LocalDate dateBirth,long dni) {
+	public Person(long id, String name,String surname, LocalDate dateBirth,long dni) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -52,11 +52,11 @@ public class Person {
 
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

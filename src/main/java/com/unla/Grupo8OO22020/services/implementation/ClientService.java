@@ -35,7 +35,7 @@ import java.util.*;
 		}
 
 		@Override
-		public boolean remove(int id) {
+		public boolean remove(long id) {
 			try {
 				clientRepository.deleteById(id);
 				return true;
@@ -45,7 +45,7 @@ import java.util.*;
 		}
 
 		@Override
-		public ClientModel findById(int id) {
+		public ClientModel findById(long id) {
 			return clientConverter.entityToModel(clientRepository.findById(id));
 		}
 
@@ -54,4 +54,6 @@ import java.util.*;
 			// TODO Auto-generated method stub
 			return null;
 		}
+
+		
 }

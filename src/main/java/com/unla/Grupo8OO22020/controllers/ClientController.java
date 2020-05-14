@@ -46,7 +46,7 @@ public class ClientController {
 	}
 	
 	@GetMapping("/{id}")
-	public ModelAndView get(@PathVariable("id") int id) {
+	public ModelAndView get(@PathVariable("id") long id) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.CLIENT_UPDATE);
 		mAV.addObject("client", clientService.findById(id));
 		return mAV;
@@ -69,7 +69,7 @@ public class ClientController {
 	}
 	
 	@PostMapping("/delete/{id}")
-	public RedirectView delete(@PathVariable("id") int id) {
+	public RedirectView delete(@PathVariable("id") long id) {
 		clientService.remove(id);
 		return new RedirectView(ViewRouteHelper.CLIENT_ROOT);
 	}

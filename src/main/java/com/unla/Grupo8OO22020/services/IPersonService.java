@@ -8,13 +8,13 @@ public interface IPersonService {
 public List<Person> getAll();
 
 
-	public PersonModel findById(int id);
+	public PersonModel findById(long id);
 	
 	public PersonModel findByName(String name);
 	
 	public PersonModel insertOrUpdate(PersonModel personModel);
 	
-	public boolean remove(int id);
+	public boolean remove(long id);
 	
 	
 }

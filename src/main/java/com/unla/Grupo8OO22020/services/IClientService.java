@@ -9,13 +9,13 @@ public interface IClientService {
 public List<Client> getAll();
 
 
-	public ClientModel findById(int id);
+	public ClientModel findById(long id);
 	
 	public ClientModel findByName(String name);
 	
 	public ClientModel insertOrUpdate(ClientModel clientModel);
 	
-	public boolean remove(int id);
+	public boolean remove(long id);
 	
 	
 }

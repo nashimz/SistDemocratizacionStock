@@ -8,7 +8,7 @@
                 <a class="py-2" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
                 </a>
-               <a class="py-2 d-md-inline-block" href="/client">Adm.Clientes</a> 
+                <a class="py-2 d-md-inline-block" href="/client">Adm.Clientes</a> 
                 <a class="py-2 d-md-inline-block" href="/employee">Adm.Empleados</a>
                 <a class="py-2 d-md-inline-block" href="/person">Adm.Personas</a> 
                 <a class="py-2 d-md-inline-block" href="/store">Adm.Locales</a>
@@ -17,9 +17,9 @@
             </div>
         </nav>
         
-        <h2>Agregar Cliente</h2>
+        <h2>Agregar Empleado</h2>
 <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
-        <form action="#" th:action="@{/client/create}" th:object="${client}" method="post">
+        <form action="#" th:action="@{/employee/create}" th:object="${employee}" method="post">
             
             <div class="form-group">
                 <label for="name">Nombre</label>
@@ -42,19 +42,43 @@
             </div>
             
             <div class="form-group">
-                <label for="name">Mail</label>
-                <input type="email" class="form-control" name="mail"  value="" th:field="*{mail}" placeholder="Escribi tu mail..." >
+                <label for="name">Gerente</label>
+                <input type="text" class="form-control" name="manager"  value="" th:field="*{manager}" placeholder="¿Es gerente?..." >
             </div>
             
+            <div class="form-group">
+                <label for="name">Hora de inicio</label>
+                <input type="text" class="form-control" name="startTime"  value="" th:field="*{startTime}" placeholder="Ingresar hora de inicio..." >
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Hora de finalizacion</label>
+                <input type="text" class="form-control" name="endTime"  value="" th:field="*{endTime}" placeholder="Ingresar hora de finalizacion..." >
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Salario basico</label>
+                <input type="text" class="form-control" name="basicSalary"  value="" th:field="*{basicSalary}" placeholder="Ingresar salario basico..." >
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Local</label>
+                <input type="text" class="form-control" name="store"  value="" th:field="*{store}" placeholder="Ingresar local..." >
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Comision</label>
+                <input type="text" class="form-control" name="commission"  value="" th:field="*{commission}" placeholder="Ingresar comision: " >
+            </div>
           
             
             <br>
             <button type="submit" class="btn btn-dark px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
-                Agregar Cliente
+                Agregar Empleado
             </button>
-            <a href="/client" class="btn btn-outline-secondary ml-3">
-                Volver al panel de Cliente
+            <a href="/employee" class="btn btn-outline-secondary ml-3">
+                Volver al panel de Empleados
             </a>
 
 

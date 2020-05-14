@@ -3,7 +3,7 @@ package com.unla.Grupo8OO22020.models;
 import java.time.LocalDate;
 
 public class ClientModel {
-	private int id;
+	private long id;
 	private String name;
 	private String surname;
 	private LocalDate dateBirth;
@@ -12,7 +12,7 @@ public class ClientModel {
 	
 public ClientModel() {}
 	
-	public ClientModel(int id,String name,String surname,LocalDate dateBirth,long dni, String mail) {
+	public ClientModel(long id,String name,String surname,LocalDate dateBirth,long dni, String mail) {
 		this.setId(id);
 		this.name = name;
 		this.surname = surname;
@@ -53,15 +53,11 @@ public ClientModel() {}
 		this.dni = dni;
 	}
 
-	
-	
-
-
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -72,5 +68,7 @@ public ClientModel() {}
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+	
+	
 	
 }
