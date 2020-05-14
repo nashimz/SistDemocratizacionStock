@@ -51,6 +51,4 @@ public class ProductModel {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	
-	
 }

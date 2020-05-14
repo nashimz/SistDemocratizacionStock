@@ -1,6 +1,7 @@
 package com.unla.Grupo8OO22020.models;
 
 
+
 public class BatchModel {
 	
 	private long idBatch;
@@ -10,6 +11,7 @@ public class BatchModel {
 	private int quantity;
 	
 	private int quantities;
+	
 	
 
 	public BatchModel() {}
@@ -53,5 +55,6 @@ public class BatchModel {
 	public void setQuantities(int quantities) {
 		this.quantities = quantities;
 	}
-	
+
+
 	}

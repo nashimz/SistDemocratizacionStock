@@ -14,10 +14,16 @@ public class ViewRouteHelper {
 	public final static String BATCH_INDEX = "batch/index";
 	public final static String BATCH_NEW = "batch/new";
 	public final static String BATCH_UPDATE = "batch/update";
+	
+	//locales 
+	public final static String STORE_INDEX="store/index";
+	public final static String STORE_NEW="store/new";
+	public final static String STORE_UPDATE="store/update";
 
 	
 	/**** Redirects ****/
 	public final static String PRODUCT_ROOT = "/product";
 	public final static String BATCH_ROOT = "/batch";
+	public final static String STORE_ROOT="/store";
 	
 }

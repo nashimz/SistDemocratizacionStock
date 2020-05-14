@@ -15,7 +15,7 @@
                 <a class="py-2 d-md-inline-block" href="#">Adm.Clientes</a> 
                 <a class="py-2 d-md-inline-block" href="#">Adm.Empleados</a>
                 <a class="py-2 d-md-inline-block" href="#">Adm.Personas</a> 
-                <a class="py-2 d-md-inline-block" href="#">Adm.Locales</a>
+                <a class="py-2 d-md-inline-block" href="/store">Adm.Locales</a>
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
             </div>
@@ -28,12 +28,8 @@
                     <th>IdProducto</th>
                     <th>Cantidad</th>
                     <th>Cantidad Total</th>
-               
                     
-                    
-                    
-                    
-                    
+       
                     
                     <th colspan="2" class="text-center">
                         <a href="/batch/new" class="btn btn-outline-light px-4">
@@ -47,6 +43,7 @@
 			<td><span th:text="${batch.product.idProduct}" /></td>
 			<td><span th:text="${batch.quantity}" /> </td>
 			<td><span th:text="${batch.quantities}" /> </td>
+			
 			
 			<td>
                         <a th:href="@{/batch/{idBatch}(idBatch=${batch.idBatch})}" class="btn btn-outline-secondary px-4">

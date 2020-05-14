@@ -3,17 +3,22 @@ package com.unla.Grupo8OO22020.entities;
 
 import java.time.LocalDateTime;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 
 @Entity
 @Table(name="batch")
@@ -39,6 +44,12 @@ public class Batch {
 	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	// normalmente nullable es igual a false, en este caso se deja como true porque el ejemplo es simple
+	@JoinColumn(name="id_store", nullable=false)
+	private Store store;
 
 
 	public Batch() {}
@@ -105,4 +116,14 @@ public class Batch {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+	
+	
 }

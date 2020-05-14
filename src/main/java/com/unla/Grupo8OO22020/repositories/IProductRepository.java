@@ -22,7 +22,7 @@ public interface IProductRepository extends JpaRepository<Product, Serializable>
 	@Query("SELECT p FROM  Product p WHERE p.description = (:description)")
 	public abstract List<Product> findByDescriptionName(String description);
 	
-	// Todas los productos que tengan una descripcion con ese nombre (parámetro descripcion)
+	// Todas los productos que tengan ese talle (parámetro talle)
 	@Query("SELECT p FROM  Product p WHERE p.size = (:size)")
 	public abstract List<Product> findBySizeName(String size);
 	
