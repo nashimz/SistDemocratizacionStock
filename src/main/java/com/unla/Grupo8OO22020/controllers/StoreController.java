@@ -27,18 +27,18 @@ public class StoreController {
 
 	@GetMapping("")
 	public ModelAndView index() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
-		mAV.addObject("stores", storeService.getAll());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
+		mV.addObject("stores", storeService.getAll());
+		return mV;
 
 	}
 	
 	
 	@GetMapping("/new")
 	public ModelAndView create() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_NEW);
-		mAV.addObject("store", new StoreModel());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_NEW);
+		mV.addObject("store", new StoreModel());
+		return mV;
 	}
 	
 	@PostMapping("/create")
@@ -49,16 +49,16 @@ public class StoreController {
 	
 	@GetMapping("/{idStore}")
 	public ModelAndView get(@PathVariable("idStore") long idStore) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_UPDATE);
-		mAV.addObject("store", storeService.findByIdStore(idStore));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_UPDATE);
+		mV.addObject("store", storeService.findByIdStore(idStore));
+		return mV;
 	}
 	
-	@GetMapping("/batch{id_Batch}")
+	@GetMapping("/by_batch{id_Batch}")
 	public ModelAndView getByIdBatch(@PathVariable("id_Batch") long idBatch) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
-		mAV.addObject("stores", storeService.findByIdBatch(idBatch));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
+		mV.addObject("stores", storeService.findByIdBatch(idBatch));
+		return mV;
 	}
 	
 	@PostMapping("/update")

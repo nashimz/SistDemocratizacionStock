@@ -30,17 +30,17 @@ public class ProductController {
 	//metodo simple que me trae una vista que me lista a todos los productos existentes y me permite hacer consultas
 	@GetMapping("")
 	public ModelAndView index() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
-		mAV.addObject("products", productService.getAll());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
+		mV.addObject("products", productService.getAll());
+		return mV;
 	}
 	
 	//metodo que me traer una vista para generar un un formulario para un producto nuevo
 	@GetMapping("/new")
 	public ModelAndView create() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_NEW);
-		mAV.addObject("product", new ProductModel());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_NEW);
+		mV.addObject("product", new ProductModel());
+		return mV;
 	}
 	
 	// metodo para crear un producto nuevo haciendo un post al servidor
@@ -55,40 +55,40 @@ public class ProductController {
 	
 	@GetMapping("/{idProduct}")
 	public ModelAndView get(@PathVariable("idProduct") int idProduct) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
-		mAV.addObject("product", productService.findByIdProduct(idProduct));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
+		mV.addObject("product", productService.findByIdProduct(idProduct));
+		return mV;
 	}
 	
 	
 	//metodo para rutear por otra variable que no sea el id 
 	@GetMapping("/by_description/{description}")
 	public ModelAndView getByDescription(@PathVariable("description") String description) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
-		mAV.addObject("product", productService.findByDescription(description));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
+		mV.addObject("product", productService.findByDescription(description));
+		return mV;
 	}
 	
 	@GetMapping("/by_size/{size}")
 	public ModelAndView getBySize(@PathVariable("size") String size) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
-		mAV.addObject("product", productService.findBySize(size));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
+		mV.addObject("product", productService.findBySize(size));
+		return mV;
 	}
 	
 	@GetMapping("/description/{description_name}")
 	public ModelAndView getByDescriptionName(@PathVariable("description_name") String descriptionName) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
-		mAV.addObject("products", productService.findByDescriptionName(descriptionName));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
+		mV.addObject("products", productService.findByDescriptionName(descriptionName));
+		return mV;
 	}
 	
 	
 	@GetMapping("/size/{size_name}")
 	public ModelAndView getBySizeName(@PathVariable("size_name") String sizeName) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
-		mAV.addObject("products", productService.findBySizeName(sizeName));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
+		mV.addObject("products", productService.findBySizeName(sizeName));
+		return mV;
 	}
 	
 	//metodo para poder actualizar un producto

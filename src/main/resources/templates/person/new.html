@@ -1,8 +1,11 @@
+<html>
 <head>
      <link rel="stylesheet" href="/css/estilos.css">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
+    
+    <body>
      <nav class="site-header sticky-top py-1">
             <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="py-2" href="#">
@@ -17,34 +20,46 @@
             </div>
         </nav>
         
-        <h2>Agregar Producto</h2>
+        <h2>Agregar Persona</h2>
 <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
-        <form action="#" th:action="@{/product/create}" th:object="${product}" method="post">
+        <form action="#" th:action="@{/person/create}" th:object="${person}" method="post">
             
+           
             <div class="form-group">
-                <label for="description">Descripcion</label>
-                <input type="text" class="form-control" name="description"  value="" th:field="*{description}" placeholder="Escribi la descripcion..." >
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." >
             </div>
             
              <div class="form-group">
-                <label for="price">Precio</label>
-                <input type="text" class="form-control" name="price"  value="" th:field="*{price}" placeholder="Escribi el precio..." >
+                <label for="surname">Apellido</label>
+                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." >
             </div>
             
             <div class="form-group">
-                <label for="size">Talle</label>
-                <input type="text" class="form-control" name="size"  value="" th:field="*{size}" placeholder="Escribi el talle..." >
+                <label for="dateBirth">Fecha de Nacimiento</label>
+                <input type="text" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." >
             </div>
-              
+            
+            <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." >
+            </div>
+
+            
             <br>
             <button type="submit" class="btn btn-dark px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
-                Agregar Producto
+                Agregar Persona
             </button>
-            <a href="/product" class="btn btn-outline-secondary ml-3">
-                Volver al panel de control
+            <a href="/person" class="btn btn-outline-secondary ml-3">
+                Volver al panel de Personas
             </a>
 
 
         </form>
         </div>
+        
+        
+        
+        </body>
+        </html>

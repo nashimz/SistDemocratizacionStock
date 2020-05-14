@@ -1,4 +1,4 @@
-   <!doctype html>
+  <!doctype html>
 <html lang="en">
 <head>
      <link rel="stylesheet" href="/css/estilos.css">
@@ -18,15 +18,15 @@
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
             </div>
         </nav>
-        <h2>Administracion de Productos</h2>
+        <h2>Administracion de Personas</h2>
      <table class="table table-bordered table-stripped table-hover table-sm">
      
             <thead class="thead-dark">
                 <tr>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Talle</th>
-               
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>DNI</th>
                     
                     
                     
@@ -34,20 +34,21 @@
                     
                     
                     <th colspan="2" class="text-center">
-                        <a href="/product/new" class="btn btn-outline-light px-4">
+                        <a href="/person/new" class="btn btn-outline-light px-4">
                             <i class="far fa-plus-square fa-lg mr-2"></i>
                             Agregar
                         </a>
                     </th>
                 </tr>
 	<tbody>
-		<tr th:each="product : ${products}">
-			<td><span th:text="${product.description}" /></td>
-			<td><span th:text="${product.price}" /> </td>
-			<td><span th:text="${product.size}" /> </td>
+		<tr th:each="person : ${persons}">
+			<td><span th:text="${person.name}" /></td>
+			<td><span th:text="${person.surname}" /> </td>
+			<td><span th:text="${person.dateBirth}" /> </td>
+			<td><span th:text="${person.dni}" /> </td>
 			
 			<td>
-                        <a th:href="@{/product/{idProduct}(idProduct=${product.idProduct})}" class="btn btn-outline-secondary px-4">
+                        <a th:href="@{/person/{id}(id=${person.id})}" class="btn btn-outline-secondary px-4">
                             <i class="far fa-edit fa-lg mr-1"></i>
                             Ver
                         </a>

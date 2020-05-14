@@ -19,11 +19,24 @@ public class ViewRouteHelper {
 	public final static String STORE_INDEX="store/index";
 	public final static String STORE_NEW="store/new";
 	public final static String STORE_UPDATE="store/update";
+	
+	// Person
+	
+    public final static String PERSON_INDEX = "person/index";
+	public final static String PERSON_NEW = "person/new";
+	public final static String PERSON_UPDATE = "person/update";
+		
+		// Client
+		
+	public final static String CLIENT_INDEX = "client/index";
+	public final static String CLIENT_NEW = "client/new";
+	public final static String CLIENT_UPDATE = "client/update";
 
 	
 	/**** Redirects ****/
 	public final static String PRODUCT_ROOT = "/product";
 	public final static String BATCH_ROOT = "/batch";
 	public final static String STORE_ROOT="/store";
-	
+	public final static String PERSON_ROOT="/store";
+	public final static String CLIENT_ROOT="/store";
 }
