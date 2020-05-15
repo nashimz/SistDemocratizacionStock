@@ -31,7 +31,7 @@ public class Employee extends Person{
 		this.surname = surname;
 		this.dateBirth = dateBirth;
 		this.dni = dni;
-		this.manager = false;
+		this.manager = manager;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
@@ -45,7 +45,7 @@ public class Employee extends Person{
 		this.surname = surname;
 		this.dateBirth = dateBirth;
 		this.dni = dni;
-		this.manager = false;
+		this.manager = manager;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
@@ -98,7 +98,7 @@ public class Employee extends Person{
 	}
 
 	public void setManager(boolean manager) {
-		this.manager = false;
+		this.manager = manager;
 	}
 
 	public LocalTime getStartTime() {
