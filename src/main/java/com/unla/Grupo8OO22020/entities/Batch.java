@@ -3,7 +3,6 @@ package com.unla.Grupo8OO22020.entities;
 
 import java.time.LocalDateTime;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

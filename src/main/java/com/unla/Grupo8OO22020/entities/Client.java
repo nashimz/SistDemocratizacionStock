@@ -15,9 +15,8 @@ public class Client extends Person {
 	
 	
 	
-	public Client() {
-		super();
-	}
+	public Client() {}
+	
 	public Client(long id,String name,String surname,LocalDate dateBirth,long dni, String mail) {
 		this.setId(id);
 		this.name = name;
@@ -25,7 +24,13 @@ public class Client extends Person {
 		this.dateBirth = dateBirth;
 		this.dni = dni;
 		this.mail = mail;
-		
+	}
+	public Client(String name,String surname,LocalDate dateBirth,long dni, String mail) {
+		this.name = name;
+		this.surname = surname;
+		this.dateBirth = dateBirth;
+		this.dni = dni;
+		this.mail = mail;
 	}
 
 	public long getId() {

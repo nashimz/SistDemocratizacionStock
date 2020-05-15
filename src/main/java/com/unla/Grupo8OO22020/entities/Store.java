@@ -54,6 +54,14 @@ public class Store {
 		this.manager = manager;
 	}
 	
+	public Store( long phone, String address,float latitude, float longitude, String manager) {
+		this.phone = phone;
+		this.address = address;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.manager = manager;
+	}
+	
 	public long getIdStore() {
 		return idStore;
 	}

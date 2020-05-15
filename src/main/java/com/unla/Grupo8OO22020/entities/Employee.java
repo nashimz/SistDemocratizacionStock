@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class Employee extends Person{
+	
+	
 	private long id;
 	private String name;
 	private String surname;
@@ -19,14 +21,26 @@ public class Employee extends Person{
 	private double commission;
 	private String store; 
 	
-	public Employee() {
-		super();
-	}
+	public Employee() {}
 
 	public Employee(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
 			LocalTime endTime, double basicSalary, double commission, String store) {
 		super();
 		this.setId(id);
+		this.name = name;
+		this.surname = surname;
+		this.dateBirth = dateBirth;
+		this.dni = dni;
+		this.manager = false;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.basicSalary = basicSalary;
+		this.commission = commission;
+		this.store = store;
+	}
+	
+	public Employee(String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
+			LocalTime endTime, double basicSalary, double commission, String store) {
 		this.name = name;
 		this.surname = surname;
 		this.dateBirth = dateBirth;

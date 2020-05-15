@@ -32,12 +32,17 @@ public class Person {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
-	
-	
 	public Person() {}
 	
 	public Person(long id, String name,String surname, LocalDate dateBirth,long dni) {
 		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.dateBirth = dateBirth;
+		this.dni = dni;
+	}
+	
+	public Person( String name,String surname, LocalDate dateBirth,long dni) {
 		this.name = name;
 		this.surname = surname;
 		this.dateBirth = dateBirth;
