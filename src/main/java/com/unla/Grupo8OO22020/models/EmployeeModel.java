@@ -3,13 +3,18 @@ package com.unla.Grupo8OO22020.models;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 //import com.unla.Grupo8OO22020.entities.Store;
 
 public class EmployeeModel{
 	private long id;
 	private String name;
 	private String surname;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateBirth;
+	
 	private long dni;
 	private boolean manager;
 	private LocalTime startTime;

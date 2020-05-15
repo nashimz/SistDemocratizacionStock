@@ -2,10 +2,14 @@ package com.unla.Grupo8OO22020.models;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ClientModel {
 	private long id;
 	private String name;
 	private String surname;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateBirth;
 	private long dni;
 	private String mail;

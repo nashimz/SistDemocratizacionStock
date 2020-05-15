@@ -1,6 +1,8 @@
 package com.unla.Grupo8OO22020.models;
 import java.time.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PersonModel {
 
 	
@@ -8,7 +10,10 @@ public class PersonModel {
 	
 	private String name;
 	private String surname;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateBirth;
+	
 	private long dni;
 	
 	public PersonModel() {}
