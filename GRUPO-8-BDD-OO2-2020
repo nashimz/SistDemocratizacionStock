@@ -1,0 +1,168 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema Grupo-8-BDD-OO2-2020
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema Grupo-8-BDD-OO2-2020
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `Grupo-8-BDD-OO2-2020` DEFAULT CHARACTER SET latin1 ;
+USE `Grupo-8-BDD-OO2-2020` ;
+
+-- -----------------------------------------------------
+-- Table `Grupo-8-BDD-OO2-2020`.`store`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Grupo-8-BDD-OO2-2020`.`store` (
+  `id_store` BIGINT NOT NULL AUTO_INCREMENT,
+  `address` VARCHAR(255) NULL DEFAULT NULL,
+  `latitude` FLOAT NULL DEFAULT NULL,
+  `longitude` FLOAT NULL DEFAULT NULL,
+  `manager` VARCHAR(255) NULL DEFAULT NULL,
+  `phone` BIGINT NULL DEFAULT NULL,
+  PRIMARY KEY (`id_store`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `Grupo-8-BDD-OO2-2020`.`product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Grupo-8-BDD-OO2-2020`.`product` (
+  `id_product` BIGINT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
+  `price` DOUBLE NULL DEFAULT NULL,
+  `size` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_product`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `Grupo-8-BDD-OO2-2020`.`batch`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Grupo-8-BDD-OO2-2020`.`batch` (
+  `id_batch` BIGINT NOT NULL AUTO_INCREMENT,
+  `createdat` DATETIME(6) NULL DEFAULT NULL,
+  `quantities` INT NULL DEFAULT NULL,
+  `quantity` INT NULL DEFAULT NULL,
+  `updatedat` DATETIME(6) NULL DEFAULT NULL,
+  `product_id_product` BIGINT NULL DEFAULT NULL,
+  `id_store` BIGINT NOT NULL,
+  PRIMARY KEY (`id_batch`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `Grupo-8-BDD-OO2-2020`.`person`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Grupo-8-BDD-OO2-2020`.`person` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `created_at` DATETIME(6) NULL DEFAULT NULL,
+  `date_birth` DATE NULL DEFAULT NULL,
+  `dni` BIGINT NOT NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `surname` VARCHAR(255) NULL DEFAULT NULL,
+  `updated_at` DATETIME(6) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `Grupo-8-BDD-OO2-2020`.`client`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Grupo-8-BDD-OO2-2020`.`client` (
+  `mail` VARCHAR(255) NULL DEFAULT NULL,
+  `id` BIGINT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- Table `Grupo-8-BDD-OO2-2020`.`employee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Grupo-8-BDD-OO2-2020`.`employee` (
+  `basic_salary` DOUBLE NOT NULL,
+  `commission` DOUBLE NOT NULL,
+  `end_time` TIME NULL DEFAULT NULL,
+  `manager` BIT(1) NOT NULL,
+  `start_time` TIME NULL DEFAULT NULL,
+  `store` VARCHAR(255) NULL DEFAULT NULL,
+  `id` BIGINT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES(1,'zapatilla',3500.0,'43'),(2,'ojotas',3500.0,'41'),(3,'zapatilla',3200.0,'41'),(4,'buzo',1500.0,'l'),(5,'remera',950.0,'l');
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM product;
+
+LOCK TABLES `store` WRITE;
+/*!40000 ALTER TABLE `store` DISABLE KEYS */;
+INSERT INTO `store` VALUES (1,'tucuman',35,31,'pablo',1124369587),(2,'pergamino',32,21,'pedro',1128569587);
+/*!40000 ALTER TABLE `store` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM store;
+
+
+LOCK TABLES `batch` WRITE;
+/*!40000 ALTER TABLE `batch` DISABLE KEYS */;
+INSERT INTO `batch` VALUES (1,'2011-12-18 13:17:17',35,20,'2011-12-18 13:17:17',1,1),(2,'2011-12-24 13:17:27',45,18,'2011-12-24 13:17:27',2,1);
+/*!40000 ALTER TABLE `batch` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM batch;
+
+LOCK TABLES `person` WRITE;
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` VALUES (1,'2011-12-18 13:17:16','1991-01-19',36363056,'facundo','cusato','2011-12-18 13:17:16');
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM person;
+
+
+LOCK TABLES `client` WRITE;
+/*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES ('facundocusato@hotmail.com',1);
+/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM client;
+
+
+LOCK TABLES `person` WRITE;
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` VALUES (2,'2011-12-18 20:17:16','1992-08-29',34380056,'yuliana','cusato','2011-12-18 20:17:16');
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (12000.0,1200.0,'06:00:00',FALSE,'18:00:00','adidas',2);
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM employee;
