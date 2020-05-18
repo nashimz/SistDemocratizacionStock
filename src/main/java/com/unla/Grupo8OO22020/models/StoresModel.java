@@ -29,20 +29,5 @@ public class StoresModel {
 		
 	}
 	
-	/*public  double distanciaCoord() {
-		double radioTierra = 6371; //en kilómetros
-		double dLat = Math.toRadians(this.getStore2().getLatitude()-this.getStore1().getLatitude());
-		double dLng = Math.toRadians(this.getStore2().getLongitude() -this.getStore1().getLongitude());
-		double sindLat = Math.sin(dLat / 2);
-		double sindLng = Math.sin(dLng / 2);
-		double va1 = Math.pow(sindLat, 2)
-		+ Math.pow(sindLng, 2) * Math.cos(Math.toRadians(this.getStore1().getLatitude())) * Math.cos(Math.toRadians(this.getStore2().getLatitude()));
-		double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
-		return radioTierra * va2;
-		}
-	
-	*/
-
-	
 	
 }

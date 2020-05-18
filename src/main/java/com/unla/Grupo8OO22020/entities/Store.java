@@ -1,19 +1,12 @@
 package com.unla.Grupo8OO22020.entities;
 
 import javax.persistence.GeneratedValue;
-
-
-
-
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,10 +31,10 @@ public class Store {
 	private String address;
 	
 	@Column(name="latitude")
-	private float latitude;
+	private double latitude;
 	
 	@Column(name="longitude")
-	private float longitude;
+	private double longitude;
 	
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Employee manager;
@@ -52,7 +45,7 @@ public class Store {
 	
 	public Store() {}
 	
-	public Store(long idStore, long phone, String address,float latitude, float longitude, Employee manager) {
+	public Store(long idStore, long phone, String address,double latitude, double longitude, Employee manager) {
 		super();
 		this.idStore = idStore;
 		this.phone = phone;
@@ -94,19 +87,19 @@ public class Store {
 		this.address = address;
 	}
 
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 

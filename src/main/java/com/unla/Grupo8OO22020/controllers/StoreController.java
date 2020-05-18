@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -18,6 +19,7 @@ import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 
 import com.unla.Grupo8OO22020.models.StoreModel;
+import com.unla.Grupo8OO22020.models.StoresModel;
 
 @Controller
 @RequestMapping("/store") 
@@ -48,12 +50,7 @@ public class StoreController {
 		mV.addObject("managers", employeeService.getAll());
 		return mV;
 	}
-	
-	/*@PostMapping("/create")
-	public RedirectView create(@ModelAttribute("store") StoreModel storeModel) {
-		storeService.insertOrUpdate(storeModel);
-		return new RedirectView(ViewRouteHelper.STORE_ROOT);
-	}*/
+
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("store") StoreModel storeModel) {
 		System.out.println("El id es :"+storeModel.getManager().getId());
@@ -80,6 +77,26 @@ public class StoreController {
 	public ModelAndView distanceStores() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_DISTANCE);
 		mV.addObject("stores", storeService.getAll());
+		return mV;
+	}
+	
+	
+	public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
+		double radioTierra = 6371;
+		double dLat = Math.toRadians(lat2 - lat1);
+		double dLng = Math.toRadians(lng2 - lng1);
+		double sindLat = Math.sin(dLat / 2);
+		double sindLng = Math.sin(dLng / 2);
+		double va1 = Math.pow(sindLat, 2)
+		+ Math.pow(sindLng, 2) * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
+		double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
+		return radioTierra * va2;
+		}
+
+	@RequestMapping(value="/calculatedistance", method=RequestMethod.POST)
+	public ModelAndView calculatedistance(StoresModel stores) {
+		ModelAndView mV=new ModelAndView(ViewRouteHelper.STORE_CALCULATEDISTANCE);
+	    mV.addObject(distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude()));
 		return mV;
 	}
 	

@@ -4,13 +4,13 @@ public class StoreModel {
 	private long idStore;
 	private long phone; 
 	private String address;
-	private float latitude;
-	private float longitude;
+	private double latitude;
+	private double longitude;
 	private EmployeeModel manager;
 	
 	public StoreModel () {}
 	
-	public StoreModel (long idStore, long phone,String address,float latitude, float longitude, EmployeeModel manager) {
+	public StoreModel (long idStore, long phone,String address,double latitude, double longitude, EmployeeModel manager) {
 		this.setIdStore(idStore);
 		this.phone = phone;
 		this.address = address;
@@ -43,19 +43,19 @@ public class StoreModel {
 		this.address = address;
 	}
 
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 

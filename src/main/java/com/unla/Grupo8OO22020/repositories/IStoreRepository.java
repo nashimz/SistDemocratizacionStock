@@ -17,6 +17,6 @@ public interface IStoreRepository extends JpaRepository<Store, Serializable>{
 		@Query("SELECT s FROM Store s JOIN FETCH s.batches b WHERE b.product.idProduct = (:idProduct)")
 	public abstract List<Store> findByIdProduct(long idProduct);
 
-
+		
 
 }

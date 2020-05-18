@@ -20,6 +20,7 @@ public class ViewRouteHelper {
 	public final static String STORE_NEW="store/new";
 	public final static String STORE_UPDATE="store/update";
 	public final static String STORE_DISTANCE="store/distance";
+	public final static String STORE_CALCULATEDISTANCE="store/calculatedistance";
 	
 	// Person
 	

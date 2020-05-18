@@ -80,6 +80,7 @@ public class StoreService  implements IStoreService{
 		return models;
 	}
 	
+	
 
 	@Override
 	public boolean remove(long idStore) {

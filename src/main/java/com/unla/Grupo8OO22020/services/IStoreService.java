@@ -21,5 +21,7 @@ public interface IStoreService {
 	public boolean remove(long idStore);
 	
 	public List<StoreModel> findByIdProduct(long idProduct);
+	
+	
 
 }
