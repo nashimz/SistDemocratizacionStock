@@ -30,7 +30,7 @@
 				<line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
 		       </a> 
 		        <a class="py-2 d-md-inline-block" href="/client">Adm.Clientes</a> 
-                <a class="py-2 d-md-inline-block" href="#">Adm.Empleados</a>
+                <a class="py-2 d-md-inline-block" href="/employee">Adm.Empleados</a>
                 <a class="py-2 d-md-inline-block" href="/person">Adm.Personas</a> 
                 <a class="py-2 d-md-inline-block" href="/store">Adm.Locales</a>
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
@@ -67,12 +67,14 @@
 				placeholder="Escribi la longitud...">
 		</div>
 		
-		<br>
+	
 		
 		<div class="form-group">
                 <label for="manager">Gerente</label>
                 <input type="text" class="form-control" name="manager"  value="" th:field="*{manager}" placeholder="Escribi el gerente..." >
-            </div>
+        </div>
+       
+            
 		<br>
 		 <button type="submit" class="btn btn-dark px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>

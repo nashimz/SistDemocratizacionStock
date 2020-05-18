@@ -26,7 +26,7 @@
                     <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Talle</th>
-               
+                    <th>Fecha de alta</th>
                     
                     
                     
@@ -45,6 +45,7 @@
 			<td><span th:text="${product.description}" /></td>
 			<td><span th:text="${product.price}" /> </td>
 			<td><span th:text="${product.size}" /> </td>
+			<td><span th:text="${product.startDate}" /> </td>
 			
 			<td>
                         <a th:href="@{/product/{idProduct}(idProduct=${product.idProduct})}" class="btn btn-outline-secondary px-4">

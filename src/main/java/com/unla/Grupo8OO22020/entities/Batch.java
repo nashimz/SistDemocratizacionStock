@@ -44,10 +44,9 @@ public class Batch {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	
+	//lado propietario
 	@ManyToOne(fetch = FetchType.LAZY)
-	// normalmente nullable es igual a false, en este caso se deja como true porque el ejemplo es simple
-	@JoinColumn(name="id_store", nullable=false)
+	@JoinColumn(name="store_id", nullable=false)
 	private Store store;
 
 
@@ -58,6 +57,7 @@ public class Batch {
 		this.product = product;
 		this.quantity = quantity;
 		this.quantities = quantities;
+		
 
 	}
 	

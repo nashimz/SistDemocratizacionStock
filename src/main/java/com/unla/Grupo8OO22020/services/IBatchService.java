@@ -13,6 +13,8 @@ public interface  IBatchService {
 	
 	
 	   public abstract List<Batch> getAll();
+	   
+	   public abstract List<BatchModel> getAlls();
 		
 		public abstract  BatchModel insert(BatchModel batchModel);
 		

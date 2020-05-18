@@ -1,5 +1,7 @@
 package com.unla.Grupo8OO22020.models;
 
+
+
 public class StoreModel {
 	private long idStore;
 	private long phone; 
@@ -66,6 +68,8 @@ public class StoreModel {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
+
+	
 
 
 }

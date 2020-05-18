@@ -36,7 +36,7 @@ public class BatchController {
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.BATCH_INDEX);
-		mV.addObject("batches", batchService.getAll());
+		mV.addObject("batches", batchService.getAlls());
 		return mV;
 	}
 	

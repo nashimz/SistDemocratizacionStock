@@ -14,5 +14,8 @@ public interface IBatchRepository extends JpaRepository<Batch, Serializable> {
 	
 	public abstract Batch findByIdBatch(long idBatch);
 	
+	
+
+	
 
 }

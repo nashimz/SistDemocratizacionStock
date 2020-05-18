@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.services.implementation;
 import java.util.ArrayList;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.services.IStoreService;
+
 import com.unla.Grupo8OO22020.repositories.IStoreRepository;
 import com.unla.Grupo8OO22020.converters.StoreConverter;
 import com.unla.Grupo8OO22020.models.StoreModel;
@@ -24,6 +26,7 @@ public class StoreService  implements IStoreService{
 	@Autowired
 	@Qualifier("storeConverter")
 	private StoreConverter storeConverter;
+
 	
 	@Override
 	public List<Store> getAll() {
@@ -43,9 +46,18 @@ public class StoreService  implements IStoreService{
 	
 	
 	@Override
-	public List<StoreModel> findByIdBatch(long idBatch) {
+	public List<StoreModel> findByIdProduct(long idProduct) {
 		List<StoreModel> models = new ArrayList<StoreModel>();
-		for (Store store : storeRepository.findByIdBatch(idBatch)) {
+		for (Store store : storeRepository.findByIdProduct(idProduct)) {
+			models.add(storeConverter.entityToModel(store));
+		}
+		return models;
+	}
+	
+	@Override
+	public List<StoreModel> getAlls() {
+		List<StoreModel> models = new ArrayList<StoreModel>();
+		for (Store store : storeRepository.findAll()) {
 			models.add(storeConverter.entityToModel(store));
 		}
 		return models;

@@ -13,9 +13,9 @@ import com.unla.Grupo8OO22020.entities.Store;
 public interface IStoreRepository extends JpaRepository<Store, Serializable>{
 	public abstract Store findByIdStore(long idStore);
 	
-	// Todas las personas que tengan un título con ese nombre (parámetro name)
-		@Query("SELECT s FROM Store s JOIN FETCH s.batches b WHERE b.idBatch = (:idBatch)")
-	public abstract List<Store> findByIdBatch(long idBatch);
+	// Todos los locales que tengan ese idproducto
+		@Query("SELECT s FROM Store s JOIN FETCH s.batches b WHERE b.product.idProduct = (:idProduct)")
+	public abstract List<Store> findByIdProduct(long idProduct);
 
 
 

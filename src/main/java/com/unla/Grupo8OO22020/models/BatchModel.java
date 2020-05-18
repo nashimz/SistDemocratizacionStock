@@ -12,8 +12,6 @@ public class BatchModel {
 	
 	private int quantities;
 	
-	
-
 	public BatchModel() {}
 
 	public BatchModel(long idBatch, ProductModel product, int quantity, int quantities) {

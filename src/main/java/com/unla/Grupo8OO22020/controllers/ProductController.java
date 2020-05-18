@@ -60,7 +60,7 @@ public class ProductController {
 		return mV;
 	}
 	
-	
+	/*
 	//metodo para rutear por otra variable que no sea el id 
 	@GetMapping("/by_description/{description}")
 	public ModelAndView getByDescription(@PathVariable("description") String description) {
@@ -75,7 +75,7 @@ public class ProductController {
 		mV.addObject("product", productService.findBySize(size));
 		return mV;
 	}
-	
+	*/
 	@GetMapping("/description/{description_name}")
 	public ModelAndView getByDescriptionName(@PathVariable("description_name") String descriptionName) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);

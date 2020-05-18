@@ -1,0 +1,13 @@
+<form  action:"sacarDistancia" method="post">
+  <p> local 1 :</p>
+     <select placeholde="Local1" name="store1.idStore">
+      <option th:each="store : ${stores}" th:value="store.idStore" th:text="${store.address}"></option>
+     </select>
+     
+ <p> local 2 :</p>
+     <select placeholde="Local2" name="store2.idStore">
+      <option th:each="store : ${stores}" th:value="store.idStore" th:text="${store.address}"></option>
+     </select>
+     
+     <input type="submit"/>
+</form>

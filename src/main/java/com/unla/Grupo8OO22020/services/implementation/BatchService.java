@@ -1,9 +1,12 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.services.IBatchService;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import com.unla.Grupo8OO22020.entities.Batch;
@@ -53,6 +56,16 @@ public class BatchService implements  IBatchService{
 	public BatchModel findByIdBatch(long idBatch) {
 		return batchConverter.entityToModel(batchRepository.findByIdBatch(idBatch));
 	}
+	
+	@Override
+	public List<BatchModel> getAlls() {
+		List<BatchModel> models = new ArrayList<BatchModel>();
+		for (Batch batch : batchRepository.findAll()) {
+			models.add(batchConverter.entityToModel(batch));
+		}
+		return models;
+	}
+	
 	
 	@Override
 	public boolean remove(long idBatch) {

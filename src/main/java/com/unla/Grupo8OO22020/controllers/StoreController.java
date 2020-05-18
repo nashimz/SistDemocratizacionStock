@@ -2,6 +2,7 @@ package com.unla.Grupo8OO22020.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
+
 import com.unla.Grupo8OO22020.services.IStoreService;
+
 import com.unla.Grupo8OO22020.models.StoreModel;
 
 @Controller
@@ -24,11 +27,12 @@ public class StoreController {
 	@Autowired
 	@Qualifier("storeService")
 	private IStoreService storeService;
+	
 
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
-		mV.addObject("stores", storeService.getAll());
+		mV.addObject("stores", storeService.getAlls());
 		return mV;
 
 	}
@@ -54,10 +58,17 @@ public class StoreController {
 		return mV;
 	}
 	
-	@GetMapping("/by_batch{id_Batch}")
-	public ModelAndView getByIdBatch(@PathVariable("id_Batch") long idBatch) {
+	@GetMapping("/distanceStores")
+	public ModelAndView distanceStores() {
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_DISTANCE);
+		mV.addObject("stores", storeService.getAll());
+		return mV;
+	}
+	
+	@GetMapping("/producto{id_Product}")
+	public ModelAndView getByIdProduct(@PathVariable("id_Product") long idProduct) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
-		mV.addObject("stores", storeService.findByIdBatch(idBatch));
+		mV.addObject("stores", storeService.findByIdProduct(idProduct));
 		return mV;
 	}
 	

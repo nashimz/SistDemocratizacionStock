@@ -1,6 +1,8 @@
 package com.unla.Grupo8OO22020.entities;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,14 +28,19 @@ public class Product {
 	
 	@Column(name="size")
 	String size;
+	
+	LocalDate startDate;
+	
+	
 
 	public Product() {}
 
-	public Product(long idProduct, String description, double price,String size) {
+	public Product(long idProduct, String description, double price,String size,LocalDate startDate) {
 		this.idProduct = idProduct;
 		this.description = description;
 		this.price = price;
 		this.size=size;
+		this.startDate=startDate;
 	}
 
 	public Product(String description, double price,String size) {
@@ -73,6 +80,12 @@ public class Product {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	
-	
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}	
 }

@@ -2,6 +2,7 @@ package com.unla.Grupo8OO22020.entities;
 
 import javax.persistence.GeneratedValue;
 
+
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,7 +19,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="store")
-
 public class Store {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,8 @@ public class Store {
 	@Column(name="manager")
 	private String manager;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="store")
+	//@OneToMany(mappedBy="store",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Batch> batches = new HashSet<Batch>();
 	
 	public Store() {}

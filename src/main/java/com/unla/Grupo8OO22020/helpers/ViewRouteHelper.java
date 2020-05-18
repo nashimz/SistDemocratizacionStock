@@ -19,6 +19,7 @@ public class ViewRouteHelper {
 	public final static String STORE_INDEX="store/index";
 	public final static String STORE_NEW="store/new";
 	public final static String STORE_UPDATE="store/update";
+	public final static String STORE_DISTANCE="store/distance";
 	
 	// Person
 	
