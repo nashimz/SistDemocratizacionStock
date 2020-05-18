@@ -1,18 +1,16 @@
 package com.unla.Grupo8OO22020.models;
 
-
-
 public class StoreModel {
 	private long idStore;
 	private long phone; 
 	private String address;
 	private float latitude;
 	private float longitude;
-	private String manager;
+	private EmployeeModel manager;
 	
 	public StoreModel () {}
 	
-	public StoreModel (long idStore, long phone,String address,float latitude, float longitude, String manager) {
+	public StoreModel (long idStore, long phone,String address,float latitude, float longitude, EmployeeModel manager) {
 		this.setIdStore(idStore);
 		this.phone = phone;
 		this.address = address;
@@ -61,11 +59,11 @@ public class StoreModel {
 		this.longitude = longitude;
 	}
 
-	public String getManager() {
+	public EmployeeModel getManager() {
 		return manager;
 	}
 
-	public void setManager(String manager) {
+	public void setManager(EmployeeModel manager) {
 		this.manager = manager;
 	}
 

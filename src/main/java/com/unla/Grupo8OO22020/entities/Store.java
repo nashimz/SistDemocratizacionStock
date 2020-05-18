@@ -3,13 +3,18 @@ package com.unla.Grupo8OO22020.entities;
 import javax.persistence.GeneratedValue;
 
 
+
+
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,9 +22,11 @@ import javax.persistence.Table;
 
 
 
+
 @Entity
 @Table(name="store")
 public class Store {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idStore;
@@ -36,16 +43,16 @@ public class Store {
 	@Column(name="longitude")
 	private float longitude;
 	
-	@Column(name="manager")
-	private String manager;
+	@OneToOne(cascade=CascadeType.MERGE)
+	private Employee manager;
 	
-	//@OneToMany(mappedBy="store",cascade=CascadeType.ALL)
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Batch> batches = new HashSet<Batch>();
 	
 	public Store() {}
 	
-	public Store(long idStore, long phone, String address,float latitude, float longitude, String manager) {
+	public Store(long idStore, long phone, String address,float latitude, float longitude, Employee manager) {
 		super();
 		this.idStore = idStore;
 		this.phone = phone;
@@ -55,7 +62,7 @@ public class Store {
 		this.manager = manager;
 	}
 	
-	public Store( long phone, String address,float latitude, float longitude, String manager) {
+	public Store( long phone, String address,float latitude, float longitude, Employee manager) {
 		this.phone = phone;
 		this.address = address;
 		this.latitude = latitude;
@@ -103,11 +110,11 @@ public class Store {
 		this.longitude = longitude;
 	}
 
-	public String getManager() {
+	public Employee getManager() {
 		return manager;
 	}
 
-	public void setManager(String manager) {
+	public void setManager(Employee manager) {
 		this.manager= manager;
 	}	
                                                        

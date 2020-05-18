@@ -50,7 +50,7 @@
 			<th>Direccion</th>
 			<th>Latitud</th>
 			<th>Longitud</th>
-			<th>Gerente</th>
+			<th>IDgerente</th>
 			<th colspan="2" class="text-center">
 			<a href="/store/new" class="btn btn-outline-light px-4"> 
 			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
@@ -63,7 +63,7 @@
 			<td><span th:text="${store.address}" /></td>
 			<td><span th:text="${store.latitude}" /></td>
 			<td><span th:text="${store.longitude}" /></td>
-			<td><span th:text="${store.manager}" /></td>
+			<td><span th:text="${store.manager.id}" /></td>
 			<td><a th:href="@{/store/{idStore}(idStore=${store.idStore})}"
 				class="btn btn-outline-secondary px-4"><i
 					class="far fa-edit fa-lg mr-1"></i> Ver</a></td>

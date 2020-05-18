@@ -70,9 +70,11 @@
 	
 		
 		<div class="form-group">
-                <label for="manager">Gerente</label>
-                <input type="text" class="form-control" name="manager"  value="" th:field="*{manager}" placeholder="Escribi el gerente..." >
-        </div>
+                <label for="manager">Manager</label> 
+                <select placeholder="manager" th:field="*{manager.id}">
+	            <option th:each="m : ${managers}" th:value="${m.id}" th:text="${m.name}"></option>
+	             </select>     
+            </div>
        
             
 		<br>

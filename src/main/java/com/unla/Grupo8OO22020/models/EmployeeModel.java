@@ -1,9 +1,12 @@
 package com.unla.Grupo8OO22020.models;
 
 import java.time.LocalDate;
+
 import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 //import com.unla.Grupo8OO22020.entities.Store;
 
@@ -21,14 +24,14 @@ public class EmployeeModel{
 	private LocalTime endTime;
 	private double basicSalary;
 	private double commission;
-	private String store; // CLASE LOCAL
+	
 	
 	public EmployeeModel() {
 		super();
 	}
 
 	public EmployeeModel(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission, String store) {
+			LocalTime endTime, double basicSalary, double commission) {
 		this.setId(id);
 		this.name = name;
 		this.surname = surname;
@@ -39,7 +42,7 @@ public class EmployeeModel{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
-		this.store = store;
+
 	}
 
 	public long getId() {
@@ -122,11 +125,5 @@ public class EmployeeModel{
 		this.commission = commission;
 	}
 
-	public String getStore() {
-		return store;
-	}
-
-	public void setStore(String store) {
-		this.store = store;
-	}
+	
 }

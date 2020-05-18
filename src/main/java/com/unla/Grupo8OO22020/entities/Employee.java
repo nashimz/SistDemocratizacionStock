@@ -1,9 +1,11 @@
 package com.unla.Grupo8OO22020.entities;
   
 import java.time.LocalDate;
+
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
+
 
 @Entity
 public class Employee extends Person{
@@ -12,6 +14,7 @@ public class Employee extends Person{
 	private long id;
 	private String name;
 	private String surname;
+	
 	private LocalDate dateBirth;
 	private long dni;
 	private boolean manager;
@@ -19,12 +22,14 @@ public class Employee extends Person{
 	private LocalTime endTime;
 	private double basicSalary;
 	private double commission;
-	private String store; 
+	
+	
+	
 	
 	public Employee() {}
 
 	public Employee(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission, String store) {
+			LocalTime endTime, double basicSalary, double commission) {
 		super();
 		this.setId(id);
 		this.name = name;
@@ -36,11 +41,11 @@ public class Employee extends Person{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
-		this.store = store;
+		
 	}
 	
 	public Employee(String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission, String store) {
+			LocalTime endTime, double basicSalary, double commission) {
 		this.name = name;
 		this.surname = surname;
 		this.dateBirth = dateBirth;
@@ -50,7 +55,7 @@ public class Employee extends Person{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
-		this.store = store;
+	
 	}
 
 	public long getId() {
@@ -133,11 +138,4 @@ public class Employee extends Person{
 		this.commission = commission;
 	}
 
-	public String getStore() {
-		return store;
-	}
-
-	public void setStore(String store) {
-		this.store = store;
-	}
 }

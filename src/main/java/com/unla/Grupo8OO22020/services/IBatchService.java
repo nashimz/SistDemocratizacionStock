@@ -11,10 +11,10 @@ import com.unla.Grupo8OO22020.models.BatchModel;
 
 public interface  IBatchService {
 	
-	
-	   public abstract List<Batch> getAll();
+	 
+	    public abstract List<Batch> getAll();
 	   
-	   public abstract List<BatchModel> getAlls();
+	    public abstract List<BatchModel> getAlls();
 		
 		public abstract  BatchModel insert(BatchModel batchModel);
 		

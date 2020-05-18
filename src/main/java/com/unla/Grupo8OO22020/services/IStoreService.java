@@ -14,7 +14,9 @@ public interface IStoreService {
 	
 	public StoreModel findByIdStore(long idStore);
 	
-	StoreModel insertOrUpdate(StoreModel storeModel);
+	StoreModel insert(StoreModel storeModel);
+	
+	StoreModel update(StoreModel storeModel);
 	
 	public boolean remove(long idStore);
 	
