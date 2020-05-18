@@ -39,6 +39,12 @@ public class ViewRouteHelper {
 	public final static String EMPLOYEE_INDEX = "employee/index";
 	public final static String EMPLOYEE_NEW = "employee/new";
 	public final static String EMPLOYEE_UPDATE = "employee/update";
+	
+	//  Order
+	
+	public final static String PEDIDO_INDEX = "pedido/index";
+	public final static String PEDIDO_NEW = "pedido/new";
+	public final static String PEDIDO_UPDATE = "pedido/update";
 
 	
 	/**** Redirects ****/
@@ -48,4 +54,5 @@ public class ViewRouteHelper {
 	public final static String PERSON_ROOT="/person";
 	public final static String CLIENT_ROOT="/client";
 	public final static String EMPLOYE_ROOT="/employee";
+	public final static String PEDIDO_ROOT="/pedido";
 }

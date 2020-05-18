@@ -39,7 +39,6 @@ public class Store {
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Employee manager;
 	
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Batch> batches = new HashSet<Batch>();
 	

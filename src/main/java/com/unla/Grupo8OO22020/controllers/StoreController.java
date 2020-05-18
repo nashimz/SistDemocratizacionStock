@@ -93,11 +93,13 @@ public class StoreController {
 		return radioTierra * va2;
 		}
 
-	@RequestMapping(value="/calculatedistance", method=RequestMethod.POST)
+	@RequestMapping(value="/calculatedistance",method=RequestMethod.POST)
 	public ModelAndView calculatedistance(StoresModel stores) {
 		ModelAndView mV=new ModelAndView(ViewRouteHelper.STORE_CALCULATEDISTANCE);
-	    mV.addObject(distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude()));
+		double distancia=distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude());
+	    mV.addObject(distancia);
 		return mV;
+		
 	}
 	
 	@GetMapping("/producto{id_Product}")

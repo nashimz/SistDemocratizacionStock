@@ -14,23 +14,19 @@
                 <a class="py-2 d-md-inline-block" href="/store">Adm.Locales</a>
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
-                 <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
+                <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
             </div>
         </nav>
         
-        <h2>Agregar Lote</h2>
+        <h2>Agregar Pedido</h2>
 <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
-        <form action="#" th:action="@{/batch/create}" th:object="${batch}" method="post">
+        <form action="#" th:action="@{/pedido/create}" th:object="${pedido}" method="post">
             
             <div class="form-group">
                 <label for="quantity">Cantidad</label>
                 <input type="text" class="form-control" name="quantity"  value="" th:field="*{quantity}" placeholder="Escribi la cantidad..." >
             </div>
             
-             <div class="form-group">
-                <label for="quantities">Cantidad total</label>
-                <input type="text" class="form-control" name="quantities"  value="" th:field="*{quantities}" placeholder="Escribi la cantidad total..." >
-            </div>
             
             <div class="form-group">
                 <label for="product">Producto</label>
@@ -38,17 +34,23 @@
 	            <option th:each="p : ${products}" th:value="${p.idProduct}" th:text="${p.description}"></option>
 	             </select>     
             </div>
+            
+           <div class="form-group">
+                <label for="store">Local</label>
+                <select placeholder="store" th:field="*{store.idStore}">
+	            <option th:each="s : ${stores}" th:value="${s.idStore}" th:text="${s.address}"></option>
+	             </select>     
+            </div>
               
             <br>
             <button type="submit" class="btn btn-dark px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
-                Agregar Lote
+                Agregar Pedido
             </button>
-            <a href="/batch" class="btn btn-outline-secondary ml-3">
-                 Volver al panel de Lotes
+            <a href="/pedido" class="btn btn-outline-secondary ml-3">
+                 Volver al panel de Pedidos
             </a>
             
         </form>
         </div>
     
-        

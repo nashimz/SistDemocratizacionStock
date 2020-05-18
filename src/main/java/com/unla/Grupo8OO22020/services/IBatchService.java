@@ -1,8 +1,6 @@
 package com.unla.Grupo8OO22020.services;
 
 import java.util.List;
-
-
 import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.models.BatchModel;
 
