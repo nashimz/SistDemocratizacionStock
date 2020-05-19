@@ -42,7 +42,7 @@ public class PedidoController {
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_INDEX);
-		mV.addObject("pedidos", pedidoService.getAll());
+		mV.addObject("pedidos", pedidoService.getAlls());
 		return mV;
 	}
 	

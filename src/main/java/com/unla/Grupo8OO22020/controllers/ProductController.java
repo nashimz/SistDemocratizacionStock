@@ -31,7 +31,7 @@ public class ProductController {
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
-		mV.addObject("products", productService.getAll());
+		mV.addObject("products", productService.getAlls());
 		return mV;
 	}
 	

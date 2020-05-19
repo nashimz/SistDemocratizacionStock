@@ -13,6 +13,8 @@ public interface IProductService {
 
 	public abstract List<Product> getAll();
 	
+	public abstract List<ProductModel> getAlls();
+	
 	public abstract ProductModel findByIdProduct(long idProduct);
 	
 	public abstract ProductModel findByDescription(String description);

@@ -72,6 +72,15 @@ public class ProductService implements IProductService {
 		return models;
 	}
 	
+	@Override
+	public List<ProductModel> getAlls() {
+		List<ProductModel> models = new ArrayList<ProductModel>();
+		for (Product product : productRepository.findAll()) {
+			models.add(productConverter.entityToModel(product));
+		}
+		return models;
+	}
+	
 	
 	@Override
 	public boolean remove(long idProduct) {

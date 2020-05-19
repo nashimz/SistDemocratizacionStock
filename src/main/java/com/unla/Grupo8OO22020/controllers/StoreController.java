@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,7 +77,7 @@ public class StoreController {
 	@GetMapping("/distanceStores")
 	public ModelAndView distanceStores() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_DISTANCE);
-		mV.addObject("stores", storeService.getAll());
+		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}
 	
@@ -97,7 +98,7 @@ public class StoreController {
 	public ModelAndView calculatedistance(StoresModel stores) {
 		ModelAndView mV=new ModelAndView(ViewRouteHelper.STORE_CALCULATEDISTANCE);
 		double distancia=distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude());
-	    mV.addObject(distancia);
+	    mV.addObject("distancia",distancia);
 		return mV;
 		
 	}

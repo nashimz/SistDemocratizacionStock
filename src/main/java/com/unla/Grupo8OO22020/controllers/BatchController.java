@@ -70,7 +70,7 @@ public class BatchController {
 	 return new RedirectView(ViewRouteHelper.BATCH_ROOT);
 	}
 	
-	//metodo para poder eliminar un producto
+	
 		@PostMapping("/delete/{idBatch}")
 		public RedirectView delete(@PathVariable("idBatch") long idBatch) {
 			batchService.remove(idBatch);

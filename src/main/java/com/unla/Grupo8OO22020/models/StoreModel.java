@@ -66,8 +66,4 @@ public class StoreModel {
 	public void setManager(EmployeeModel manager) {
 		this.manager = manager;
 	}
-
-	
-
-
 }

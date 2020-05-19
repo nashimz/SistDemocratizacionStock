@@ -7,7 +7,6 @@ public class StoresModel {
 	private StoreModel store2;
 
 	public StoresModel(StoreModel store1, StoreModel store2) {
-		super();
 		this.store1 = store1;
 		this.store2 = store2;
 	}
