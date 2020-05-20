@@ -49,7 +49,6 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public PedidoModel insert(PedidoModel pedidoModel) {
-		pedidoModel.setProduct(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()));
 		pedidoModel.setStore(storeService.findByIdStore(pedidoModel.getStore().getIdStore()));
 		Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);

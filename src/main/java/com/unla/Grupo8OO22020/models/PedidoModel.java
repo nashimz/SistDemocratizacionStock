@@ -49,7 +49,4 @@ public class PedidoModel {
 	public void setStore(StoreModel store) {
 		this.store = store;
 	}
-	
-	
-
 }
