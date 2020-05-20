@@ -29,6 +29,7 @@
                     <th>IdProducto</th>
                     <th>Cantidad</th>
                     <th>Cantidad Total</th>
+                    <th>IdLocal</th>
                     
        
                     
@@ -44,7 +45,7 @@
 			<td><span th:text="${batch.product.idProduct}" /></td>
 			<td><span th:text="${batch.quantity}" /> </td>
 			<td><span th:text="${batch.quantities}" /> </td>
-			
+			<td><span th:text="${batch.store.idStore}" /> </td>
 			
 			<td>
                         <a th:href="@{/batch/{idBatch}(idBatch=${batch.idBatch})}" class="btn btn-outline-secondary px-4">

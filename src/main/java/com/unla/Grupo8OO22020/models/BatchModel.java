@@ -12,13 +12,18 @@ public class BatchModel {
 	
 	private int quantities;
 	
+	private StoreModel store;
+	
+	
+	
 	public BatchModel() {}
 
-	public BatchModel(long idBatch, ProductModel product, int quantity, int quantities) {
+	public BatchModel(long idBatch, ProductModel product, int quantity, int quantities,StoreModel store) {
 		this.setIdBatch(idBatch);
 		this.product = product;
 		this.quantity = quantity;
 		this.quantities = quantities;
+		this.store=store;
 	
 	}
 
@@ -54,5 +59,12 @@ public class BatchModel {
 		this.quantities = quantities;
 	}
 
+	public StoreModel getStore() {
+		return store;
+	}
 
+	public void setStore(StoreModel store) {
+		this.store = store;
+	}
+	
 	}

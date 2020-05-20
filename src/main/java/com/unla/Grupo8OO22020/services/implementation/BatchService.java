@@ -1,7 +1,6 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.services.IBatchService;
@@ -14,6 +13,7 @@ import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.converters.BatchConverter;
 import com.unla.Grupo8OO22020.repositories.IBatchRepository;
 import com.unla.Grupo8OO22020.services.IProductService;
+import com.unla.Grupo8OO22020.services.IStoreService;
 
 
 
@@ -25,6 +25,10 @@ public class BatchService implements  IBatchService{
 	@Autowired
 	@Qualifier("productService")
 	private IProductService productService;
+	
+	@Autowired
+	@Qualifier("storeService")
+	private IStoreService storeService;
 
 	@Autowired
 	@Qualifier("batchRepository")
@@ -41,6 +45,7 @@ public class BatchService implements  IBatchService{
 	
 	@Override
 	public BatchModel insert(BatchModel batchModel) {
+		batchModel.setStore(storeService.findByIdStore(batchModel.getStore().getIdStore()));
 		Batch batch=batchRepository.save(batchConverter.modelToEntity(batchModel));
 		return batchConverter.entityToModel(batch);
 	}
@@ -48,6 +53,7 @@ public class BatchService implements  IBatchService{
 	@Override
 	public BatchModel update(BatchModel batchModel) {
 		batchModel.setProduct(productService.findByIdProduct(batchModel.getProduct().getIdProduct()));
+		batchModel.setStore(storeService.findByIdStore(batchModel.getStore().getIdStore()));
 	    Batch batch=batchRepository.save(batchConverter.modelToEntity(batchModel));
 		return batchConverter.entityToModel(batch);
 	}

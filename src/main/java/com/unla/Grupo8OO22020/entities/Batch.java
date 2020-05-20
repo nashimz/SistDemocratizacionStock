@@ -52,19 +52,21 @@ public class Batch {
 
 	public Batch() {}
 
-	public Batch(long idBatch,Product product, int quantity, int quantities) {
+	public Batch(long idBatch,Product product, int quantity, int quantities,Store store) {
 		this.idBatch=idBatch;
 		this.product = product;
 		this.quantity = quantity;
 		this.quantities = quantities;
+		this.store=store;
 		
 
 	}
 	
-	public Batch(Product product, int quantity, int quantities) {
+	public Batch(Product product, int quantity, int quantities,Store store) {
 		this.product = product;
 		this.quantity = quantity;
 		this.quantities = quantities;
+		this.store=store;
 
 	}
 

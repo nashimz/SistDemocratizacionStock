@@ -40,9 +40,7 @@ public class StoreController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
 		mV.addObject("stores", storeService.getAlls());
 		return mV;
-
 	}
-	
 	
 	@GetMapping("/new")
 	public ModelAndView create() {
@@ -81,7 +79,6 @@ public class StoreController {
 		return mV;
 	}
 	
-	
 	public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
 		double radioTierra = 6371;
 		double dLat = Math.toRadians(lat2 - lat1);
@@ -99,8 +96,7 @@ public class StoreController {
 		ModelAndView mV=new ModelAndView(ViewRouteHelper.STORE_CALCULATEDISTANCE);
 		double distancia=distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude());
 	    mV.addObject("distancia",distancia);
-		return mV;
-		
+		return mV;	
 	}
 	
 	@GetMapping("/producto{id_Product}")
