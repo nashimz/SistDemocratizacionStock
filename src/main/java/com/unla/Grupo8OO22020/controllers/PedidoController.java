@@ -50,15 +50,13 @@ public class PedidoController {
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_NEW);
 		mV.addObject("pedido", new PedidoModel());
-		mV.addObject("products", productService.getAll());
-		mV.addObject("stores", storeService.getAll());
+		mV.addObject("products", productService.getAlls());
+		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-		System.out.println("El id es :"+pedidoModel.getProduct().getIdProduct());
-		System.out.println("El id es :"+pedidoModel.getStore().getIdStore());
 		pedidoService.insert(pedidoModel);
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
@@ -67,15 +65,13 @@ public class PedidoController {
 	public ModelAndView get(@PathVariable("idPedido") long idPedido) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_UPDATE);
 		mV.addObject("pedido", pedidoService.findByIdPedido(idPedido));
-		mV.addObject("products", productService.getAll());
-		mV.addObject("stores", storeService.getAll());
+		mV.addObject("products", productService.getAlls());
+		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-	 System.out.println("El id es :"+pedidoModel.getProduct().getIdProduct());
-	 System.out.println("El id es :"+pedidoModel.getStore().getIdStore());
 	 pedidoService.update(pedidoModel);
 	 return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}

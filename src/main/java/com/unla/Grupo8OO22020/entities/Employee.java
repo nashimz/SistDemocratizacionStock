@@ -2,6 +2,7 @@ package com.unla.Grupo8OO22020.entities;
   
 import java.time.LocalDate;
 
+
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -14,7 +15,6 @@ public class Employee extends Person{
 	private long id;
 	private String name;
 	private String surname;
-	
 	private LocalDate dateBirth;
 	private long dni;
 	private boolean manager;
@@ -23,9 +23,7 @@ public class Employee extends Person{
 	private double basicSalary;
 	private double commission;
 	
-	
-	
-	
+
 	public Employee() {}
 
 	public Employee(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
@@ -41,6 +39,7 @@ public class Employee extends Person{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
+		
 		
 	}
 	
@@ -138,4 +137,6 @@ public class Employee extends Person{
 		this.commission = commission;
 	}
 
+
+	
 }

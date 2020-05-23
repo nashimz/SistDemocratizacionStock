@@ -19,11 +19,11 @@ public class BatchConverter {
 	private StoreConverter storeConverter;
 	
 	public BatchModel entityToModel(Batch batch) {
-		return new BatchModel(batch.getIdBatch(),productConverter.entityToModel(batch.getProduct()),batch.getQuantity(),batch.getQuantities(),storeConverter.entityToModel(batch.getStore()));
+		return new BatchModel(batch.getIdBatch(),productConverter.entityToModel(batch.getProduct()),batch.getQuantity(),batch.getQuantities(),batch.getDate(),storeConverter.entityToModel(batch.getStore()),batch.isActive());
 	}
 	
 	public Batch modelToEntity(BatchModel batchModel) {
-		return new Batch(batchModel.getIdBatch(),productConverter.modelToEntity(batchModel.getProduct()),batchModel.getQuantity(),batchModel.getQuantities(),storeConverter.modelToEntity(batchModel.getStore()));
+		return new Batch(batchModel.getIdBatch(),productConverter.modelToEntity(batchModel.getProduct()),batchModel.getQuantity(),batchModel.getQuantities(),batchModel.getDate(),storeConverter.modelToEntity(batchModel.getStore()),batchModel.isActive());
 	}
 
 }
