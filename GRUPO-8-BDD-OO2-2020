@@ -8,19 +8,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema GRUPO-8-BDD-OO2-2020
+-- Schema grupo-8-bdd-oo2-2020
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema GRUPO-8-BDD-OO2-2020
+-- Schema grupo-8-bdd-oo2-2020
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `GRUPO-8-BDD-OO2-2020` DEFAULT CHARACTER SET latin1 ;
-USE `GRUPO-8-BDD-OO2-2020` ;
+CREATE SCHEMA IF NOT EXISTS `grupo-8-bdd-oo2-2020` DEFAULT CHARACTER SET latin1 ;
+USE `grupo-8-bdd-oo2-2020` ;
 
 -- -----------------------------------------------------
 -- Table `grupo-8-bdd-oo2-2020`.`person`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`person` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`person` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `created_at` DATETIME(6) NULL DEFAULT NULL,
   `date_birth` DATE NULL DEFAULT NULL,
@@ -30,14 +30,13 @@ CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`person` (
   `updated_at` DATETIME(6) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GRUPO-8-BDD-OO2-2020`.`employee`
+-- Table `grupo-8-bdd-oo2-2020`.`employee`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`employee` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`employee` (
   `basic_salary` DOUBLE NOT NULL,
   `commission` DOUBLE NOT NULL,
   `end_time` TIME NULL DEFAULT NULL,
@@ -50,9 +49,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GRUPO-8-BDD-OO2-2020`.`store`
+-- Table `grupo-8-bdd-oo2-2020`.`store`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`store` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`store` (
   `id_store` BIGINT NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(255) NULL DEFAULT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
@@ -61,14 +60,13 @@ CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`store` (
   `manager_id` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id_store`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GRUPO-8-BDD-OO2-2020`.`product`
+-- Table `grupo-8-bdd-oo2-2020`.`product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`product` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`product` (
   `id_product` BIGINT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(255) NULL DEFAULT NULL,
   `price` DOUBLE NULL DEFAULT NULL,
@@ -76,31 +74,29 @@ CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`product` (
   `start_date` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id_product`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GRUPO-8-BDD-OO2-2020`.`batch`
+-- Table `grupo-8-bdd-oo2-2020`.`batch`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`batch` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`batch` (
   `id_batch` BIGINT NOT NULL AUTO_INCREMENT,
-  `createdat` DATETIME(6) NULL DEFAULT NULL,
+  `active` BIT(1) NULL DEFAULT NULL,
+  `date` DATE NULL DEFAULT NULL,
   `quantities` INT NULL DEFAULT NULL,
   `quantity` INT NULL DEFAULT NULL,
-  `updatedat` DATETIME(6) NULL DEFAULT NULL,
   `product_id_product` BIGINT NULL DEFAULT NULL,
   `store_id` BIGINT NOT NULL,
   PRIMARY KEY (`id_batch`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GRUPO-8-BDD-OO2-2020`.`client`
+-- Table `grupo-8-bdd-oo2-2020`.`client`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`client` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`client` (
   `mail` VARCHAR(255) NULL DEFAULT NULL,
   `id` BIGINT NOT NULL,
   PRIMARY KEY (`id`))
@@ -109,16 +105,15 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GRUPO-8-BDD-OO2-2020`.`pedido`
+-- Table `grupo-8-bdd-oo2-2020`.`pedido`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `GRUPO-8-BDD-OO2-2020`.`pedido` (
+CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`pedido` (
   `id_pedido` BIGINT NOT NULL AUTO_INCREMENT,
   `quantity` INT NOT NULL,
   `product_id_product` BIGINT NULL DEFAULT NULL,
   `store_id_store` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id_pedido`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -134,8 +129,6 @@ INSERT INTO `product` VALUES(1,'zapatilla',3500.0,'43','2011-12-18'),(2,'ojotas'
 UNLOCK TABLES;
 
 SELECT *FROM product;
-
-
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
@@ -155,16 +148,6 @@ UNLOCK TABLES;
 SELECT *FROM client;
 
 
-
-LOCK TABLES `employee` WRITE;
-/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (42000.0,1900.0,'18:00:00',TRUE,'06:00:00',3),(64000.0,1400.0,'19:00:00',TRUE,'06:00:00',4),(74000.0,1400.0,'19:00:00',TRUE,'07:00:00',5),(24000.0,2400.0,'18:00:00',FALSE,'08:00:00',6),(28000.0,1800.0,'19:30:00',FALSE,'07:30:00',7),(30000.0,2200.0,'18:30:00',FALSE,'06:30:00',8);
-/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
-UNLOCK TABLES;
-
-SELECT *FROM employee;
-
-
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
 INSERT INTO `store` VALUES (1,'Tucuman 2398',35,31,1124369587,3),(2,'Pergamino 2410',32,21,1128569587,4),(3,'29 de Septiembre',22,41,1128587500,5);
@@ -174,9 +157,17 @@ UNLOCK TABLES;
 SELECT *FROM store;
 
 
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (42000.0,1900.0,'18:00:00',TRUE,'06:00:00',3),(64000.0,1400.0,'19:00:00',TRUE,'06:00:00',4),(74000.0,1400.0,'19:00:00',TRUE,'07:00:00',5),(24000.0,2400.0,'18:00:00',FALSE,'08:00:00',6),(28000.0,1800.0,'19:30:00',FALSE,'07:30:00',7),(30000.0,2200.0,'18:30:00',FALSE,'06:30:00',8);
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SELECT *FROM employee;
+
 LOCK TABLES `batch` WRITE;
 /*!40000 ALTER TABLE `batch` DISABLE KEYS */;
-INSERT INTO `batch` VALUES (1,'2011-12-18 13:17:17',35,20,'2011-12-18 13:17:17',1,1),(2,'2011-12-24 13:17:27',45,18,'2011-12-24 13:17:27',2,1),(3,'2011-12-18 13:17:17',15,7,'2011-12-18 13:17:17',3,1),(4,'2011-12-24 13:17:27',25,8,'2011-12-24 13:17:27',4,2),(5,'2012-01-24 13:17:27',35,28,'2012-01-24 13:17:27',1,2);
+INSERT INTO `batch` VALUES (1,TRUE,'2011-12-18',20,20,1,1),(2,TRUE,'2011-12-24',18,18,2,1),(3,TRUE,'2011-12-18',7,7,3,1),(4,TRUE,'2011-12-24',8,8,4,2),(5,TRUE,'2012-01-24',28,28,1,2);
 /*!40000 ALTER TABLE `batch` ENABLE KEYS */;
 UNLOCK TABLES;
 
