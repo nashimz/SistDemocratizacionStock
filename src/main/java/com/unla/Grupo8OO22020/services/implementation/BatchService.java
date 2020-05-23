@@ -9,15 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.unla.Grupo8OO22020.entities.Batch;
+import com.unla.Grupo8OO22020.entities.Product;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.converters.BatchConverter;
 import com.unla.Grupo8OO22020.repositories.IBatchRepository;
 import com.unla.Grupo8OO22020.services.IProductService;
 import com.unla.Grupo8OO22020.services.IStoreService;
-
-
-
-
 
 @Service("batchService")
 public class BatchService implements  IBatchService{
@@ -73,6 +70,35 @@ public class BatchService implements  IBatchService{
 	}
 	
 	
+	//trae una lista de todos los lotes que tengan ese producto 
+	@Override
+	public List<BatchModel> getBatchForProduct(Product product) {
+		List<BatchModel> models = new ArrayList<BatchModel>();
+		for(Batch batch :batchRepository.findAll()) { 
+			if(batch.getProduct().equals(product)){
+				models.add(batchConverter.entityToModel(batch));
+			}
+		}
+		return models; 
+	}
+	
+	//trae la cantidad que tiene de ese producto 
+	
+	@Override
+	public int getQuantity(Product product) {
+		int quantity=0;
+		for(BatchModel batchModel: this.getBatchForProduct(product)) {
+			quantity +=batchModel.getQuantities();
+		}
+		return quantity;
+	}
+	
+	//valida si para el producto hay esa cantidad
+	@Override
+	public boolean validarConsumo(Product product, int quantity) {
+		return this.getQuantity(product) - quantity >=0;
+	}
+
 	@Override
 	public boolean remove(long idBatch) {
 		try {

@@ -70,7 +70,5 @@ public class Pedido {
 	public void setStore(Store store) {
 		this.store = store;
 	}
-	
-	
-	
+
 }

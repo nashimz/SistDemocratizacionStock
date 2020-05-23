@@ -29,6 +29,7 @@ public class Product {
 	@Column(name="size")
 	String size;
 	
+	
 	LocalDate startDate;
 	
 	

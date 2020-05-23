@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-
 import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
 
 import com.unla.Grupo8OO22020.services.IStoreService;
 
 import com.unla.Grupo8OO22020.repositories.IStoreRepository;
+
 import com.unla.Grupo8OO22020.converters.StoreConverter;
 
 import com.unla.Grupo8OO22020.models.StoreModel;
@@ -79,7 +79,6 @@ public class StoreService  implements IStoreService{
 		}
 		return models;
 	}
-	
 	
 
 	@Override

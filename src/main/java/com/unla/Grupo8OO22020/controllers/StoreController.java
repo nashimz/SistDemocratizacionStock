@@ -52,7 +52,6 @@ public class StoreController {
 
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("store") StoreModel storeModel) {
-		System.out.println("El id es :"+storeModel.getManager().getId());
 		storeService.insert(storeModel);
 		return new RedirectView(ViewRouteHelper.STORE_ROOT);
 	}
@@ -67,7 +66,6 @@ public class StoreController {
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("store") StoreModel storeModel) {
-		System.out.println("El id es :"+storeModel.getManager().getId());
 		storeService.update(storeModel);
 		return new RedirectView(ViewRouteHelper.STORE_ROOT);
 	}
@@ -99,12 +97,16 @@ public class StoreController {
 		return mV;	
 	}
 	
-	@GetMapping("/producto{id_Product}")
+	@GetMapping("/product{id_Product}")
 	public ModelAndView getByIdProduct(@PathVariable("id_Product") long idProduct) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
 		mV.addObject("stores", storeService.findByIdProduct(idProduct));
+		mV.addObject("managers", employeeService.getAll());
 		return mV;
 	}
+	
+	
+	
 	
 	@PostMapping("/delete/{idStore}")
 	public RedirectView delete(@PathVariable("idStore") long idStore) {

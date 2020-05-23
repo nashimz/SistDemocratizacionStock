@@ -2,9 +2,12 @@ package com.unla.Grupo8OO22020.models;
 
 import java.time.LocalDate;
 
+
 import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 
 
@@ -23,6 +26,7 @@ public class EmployeeModel{
 	private double commission;
 	
 	
+	
 	public EmployeeModel() {
 		super();
 	}
@@ -39,6 +43,7 @@ public class EmployeeModel{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
+	
 
 	}
 

@@ -41,6 +41,7 @@ public class Store {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Batch> batches = new HashSet<Batch>();
+
 	
 	public Store() {}
 	
@@ -109,5 +110,6 @@ public class Store {
 	public void setManager(Employee manager) {
 		this.manager= manager;
 	}	
+	
                                                        
 }

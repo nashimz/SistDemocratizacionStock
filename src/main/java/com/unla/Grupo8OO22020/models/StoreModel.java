@@ -1,5 +1,6 @@
 package com.unla.Grupo8OO22020.models;
 
+
 public class StoreModel {
 	private long idStore;
 	private long phone; 
@@ -7,6 +8,7 @@ public class StoreModel {
 	private double latitude;
 	private double longitude;
 	private EmployeeModel manager;
+	
 	
 	public StoreModel () {}
 	

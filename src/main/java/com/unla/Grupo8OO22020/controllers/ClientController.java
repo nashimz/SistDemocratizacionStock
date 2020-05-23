@@ -36,9 +36,7 @@ public class ClientController {
 		mAV.addObject("client", new ClientModel());
 		return mAV;
 	}
-	
-	
-	
+
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("client") ClientModel clientModel) {
 		clientService.insertOrUpdate(clientModel);
@@ -51,16 +49,6 @@ public class ClientController {
 		mAV.addObject("client", clientService.findById(id));
 		return mAV;
 	}
-	
-//	@GetMapping("/by_name/{name}")
-//	public ModelAndView getByName(@PathVariable("name") String name) {
-//		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
-//		mAV.addObject("person", personService.findByName(name));
-//		return mAV;
-//	}
-	
-	
-	
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("client") ClientModel clientModel) {

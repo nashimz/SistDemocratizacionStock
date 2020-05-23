@@ -49,14 +49,13 @@ public class BatchController {
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.BATCH_NEW);
 		mV.addObject("batch", new BatchModel());
-		mV.addObject("products", productService.getAll());
-		mV.addObject("stores", storeService.getAll());
+		mV.addObject("products", productService.getAlls());
+		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("batch") BatchModel batchModel) {
-		System.out.println("El id es :"+batchModel.getProduct().getIdProduct());
 		batchService.insert(batchModel);
 		return new RedirectView(ViewRouteHelper.BATCH_ROOT);
 	}
@@ -65,14 +64,13 @@ public class BatchController {
 	public ModelAndView get(@PathVariable("idBatch") long idBatch) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.BATCH_UPDATE);
 		mV.addObject("batch", batchService.findByIdBatch(idBatch));
-		mV.addObject("products", productService.getAll());
-		mV.addObject("stores", storeService.getAll());
+		mV.addObject("products", productService.getAlls());
+		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("batch") BatchModel batchModel) {
-	    System.out.println("El id es :"+batchModel.getProduct().getIdProduct());
 	    batchService.update(batchModel);
 	    return new RedirectView(ViewRouteHelper.BATCH_ROOT);
 	}

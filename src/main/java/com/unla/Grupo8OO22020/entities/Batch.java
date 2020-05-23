@@ -1,8 +1,7 @@
 package com.unla.Grupo8OO22020.entities;
 
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 
 @Entity
 @Table(name="batch")
@@ -25,48 +21,49 @@ public class Batch {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long idBatch;
+	private long idBatch;
 	
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Product product;
 	
 	@Column(name="quantity")
-	int quantity;
+	private int quantity;
 	
 	@Column(name="quantities")
-	int quantities;
+	private int quantities;
 	
-	@Column(name="createdat")
-	@CreationTimestamp
-	private LocalDateTime createdAt;
-	
-	@Column(name="updatedat")
-	@UpdateTimestamp
-	private LocalDateTime updatedAt;
+	@Column(name="date")
+	private LocalDate date;
 	
 	//lado propietario
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="store_id", nullable=false)
 	private Store store;
+	
+	@Column(name="active")
+	private boolean active;
+	
 
 
 	public Batch() {}
 
-	public Batch(long idBatch,Product product, int quantity, int quantities,Store store) {
+	public Batch(long idBatch,Product product, int quantity, int quantities,LocalDate date,Store store,boolean active) {
 		this.idBatch=idBatch;
 		this.product = product;
 		this.quantity = quantity;
 		this.quantities = quantities;
+		this.date=date;
 		this.store=store;
-		
-
+		this.active=active;
 	}
 	
-	public Batch(Product product, int quantity, int quantities,Store store) {
+	public Batch(Product product, int quantity, int quantities,LocalDate date,Store store,boolean active) {
 		this.product = product;
 		this.quantity = quantity;
 		this.quantities = quantities;
+		this.date=date;
 		this.store=store;
+		this.active=active;
 
 	}
 
@@ -102,20 +99,22 @@ public class Batch {
 		this.quantities = quantities;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	
+
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public Store getStore() {
@@ -125,6 +124,4 @@ public class Batch {
 	public void setStore(Store store) {
 		this.store = store;
 	}
-	
-	
 }
