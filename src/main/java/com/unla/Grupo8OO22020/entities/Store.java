@@ -110,6 +110,5 @@ public class Store {
 	public void setManager(Employee manager) {
 		this.manager= manager;
 	}	
-	
                                                        
 }

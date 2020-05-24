@@ -75,6 +75,13 @@ public class BatchController {
 	    return new RedirectView(ViewRouteHelper.BATCH_ROOT);
 	}
 	
+	@GetMapping("/store/{store_id}")
+	public ModelAndView getByStoreId(@PathVariable("store_id") long storeId) {
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.BATCH_INDEX);
+		mV.addObject("batches", batchService.findByIdStore(storeId));
+		return mV;
+	}
+	
 	
 	@PostMapping("/delete/{idBatch}")
 	public RedirectView delete(@PathVariable("idBatch") long idBatch) {

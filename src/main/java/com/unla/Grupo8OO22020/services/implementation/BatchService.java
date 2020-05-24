@@ -1,15 +1,13 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.services.IBatchService;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import com.unla.Grupo8OO22020.entities.Batch;
-import com.unla.Grupo8OO22020.entities.Product;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.converters.BatchConverter;
 import com.unla.Grupo8OO22020.repositories.IBatchRepository;
@@ -69,7 +67,16 @@ public class BatchService implements  IBatchService{
 		return models;
 	}
 	
+	@Override
+	public List<BatchModel> findByIdStore(long idStore) {
+		List<BatchModel> models = new ArrayList<BatchModel>();
+		for (Batch batch : batchRepository.findByIdStore(idStore)) {
+			models.add(batchConverter.entityToModel(batch));
+		}
+		return models;
+	}
 	
+	/*
 	//trae una lista de todos los lotes que tengan ese producto 
 	@Override
 	public List<BatchModel> getBatchForProduct(Product product) {
@@ -97,7 +104,7 @@ public class BatchService implements  IBatchService{
 	@Override
 	public boolean validarConsumo(Product product, int quantity) {
 		return this.getQuantity(product) - quantity >=0;
-	}
+	}*/
 
 	@Override
 	public boolean remove(long idBatch) {
