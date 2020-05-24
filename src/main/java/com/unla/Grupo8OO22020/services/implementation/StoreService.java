@@ -1,11 +1,8 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import java.util.ArrayList;
-
-
-
-
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,14 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
-
 import com.unla.Grupo8OO22020.services.IStoreService;
-
 import com.unla.Grupo8OO22020.repositories.IStoreRepository;
-
 import com.unla.Grupo8OO22020.converters.StoreConverter;
-
 import com.unla.Grupo8OO22020.models.StoreModel;
+
 
 @Service("storeService")
 public class StoreService  implements IStoreService{
@@ -36,7 +30,6 @@ public class StoreService  implements IStoreService{
 	@Qualifier("employeeService")
 	private IEmployeeService employeeService;
 
-	
 	@Override
 	public List<Store> getAll() {
 		return storeRepository.findAll();
@@ -62,14 +55,14 @@ public class StoreService  implements IStoreService{
 	}
 	
 	
-	@Override
-	public List<StoreModel> findByIdProduct(long idProduct) {
+	/*@Override
+	public List<StoreModel> findByIdBatch(long idBatch) {
 		List<StoreModel> models = new ArrayList<StoreModel>();
-		for (Store store : storeRepository.findByIdProduct(idProduct)) {
+		for (Store store : storeRepository.findByIdBatch(idBatch)) {
 			models.add(storeConverter.entityToModel(store));
 		}
 		return models;
-	}
+	}*/
 	
 	@Override
 	public List<StoreModel> getAlls() {

@@ -14,10 +14,6 @@ public interface IProductRepository extends JpaRepository<Product, Serializable>
 
 	public abstract Product findByIdProduct(long idProduct);
 	
-	public abstract Product findByDescription(String description);
-	
-	public abstract Product findBySize(String size);
-	
 	// Todas los productos que tengan una descripcion con ese nombre (parámetro descripcion)
 	@Query("SELECT p FROM  Product p WHERE p.description = (:description)")
 	public abstract List<Product> findByDescriptionName(String description);

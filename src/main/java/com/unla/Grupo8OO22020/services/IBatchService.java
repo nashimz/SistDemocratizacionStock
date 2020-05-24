@@ -2,11 +2,7 @@ package com.unla.Grupo8OO22020.services;
 
 import java.util.List;
 import com.unla.Grupo8OO22020.entities.Batch;
-import com.unla.Grupo8OO22020.entities.Product;
 import com.unla.Grupo8OO22020.models.BatchModel;
-
-
-
 
 public interface  IBatchService {
 	
@@ -23,11 +19,13 @@ public interface  IBatchService {
 
 		public abstract BatchModel findByIdBatch(long idBatch);
 		
-		public abstract List<BatchModel> getBatchForProduct(Product product);
+		public abstract List<BatchModel> findByIdStore(long idStore);
 		
-		public abstract int getQuantity(Product product);
+		//public abstract List<BatchModel> getBatchForProduct(Product product);
 		
-		public abstract boolean validarConsumo(Product product, int quantity);
+		//public abstract int getQuantity(Product product);
+		
+		//public abstract boolean validarConsumo(Product product, int quantity);
 		
 		
 

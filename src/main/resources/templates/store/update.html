@@ -33,45 +33,37 @@
 		</div>
 	</nav>
 	<h2>Actualizacion de Locales</h2>
-
 	<div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
 		<form action="#" th:action="@{/store/update}" th:object="${store}"
 			method="post">
 			<input type="hidden" th:field="*{idStore}" />
-
 			<div class="form-group">
 				<label for="phone">Telefono</label> <input type="text"
 					class="form-control" name="phone" value="" th:field="*{phone}"
 					placeholder="Escribi su telefono..." />
 			</div>
-
 			<div class="form-group">
 				<label for="address">Ubicacion</label> <input type="text"
 					class="form-control" name="address" th:field="*{address}"
 					placeholder="Escribi su direccion..." />
 			</div>
-
 			<div class="form-group">
 				<label for="latitude">Latitud</label> <input type="text"
 					class="form-control" name="latitude" value=""
 					th:field="*{latitude}" placeholder="Escribi la latitud..." />
 			</div>
-
 			<div class="form-group">
 				<label for="longitude">Longitud</label> <input type="text"
 					class="form-control" name="longitude" value=""
 					th:field="*{longitude}" placeholder="Escribi la longitud..." /> 
             </div>
-            
 				<div class="form-group">
                 <label for="manager">Manager</label>
                 <select placeholder="manager" th:field="*{manager.id}">
 	            <option th:each="m : ${managers}" th:value="${m.id}" th:text="${m.name}"></option>
 	             </select>     
             </div>
-				
-				
-				<input class="update" type="submit" value="Edit Local" />
+            		<input class="update" type="submit" value="Edit Local" />
 		</form>
 
 		<form action="#" th:action="@{/store/delete/{id}(id=${store.idStore})}"
@@ -79,7 +71,38 @@
 			<br>
 			<input class="update" type="submit" value="Borrar Local" />
 		</form>
-	</div>
+            <h2>Lotes</h2>
+     <table class="table table-bordered table-stripped table-hover table-sm">
+	<thead class="thead-dark">
+		<tr>
+		            <th>IdLote</th>
+			        <th>IdProducto</th>
+                    <th>Cantidad</th>
+                    <th>Cantidad Total</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Activo</th>
+                    <th colspan="2" class="text-center">
+			<a href="/batch/new" class="btn btn-outline-light px-4"> 
+			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
+			</a></th>   
+		</tr>
+		</thead>
+	<tbody>
+		<tr th:each="batch : ${batches}">
+		    <td><span th:text="${batch.idBatch}"/></span></td>
+			<td><span th:text="${batch.product.idProduct}" /></td>
+			<td><span th:text="${batch.quantity}" /> </td>
+			<td><span th:text="${batch.quantities}" /> </td>
+			<td><span th:text="${batch.date}" /> </td>
+			<td><span th:text="${batch.active}" /> </td>
+ 
+			<td><a th:href="@{/batch/{idBatch}(idBatch=${batch.idBatch})}"
+				class="btn btn-outline-secondary px-4"><i
+					class="far fa-edit fa-lg mr-1"></i> Ver</a></td>
+		</tr>
+	  </tbody>
+	
+     </table>
+            </div>
 </body>
-
 </html>

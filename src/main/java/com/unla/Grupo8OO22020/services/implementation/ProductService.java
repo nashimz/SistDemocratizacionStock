@@ -45,16 +45,6 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public ProductModel findByDescription(String description) {
-		return productConverter.entityToModel(productRepository.findByDescription(description));
-	}
-	
-	@Override
-	public ProductModel findBySize(String size) {
-		return productConverter.entityToModel(productRepository.findBySize(size));
-	}
-	
-	@Override
 	public List<ProductModel> findByDescriptionName(String descriptionName) {
 		List<ProductModel> models = new ArrayList<ProductModel>();
 		for (Product product : productRepository.findByDescriptionName(descriptionName)) {

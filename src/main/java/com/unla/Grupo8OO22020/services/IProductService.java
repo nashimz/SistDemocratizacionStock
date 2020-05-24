@@ -17,10 +17,6 @@ public interface IProductService {
 	
 	public abstract ProductModel findByIdProduct(long idProduct);
 	
-	public abstract ProductModel findByDescription(String description);
-	
-	public abstract ProductModel findBySize(String size);
-	
 	public abstract boolean remove(long idProduct);
 
 	public abstract ProductModel insertOrUpdate(ProductModel productModel);

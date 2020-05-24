@@ -4,6 +4,7 @@ package com.unla.Grupo8OO22020.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
+import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 
@@ -34,7 +36,10 @@ public class StoreController {
 	@Qualifier("employeeService")
 	private IEmployeeService employeeService;
 	
-
+	@Autowired
+	@Qualifier("batchService")
+	private IBatchService batchService;
+	
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
@@ -47,6 +52,7 @@ public class StoreController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_NEW);
 		mV.addObject("store", new StoreModel());
 		mV.addObject("managers", employeeService.getAll());
+		mV.addObject("batches", batchService.getAlls());
 		return mV;
 	}
 
@@ -60,6 +66,7 @@ public class StoreController {
 	public ModelAndView get(@PathVariable("idStore") long idStore) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_UPDATE);
 		mV.addObject("store", storeService.findByIdStore(idStore));
+		mV.addObject("batches",batchService.findByIdStore(idStore));
 		mV.addObject("managers", employeeService.getAll());
 		return mV;
 	}
@@ -96,16 +103,6 @@ public class StoreController {
 	    mV.addObject("distancia",distancia);
 		return mV;	
 	}
-	
-	@GetMapping("/product{id_Product}")
-	public ModelAndView getByIdProduct(@PathVariable("id_Product") long idProduct) {
-		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_INDEX);
-		mV.addObject("stores", storeService.findByIdProduct(idProduct));
-		mV.addObject("managers", employeeService.getAll());
-		return mV;
-	}
-	
-	
 	
 	
 	@PostMapping("/delete/{idStore}")
