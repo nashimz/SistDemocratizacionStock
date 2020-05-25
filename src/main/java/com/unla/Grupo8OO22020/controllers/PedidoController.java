@@ -1,6 +1,7 @@
 package com.unla.Grupo8OO22020.controllers;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
 import com.unla.Grupo8OO22020.models.PedidoModel;
+import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
 import com.unla.Grupo8OO22020.services.IStoreService;
@@ -37,6 +38,10 @@ public class PedidoController {
 	@Qualifier("storeService")
 	private IStoreService storeService;
 	
+	@Autowired
+	@Qualifier("batchService")
+	private IBatchService batchService;
+	
 	
 	
 	@GetMapping("")
@@ -57,10 +62,14 @@ public class PedidoController {
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-		pedidoService.insert(pedidoModel);
+		if(pedidoService.validarConsumo(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()), pedidoModel.getQuantity(), pedidoModel.getStore().getIdStore())){
+			pedidoService.insert(pedidoModel);
+			pedidoService.consumoStock(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity(),pedidoModel.getStore().getIdStore());
+			
+		}
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
+		
 	}
-	
 	@GetMapping("/{idPedido}")
 	public ModelAndView get(@PathVariable("idPedido") long idPedido) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_UPDATE);
@@ -72,14 +81,19 @@ public class PedidoController {
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-	 pedidoService.update(pedidoModel);
+	    if(pedidoService.validarConsumo(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()), pedidoModel.getQuantity(), pedidoModel.getStore().getIdStore())){
+			pedidoService.update(pedidoModel);
+			pedidoService.consumoStock(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity(),pedidoModel.getStore().getIdStore());
+	  }
 	 return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
 	
 	
-		@PostMapping("/delete/{idPedido}")
-		public RedirectView delete(@PathVariable("idPedido") long idPedido) {
-			pedidoService.remove(idPedido);
-			return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
+	@PostMapping("/delete/{idPedido}")
+	public RedirectView delete(@PathVariable("idPedido") long idPedido) {
+		pedidoService.remove(idPedido);
+		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 		}
+		
+	
 }

@@ -54,16 +54,6 @@ public class StoreService  implements IStoreService{
 		return storeConverter.entityToModel(storeRepository.findByIdStore(idStore));
 	}
 	
-	
-	/*@Override
-	public List<StoreModel> findByIdBatch(long idBatch) {
-		List<StoreModel> models = new ArrayList<StoreModel>();
-		for (Store store : storeRepository.findByIdBatch(idBatch)) {
-			models.add(storeConverter.entityToModel(store));
-		}
-		return models;
-	}*/
-	
 	@Override
 	public List<StoreModel> getAlls() {
 		List<StoreModel> models = new ArrayList<StoreModel>();
@@ -83,4 +73,5 @@ public class StoreService  implements IStoreService{
 			return false;
 		}
 	}
+	
 }

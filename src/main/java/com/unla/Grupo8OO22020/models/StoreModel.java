@@ -82,4 +82,5 @@ public class StoreModel {
 		this.batches = batches;
 	}
 	
+	
 }

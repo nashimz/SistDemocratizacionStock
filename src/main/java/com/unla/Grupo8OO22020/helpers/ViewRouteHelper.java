@@ -4,6 +4,9 @@ public class ViewRouteHelper {
 	
 	/**** Views ****/
 	
+	//HOME
+	public final static String HOME_INDEX = "home/index";
+	
 	
 	//PRODUCTO
 	public final static String PRODUCT_INDEX = "product/index";
