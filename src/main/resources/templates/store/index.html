@@ -19,7 +19,7 @@
 <nav class="site-header sticky-top py-1">
 	<div
 		class="container d-flex flex-column flex-md-row justify-content-between">
-		<a class="py-2" href="#"> <svg xmlns="http://www.w3.org/2000/svg"
+		<a class="py-2" href="/"> <svg xmlns="http://www.w3.org/2000/svg"
 				width="24" height="24" viewBox="0 0 24 24" fill="none"
 				stroke="currentColor" stroke-width="2" stroke-linecap="round"
 				stroke-linejoin="round" class="d-block mx-auto">
@@ -51,7 +51,7 @@
 			<th>Direccion</th>
 			<th>Latitud</th>
 			<th>Longitud</th>
-			<th>Idgerente</th>
+			<th>Gerente</th>
 			<th colspan="2" class="text-center">
 			<a href="/store/new" class="btn btn-outline-light px-4"> 
 			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
@@ -67,7 +67,7 @@
 			<td><span th:text="${store.address}" /></td>
 			<td><span th:text="${store.latitude}" /></td>
 			<td><span th:text="${store.longitude}" /></td>
-			<td><span th:text="${store.manager.id}" /></td>
+			<td><span th:text="${store.manager.surname}" /></td>
 			      
 			    
 			<td><a th:href="@{/store/{idStore}(idStore=${store.idStore})}"

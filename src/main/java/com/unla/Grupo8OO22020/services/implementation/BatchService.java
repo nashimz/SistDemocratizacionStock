@@ -76,36 +76,6 @@ public class BatchService implements  IBatchService{
 		return models;
 	}
 	
-	/*
-	//trae una lista de todos los lotes que tengan ese producto 
-	@Override
-	public List<BatchModel> getBatchForProduct(Product product) {
-		List<BatchModel> models = new ArrayList<BatchModel>();
-		for(Batch batch :batchRepository.findAll()) { 
-			if(batch.getProduct().equals(product)){
-				models.add(batchConverter.entityToModel(batch));
-			}
-		}
-		return models; 
-	}
-	
-	//trae la cantidad que tiene de ese producto 
-	
-	@Override
-	public int getQuantity(Product product) {
-		int quantity=0;
-		for(BatchModel batchModel: this.getBatchForProduct(product)) {
-			quantity +=batchModel.getQuantities();
-		}
-		return quantity;
-	}
-	
-	//valida si para el producto hay esa cantidad
-	@Override
-	public boolean validarConsumo(Product product, int quantity) {
-		return this.getQuantity(product) - quantity >=0;
-	}*/
-
 	@Override
 	public boolean remove(long idBatch) {
 		try {

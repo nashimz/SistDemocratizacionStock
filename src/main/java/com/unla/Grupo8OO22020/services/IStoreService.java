@@ -19,9 +19,5 @@ public interface IStoreService {
 	StoreModel update(StoreModel storeModel);
 	
 	public boolean remove(long idStore);
-	
-	//public List<StoreModel> findByIdBatch(long idBatch);
-	
-	
 
 }
