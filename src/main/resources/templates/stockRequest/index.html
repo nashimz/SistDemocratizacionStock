@@ -58,12 +58,12 @@
 	
 		<tr th:each="stockRequest : ${stockRequests}">
 			<td><span th:text="${stockRequest.quantity}" /></td>
-			<td><span th:text="${stockRequest.product}" /></td>
-			<td><span th:text="${stockRequest.store1}" /></td>
-			<td><span th:text="${stockRequest.store2}" /></td>
+			<td><span th:text="${stockRequest.product.description}" /></td>
+			<td><span th:text="${stockRequest.store1.address}" /></td>
+			<td><span th:text="${stockRequest.store2.address}" /></td>
 
-			<td><span th:text="${stockRequest.employee}" /></td>
-			<td><span th:text="${stockRequest.colaborador}" /></td>
+			<td><span th:text="${stockRequest.employee.name}" /></td>
+			<td><span th:text="${stockRequest.colaborador.name}" /></td>
 
 
 			<td><a
