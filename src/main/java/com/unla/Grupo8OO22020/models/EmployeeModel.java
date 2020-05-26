@@ -8,10 +8,6 @@ import java.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-
-
-
-
 public class EmployeeModel{
 	private long id;
 	private String name;

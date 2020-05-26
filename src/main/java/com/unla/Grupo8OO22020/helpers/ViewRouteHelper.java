@@ -43,6 +43,12 @@ public class ViewRouteHelper {
 	public final static String EMPLOYEE_NEW = "employee/new";
 	public final static String EMPLOYEE_UPDATE = "employee/update";
 	
+	
+	//STOCK_REQUEST_INDEX
+	
+	public final static String STOCK_REQUEST_INDEX = "stockRequest/index";
+
+	
 	//  Order
 	
 	public final static String PEDIDO_INDEX = "pedido/index";
