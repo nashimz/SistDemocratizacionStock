@@ -1,9 +1,9 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import com.unla.Grupo8OO22020.models.ClientModel;
 import com.unla.Grupo8OO22020.converters.ClientConverter;
 import com.unla.Grupo8OO22020.repositories.IClientRepository;
@@ -32,6 +32,16 @@ import java.util.*;
 		public ClientModel insertOrUpdate(ClientModel clientModel) {
 			Client client = clientRepository.save(clientConverter.modelToEntity(clientModel));
 			return clientConverter.entityToModel(client);
+		}
+		
+		
+		@Override
+		public List<ClientModel> getAlls() {
+			List<ClientModel> models = new ArrayList<ClientModel>();
+			for (Client client : clientRepository.findAll()) {
+				models.add(clientConverter.entityToModel(client));
+			}
+			return models;
 		}
 
 		@Override

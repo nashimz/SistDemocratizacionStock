@@ -21,12 +21,4 @@ public interface  IBatchService {
 		
 		public abstract List<BatchModel> findByIdStore(long idStore);
 		
-		//public abstract List<BatchModel> getBatchForProduct(Product product);
-		
-		//public abstract int getQuantity(Product product);
-		
-		//public abstract boolean validarConsumo(Product product, int quantity);
-		
-		
-
 }

@@ -52,7 +52,7 @@ public class StoreController {
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_NEW);
 		mV.addObject("store", new StoreModel());
-		mV.addObject("managers", employeeService.getAll());
+		mV.addObject("employees", employeeService.getAlls());
 		mV.addObject("batches", batchService.getAlls());
 		return mV;
 	}
@@ -68,7 +68,7 @@ public class StoreController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_UPDATE);
 		mV.addObject("store", storeService.findByIdStore(idStore));
 		mV.addObject("batches",batchService.findByIdStore(idStore));
-		mV.addObject("managers", employeeService.getAll());
+		mV.addObject("employees", employeeService.findByIdStore(idStore));
 		return mV;
 	}
 	
@@ -92,8 +92,7 @@ public class StoreController {
 	    mV.addObject("distancia",distancia);
 		return mV;	
 	}
-	
-	
+
 	@PostMapping("/delete/{idStore}")
 	public RedirectView delete(@PathVariable("idStore") long idStore) {
 		storeService.remove(idStore);

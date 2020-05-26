@@ -1,6 +1,8 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +12,10 @@ import com.unla.Grupo8OO22020.repositories.IPersonRepository;
 import com.unla.Grupo8OO22020.services.*;
 import com.unla.Grupo8OO22020.entities.*;
 import java.util.*;
-	@Service("personService")
-	public class PersonService implements IPersonService {
+
+
+@Service("personService")
+public class PersonService implements IPersonService {
 
 		@Autowired
 		@Qualifier("personRepository")
@@ -30,6 +34,15 @@ import java.util.*;
 		public PersonModel insertOrUpdate(PersonModel personModel) {
 			Person person = personRepository.save(personConverter.modelToEntity(personModel));
 			return personConverter.entityToModel(person);
+		}
+		
+		@Override
+		public List<PersonModel> getAlls() {
+			List<PersonModel> models = new ArrayList<PersonModel>();
+			for (Person person : personRepository.findAll()) {
+				models.add(personConverter.entityToModel(person));
+			}
+			return models;
 		}
 
 		@Override

@@ -1,9 +1,10 @@
 package com.unla.Grupo8OO22020.models;
 
 import java.util.HashSet;
-import java.util.Set;
 
+import java.util.Set;
 import com.unla.Grupo8OO22020.entities.Batch;
+import com.unla.Grupo8OO22020.entities.Employee;
 
 public class StoreModel {
 	private long idStore;
@@ -11,19 +12,19 @@ public class StoreModel {
 	private String address;
 	private double latitude;
 	private double longitude;
-	private EmployeeModel manager;
 	private Set<Batch> batches = new HashSet<Batch>();
+	private Set<Employee> Employees = new HashSet<Employee>();
 	
 	
 	public StoreModel () {}
 	
-	public StoreModel (long idStore, long phone,String address,double latitude, double longitude, EmployeeModel manager) {
+	public StoreModel (long idStore, long phone,String address,double latitude, double longitude) {
 		this.setIdStore(idStore);
 		this.phone = phone;
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.manager = manager;
+
 	}
 	
 	
@@ -66,14 +67,6 @@ public class StoreModel {
 		this.longitude = longitude;
 	}
 
-	public EmployeeModel getManager() {
-		return manager;
-	}
-
-	public void setManager(EmployeeModel manager) {
-		this.manager = manager;
-	}
-
 	public Set<Batch> getBatches() {
 		return batches;
 	}
@@ -81,6 +74,12 @@ public class StoreModel {
 	public void setBatches(Set<Batch> batches) {
 		this.batches = batches;
 	}
-	
-	
+
+	public Set<Employee> getEmployees() {
+		return Employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		Employees = employees;
+	}
 }

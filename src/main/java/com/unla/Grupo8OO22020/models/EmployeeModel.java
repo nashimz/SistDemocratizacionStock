@@ -24,6 +24,7 @@ public class EmployeeModel{
 	private LocalTime endTime;
 	private double basicSalary;
 	private double commission;
+	private StoreModel Store;
 	
 	
 	
@@ -32,7 +33,7 @@ public class EmployeeModel{
 	}
 
 	public EmployeeModel(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission) {
+			LocalTime endTime, double basicSalary, double commission,StoreModel store) {
 		this.setId(id);
 		this.name = name;
 		this.surname = surname;
@@ -43,8 +44,7 @@ public class EmployeeModel{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
-	
-
+		this.Store=store;
 	}
 
 	public long getId() {
@@ -87,14 +87,6 @@ public class EmployeeModel{
 		this.dni = dni;
 	}
 
-	public boolean isManager() {
-		return manager;
-	}
-
-	public void setManager(boolean manager) {
-		this.manager = manager;
-	}
-
 	public LocalTime getStartTime() {
 		return startTime;
 	}
@@ -127,5 +119,19 @@ public class EmployeeModel{
 		this.commission = commission;
 	}
 
-	
+	public StoreModel getStore() {
+		return Store;
+	}
+
+	public void setStore(StoreModel store) {
+		Store = store;
+	}
+
+	public boolean isManager() {
+		return manager;
+	}
+
+	public void setManager(boolean manager) {
+		this.manager = manager;
+	}
 }

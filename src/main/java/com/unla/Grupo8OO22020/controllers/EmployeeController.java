@@ -22,18 +22,23 @@ public class EmployeeController {
 	@Qualifier("employeeService")
 	private IEmployeeService employeeService;
 	
+	@Autowired
+	@Qualifier("storeService")
+	private IStoreService storeService;
+	
 	@GetMapping("")
 	public ModelAndView index() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EMPLOYEE_INDEX);
-		mAV.addObject("employees", employeeService.getAll());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.EMPLOYEE_INDEX);
+		mV.addObject("employees", employeeService.getAlls());
+		return mV;
 	}
 	
 	@GetMapping("/new")
 	public ModelAndView create() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EMPLOYEE_NEW);
-		mAV.addObject("employee", new EmployeeModel());
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.EMPLOYEE_NEW);
+		mV.addObject("employee", new EmployeeModel());
+		mV.addObject("stores", storeService.getAlls());
+		return mV;
 	}
 	
 	@PostMapping("/create")
@@ -44,15 +49,23 @@ public class EmployeeController {
 	
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") long id) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.EMPLOYEE_UPDATE);
-		mAV.addObject("employee", employeeService.findById(id));
-		return mAV;
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.EMPLOYEE_UPDATE);
+		mV.addObject("employee", employeeService.findById(id));
+		mV.addObject("stores", storeService.getAlls());
+		return mV;
 	}
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("employee") EmployeeModel employeeModel) {
 		employeeService.insertOrUpdate(employeeModel);
 		return new RedirectView(ViewRouteHelper.EMPLOYE_ROOT);
+	}
+	
+	@GetMapping("/store/{store_id}")
+	public ModelAndView getByStoreId(@PathVariable("store_id") long storeId) {
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.EMPLOYEE_INDEX);
+		mV.addObject("employees", employeeService.findByIdStore(storeId));
+		return mV;
 	}
 	
 	@PostMapping("/delete/{id}")
