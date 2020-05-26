@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -22,12 +25,16 @@ public class Employee extends Person{
 	private LocalTime endTime;
 	private double basicSalary;
 	private double commission;
+	//lado propietario
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="store_id", nullable=false)
+	private Store store;
 	
 
 	public Employee() {}
 
 	public Employee(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission) {
+			LocalTime endTime, double basicSalary, double commission,Store store) {
 		super();
 		this.setId(id);
 		this.name = name;
@@ -39,12 +46,13 @@ public class Employee extends Person{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
+		this.store=store;
 		
 		
 	}
 	
 	public Employee(String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission) {
+			LocalTime endTime, double basicSalary, double commission,Store store) {
 		this.name = name;
 		this.surname = surname;
 		this.dateBirth = dateBirth;
@@ -54,7 +62,7 @@ public class Employee extends Person{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
-	
+		this.store=store;
 	}
 
 	public long getId() {
@@ -137,6 +145,11 @@ public class Employee extends Person{
 		this.commission = commission;
 	}
 
+	public Store getStore() {
+		return store;
+	}
 
-	
+	public void setStore(Store store) {
+		this.store = store;
+	}	
 }

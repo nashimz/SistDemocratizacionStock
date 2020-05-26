@@ -26,7 +26,7 @@ public class ClientController {
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.CLIENT_INDEX);
-		mAV.addObject("clients", clientService.getAll());
+		mAV.addObject("clients", clientService.getAlls());
 		return mAV;
 	}
 	

@@ -56,13 +56,7 @@
 				<label for="longitude">Longitud</label> <input type="text"
 					class="form-control" name="longitude" value=""
 					th:field="*{longitude}" placeholder="Escribi la longitud..." /> 
-            </div>
-				<div class="form-group">
-                <label for="manager">Manager</label>
-                <select placeholder="manager" th:field="*{manager.id}">
-	            <option th:each="m : ${managers}" th:value="${m.id}" th:text="${m.name}"></option>
-	             </select>     
-            </div>
+          
             		<input class="update" type="submit" value="Edit Local" />
 		</form>
 
@@ -71,12 +65,38 @@
 			<br>
 			<input class="update" type="submit" value="Borrar Local" />
 		</form>
+		<h4>Empleados</h4>
+     <table class="table table-bordered table-stripped table-hover table-sm">
+	<thead class="thead-dark">
+		<tr>
+		            <th>Nombre</th>
+			        <th>Apellido</th>
+			        <th>Es Gerente</th>
+                   
+                    <th colspan="2" class="text-center">
+			<a href="/employee/new" class="btn btn-outline-light px-4"> 
+			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
+			</a></th>   
+		</tr>
+		</thead>
+	<tbody>
+		<tr th:each="employee : ${employees}">
+		    <td><span th:text="${employee.name}"/></span></td>
+			<td><span th:text="${employee.surname}" /></td>
+			<td><span th:text="${employee.manager}" /></td>
+			
+			<td><a th:href="@{/employee/{id}(id=${employee.id})}"
+				class="btn btn-outline-secondary px-4"><i
+					class="far fa-edit fa-lg mr-1"></i> Ver</a></td>
+		</tr>
+	  </tbody>
+     </table>
             <h2>Lotes</h2>
      <table class="table table-bordered table-stripped table-hover table-sm">
 	<thead class="thead-dark">
 		<tr>
 		            <th>IdLote</th>
-			        <th>IdProducto</th>
+			        <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Cantidad Total</th>
                     <th>Fecha de Ingreso</th>
@@ -90,7 +110,7 @@
 	<tbody>
 		<tr th:each="batch : ${batches}">
 		    <td><span th:text="${batch.idBatch}"/></span></td>
-			<td><span th:text="${batch.product.idProduct}" /></td>
+			<td><span th:text="${batch.product.description}" /></td>
 			<td><span th:text="${batch.quantity}" /> </td>
 			<td><span th:text="${batch.quantities}" /> </td>
 			<td><span th:text="${batch.date}" /> </td>

@@ -5,8 +5,11 @@ import com.unla.Grupo8OO22020.models.PersonModel;
 import java.util.*;
 
 public interface IPersonService {
-public List<Person> getAll();
+	
+	
+    public List<Person> getAll();
 
+    public List<PersonModel> getAlls();
 
 	public PersonModel findById(long id);
 	

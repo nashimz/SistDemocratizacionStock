@@ -1,13 +1,12 @@
 package com.unla.Grupo8OO22020.entities;
 
 import javax.persistence.GeneratedValue;
+
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,8 +33,12 @@ public class Store {
 	@Column(name="longitude")
 	private double longitude;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
-	private Employee manager;
+	//@OneToOne(cascade=CascadeType.MERGE)
+	//private Employee manager;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
+	private Set<Employee> Employees = new HashSet<Employee>();
+	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Batch> batches = new HashSet<Batch>();
@@ -43,22 +46,22 @@ public class Store {
 	
 	public Store() {}
 	
-	public Store(long idStore, long phone, String address,double latitude, double longitude, Employee manager) {
+	public Store(long idStore, long phone, String address,double latitude, double longitude) {
 		super();
 		this.idStore = idStore;
 		this.phone = phone;
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.manager = manager;
+	
 	}
 	
-	public Store( long phone, String address,float latitude, float longitude, Employee manager) {
+	public Store( long phone, String address,float latitude, float longitude) {
 		this.phone = phone;
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.manager = manager;
+
 	}
 	
 	public long getIdStore() {
@@ -100,14 +103,6 @@ public class Store {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-
-	public Employee getManager() {
-		return manager;
-	}
-
-	public void setManager(Employee manager) {
-		this.manager= manager;
-	}	
 	
 	public Set<Batch> getBatches() {
 		return batches;
@@ -115,6 +110,14 @@ public class Store {
 
 	public void setBatches(Set<Batch> batches) {
 		this.batches = batches;
+	}
+	
+	public Set<Employee> getEmployees() {
+		return Employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		Employees = employees;
 	}
 
 	public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {

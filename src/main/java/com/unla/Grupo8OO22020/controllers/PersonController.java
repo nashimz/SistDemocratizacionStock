@@ -26,7 +26,7 @@ public class PersonController {
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_INDEX);
-		mAV.addObject("persons", personService.getAll());
+		mAV.addObject("persons", personService.getAlls());
 		return mAV;
 	}
 	
