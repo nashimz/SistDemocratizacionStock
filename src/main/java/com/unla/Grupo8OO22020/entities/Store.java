@@ -33,8 +33,8 @@ public class Store {
 	@Column(name="longitude")
 	private double longitude;
 	
-	//@OneToOne(cascade=CascadeType.MERGE)
-	//private Employee manager;
+	@Column(name="distance")
+	private double distance;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Employee> Employees = new HashSet<Employee>();
@@ -42,18 +42,17 @@ public class Store {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="store")
 	private Set<Batch> batches = new HashSet<Batch>();
-
+	
 	
 	public Store() {}
 	
-	public Store(long idStore, long phone, String address,double latitude, double longitude) {
-		super();
+	public Store(long idStore, long phone, String address,double latitude, double longitude,double distance) {
 		this.idStore = idStore;
 		this.phone = phone;
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
-	
+		this.distance=distance;
 	}
 	
 	public Store( long phone, String address,float latitude, float longitude) {
@@ -61,6 +60,7 @@ public class Store {
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		
 
 	}
 	
@@ -131,4 +131,14 @@ public class Store {
 		double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
 		return radioTierra * va2;
 		}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+	
+	
 }

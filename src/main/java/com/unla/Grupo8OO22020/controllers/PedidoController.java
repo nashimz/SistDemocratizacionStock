@@ -65,7 +65,6 @@ public class PedidoController {
 		if(pedidoService.validarConsumo(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()), pedidoModel.getQuantity(), pedidoModel.getStore().getIdStore())){
 			pedidoService.insert(pedidoModel);
 			pedidoService.consumoStock(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity(),pedidoModel.getStore().getIdStore());
-			
 		}
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 		
