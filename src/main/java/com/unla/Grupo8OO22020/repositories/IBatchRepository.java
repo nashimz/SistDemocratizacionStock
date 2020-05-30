@@ -18,4 +18,11 @@ public interface IBatchRepository extends JpaRepository<Batch, Serializable> {
 	@Query("SELECT b FROM Batch b JOIN FETCH b.store s WHERE s.idStore = (:idStore)")
 	public abstract List<Batch> findByIdStore(long idStore);
 	
+	
+	//ver si la necesito
+	@Query("SELECT b FROM Batch b JOIN FETCH b.product p WHERE p.idProduct = (:idProduct)")
+	public abstract List<Batch> findByIdProduct(long idProduct);
+	
+	
+	
 }
