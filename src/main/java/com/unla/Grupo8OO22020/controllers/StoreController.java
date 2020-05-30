@@ -72,6 +72,14 @@ public class StoreController {
 		return mV;
 	}
 	
+	@GetMapping("/consultNearby{idStore}")
+	public ModelAndView consultNearby(@PathVariable("idStore") long idStore) {
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_NEAR);
+		StoreModel storeModel=storeService.findByIdStore(idStore);
+		mV.addObject("stores", storeService.getNearestStore(storeModel));
+		return mV;
+	}
+	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("store") StoreModel storeModel) {
 		storeService.update(storeModel);
@@ -92,7 +100,7 @@ public class StoreController {
 	    mV.addObject("distancia",distancia);
 		return mV;	
 	}
-
+	
 	@PostMapping("/delete/{idStore}")
 	public RedirectView delete(@PathVariable("idStore") long idStore) {
 		storeService.remove(idStore);
@@ -100,4 +108,3 @@ public class StoreController {
 	}
 	
 }
-

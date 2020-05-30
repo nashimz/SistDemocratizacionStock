@@ -14,10 +14,10 @@ public class StoreConverter {
 	private EmployeeConverter employeeConverter;
 	
 	public StoreModel entityToModel(Store store) {
-		return new StoreModel(store.getIdStore(),store.getPhone(),store.getAddress(), store.getLatitude(),store.getLongitude());
+		return new StoreModel(store.getIdStore(),store.getPhone(),store.getAddress(), store.getLatitude(),store.getLongitude(),store.getDistance());
 	}
 
 	public Store modelToEntity(StoreModel storeModel) {
-		return new Store(storeModel.getIdStore(), storeModel.getPhone(), storeModel.getAddress(), storeModel.getLatitude(),storeModel.getLongitude());
+		return new Store(storeModel.getIdStore(), storeModel.getPhone(), storeModel.getAddress(), storeModel.getLatitude(),storeModel.getLongitude(),storeModel.getDistance());
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public interface IStoreService {
+	
 	public List<Store> getAll();
 	
 	public List<StoreModel> getAlls();
@@ -19,5 +20,7 @@ public interface IStoreService {
 	StoreModel update(StoreModel storeModel);
 	
 	public boolean remove(long idStore);
+
+	List<StoreModel> getNearestStore(StoreModel storeModel);
 
 }

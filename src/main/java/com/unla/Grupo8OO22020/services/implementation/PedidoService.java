@@ -108,35 +108,28 @@ public class PedidoService implements IPedidoService{
 		
 	@Override
 	public void consumoStock(ProductModel productModel, int cantidad, long idLocal ) {
-	  int aux = cantidad;
-			int x = 0;
-
+	     int aux = cantidad;
+		 int x = 0;
 			while (x < traerLotesProducto(productModel, idLocal).size() && aux > 0) {
 				Batch b = traerLotesProducto(productModel, idLocal).get(x);
-
 				if (b.getQuantities() > aux) {
 					b.setQuantities(b.getQuantities() - aux);
 					aux = 0;
 				} else if (b.getQuantities() < aux) {
 					aux -= b.getQuantities();
-					b.setQuantities(0);
-					
+					b.setQuantities(0);	
 				} else if (b.getQuantities() == aux) {
 					aux = 0;
 					b.setQuantities(0);
-					
 				}
 				BatchModel bM = batchService.findByIdBatch(b.getIdBatch());
 				bM.setQuantities(b.getQuantities());
-				
 				batchService.insert(bM);
 				x++;
-
 			}
-
 		}
 	
-	
+
 	@Override
 	public boolean remove(long idPedido) {
 		try {

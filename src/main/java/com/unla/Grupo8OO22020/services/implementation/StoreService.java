@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.services.implementation;
 import java.util.ArrayList;
 
 
+
 import java.util.List;
 
 
@@ -50,6 +51,19 @@ public class StoreService  implements IStoreService{
 	}
 	
 	@Override
+	public List<StoreModel> getNearestStore(StoreModel storeModel) {
+		List<StoreModel> list = new ArrayList<StoreModel>();
+		for (Store store : storeRepository.findAll()) {
+			StoreModel model=storeConverter.entityToModel(store);
+			if (model.getIdStore()!=storeModel.getIdStore()){
+				model.setDistance(Store.distanciaCoord(storeModel.getLatitude(), storeModel.getLongitude(), model.getLatitude(), model.getLongitude()));
+				list.add(model);
+			}
+		}
+		return list;
+	}
+	
+	@Override
 	public List<StoreModel> getAlls() {
 		List<StoreModel> models = new ArrayList<StoreModel>();
 		for (Store store : storeRepository.findAll()) {
@@ -57,6 +71,8 @@ public class StoreService  implements IStoreService{
 		}
 		return models;
 	}
+		
+	
 	
 	@Override
 	public boolean remove(long idStore) {

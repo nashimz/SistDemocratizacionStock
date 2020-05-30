@@ -14,19 +14,18 @@ public class StoreModel {
 	private double longitude;
 	private Set<Batch> batches = new HashSet<Batch>();
 	private Set<Employee> Employees = new HashSet<Employee>();
-	
-	
+	private double distance;
+
 	public StoreModel () {}
 	
-	public StoreModel (long idStore, long phone,String address,double latitude, double longitude) {
+	public StoreModel (long idStore, long phone,String address,double latitude, double longitude,double distance) {
 		this.setIdStore(idStore);
 		this.phone = phone;
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
-
+		this.distance=distance;
 	}
-	
 	
 	public long getIdStore() {
 		return idStore;
@@ -82,4 +81,13 @@ public class StoreModel {
 	public void setEmployees(Set<Employee> employees) {
 		Employees = employees;
 	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
 }
