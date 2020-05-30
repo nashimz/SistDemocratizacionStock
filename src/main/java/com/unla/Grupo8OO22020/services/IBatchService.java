@@ -7,18 +7,18 @@ import com.unla.Grupo8OO22020.models.BatchModel;
 public interface  IBatchService {
 	
 	 
-	    public abstract List<Batch> getAll();
+	    public  List<Batch> getAll();
 	   
-	    public abstract List<BatchModel> getAlls();
+	    public  List<BatchModel> getAlls();
 		
-		public abstract  BatchModel insert(BatchModel batchModel);
+		public   BatchModel insert(BatchModel batchModel);
 		
-		public abstract BatchModel update(BatchModel batchModel);
+		public  BatchModel update(BatchModel batchModel);
 		
-		public abstract boolean remove(long idBatch);
+		public  boolean remove(long idBatch);
 
-		public abstract BatchModel findByIdBatch(long idBatch);
+		public  BatchModel findByIdBatch(long idBatch);
 		
-		public abstract List<BatchModel> findByIdStore(long idStore);
+		public  List<BatchModel> findByIdStore(long idStore);
 		
 }

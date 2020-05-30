@@ -18,6 +18,6 @@ public interface IEmployeeService {
 	
 	public boolean remove(long id);
 	
-	public abstract List<EmployeeModel> findByIdStore(long idStore);
+	public  List<EmployeeModel> findByIdStore(long idStore);
 
 }

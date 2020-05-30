@@ -7,7 +7,7 @@ import java.util.*;
 
 public interface IClientService {
     
-	public List<Client> getAll();
+	public abstract List<Client> getAll();
 
 	public List<ClientModel> getAlls();
 	

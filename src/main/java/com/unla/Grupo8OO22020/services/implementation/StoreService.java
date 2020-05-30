@@ -1,9 +1,6 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import java.util.ArrayList;
-
-
-
 import java.util.List;
 
 
@@ -60,8 +57,12 @@ public class StoreService  implements IStoreService{
 				list.add(model);
 			}
 		}
+		
 		return list;
 	}
+	
+		
+	
 	
 	@Override
 	public List<StoreModel> getAlls() {

@@ -13,5 +13,4 @@ public interface IStoreRepository extends JpaRepository<Store, Serializable>{
 	
 	public abstract Store findByIdStore(long idStore);
 	
-	
 }
