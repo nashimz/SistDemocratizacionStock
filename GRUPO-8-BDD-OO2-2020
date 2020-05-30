@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`store` (
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
   `phone` BIGINT NULL DEFAULT NULL,
+  `distance` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id_store`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -125,7 +126,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES(1,'zapatilla',3500.0,'43','2011-12-18'),(2,'ojotas',3500.0,'41','2011-12-18'),(3,'zapatilla',3200.0,'41','2011-12-18'),(4,'buzo',1500.0,'l','2011-12-18'),(5,'remera',950.0,'l','2011-12-18');
+INSERT INTO `product` VALUES(1,'zapatilla Air max',3500.0,'41','2011-12-18'),(2,'Ojotas Crocs',3500.0,'41','2011-12-18'),(3,'Gorra Jordan',3200.0,'41','2011-12-18'),(4,'buzo dri-fit',1500.0,'l','2011-12-18'),(5,'remera slim-fit',950.0,'l','2011-12-18');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +152,7 @@ SELECT *FROM client;
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (1,'Tucuman 2398',35,31,1124369587),(2,'Pergamino 2410',32,21,1128569587),(3,'29 de Septiembre',22,41,1128587500);
+INSERT INTO `store` VALUES (1,'Tucuman 2398',35,31,1124369587,0),(2,'Pergamino 2410',34,28,1128569587,0),(3,'29 de Septiembre',34.6,31.5,1128587500,0);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,3 +182,4 @@ INSERT INTO `pedido` VALUES (1,18,1,1),(2,12,2,1),(3,4,4,2),(4,27,1,2);
 UNLOCK TABLES;
 
 SELECT *FROM pedido;
+
