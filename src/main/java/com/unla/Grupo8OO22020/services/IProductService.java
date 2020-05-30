@@ -11,15 +11,15 @@ import com.unla.Grupo8OO22020.models.ProductModel;
 
 public interface IProductService {
 
-	public abstract List<Product> getAll();
+	public  List<Product> getAll();
 	
-	public abstract List<ProductModel> getAlls();
+	public  List<ProductModel> getAlls();
 	
-	public abstract ProductModel findByIdProduct(long idProduct);
+	public  ProductModel findByIdProduct(long idProduct);
 	
-	public abstract boolean remove(long idProduct);
+	public boolean remove(long idProduct);
 
-	public abstract ProductModel insertOrUpdate(ProductModel productModel);
+	public ProductModel insertOrUpdate(ProductModel productModel);
 	
 	public List<ProductModel> findByDescriptionName(String descriptionName);
 	

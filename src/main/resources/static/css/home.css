@@ -1,0 +1,26 @@
+html {
+    position: relative;
+    min-height: 100%;
+    background-image: url(https://englishlive.ef.com/blog/wp-content/uploads/sites/2/2015/03/people-holing-bags-shopping.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title {
+	margin-top:50px;
+	margin-left: 35%;
+}
+
+.card {
+	margin-top:150px;
+	margin-left:70px;
+	float:left;
+}
+
+.card img {
+	width:286px;
+	height:160.81px;
+
+	}
+	
+

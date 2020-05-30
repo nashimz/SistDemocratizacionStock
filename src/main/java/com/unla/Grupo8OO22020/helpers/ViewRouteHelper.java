@@ -4,21 +4,21 @@ public class ViewRouteHelper {
 	
 	/**** Views ****/
 	
-	//HOME
+	//   HOME
 	public final static String HOME_INDEX = "home/index";
 	
 	
-	//PRODUCTO
+	//  PRODUCT
 	public final static String PRODUCT_INDEX = "product/index";
 	public final static String PRODUCT_NEW = "product/new";
 	public final static String PRODUCT_UPDATE = "product/update";
 	
-	//LOTE
+	//  BATCH
 	public final static String BATCH_INDEX = "batch/index";
 	public final static String BATCH_NEW = "batch/new";
 	public final static String BATCH_UPDATE = "batch/update";
 	
-	//locales 
+	// STORE
 	public final static String STORE_INDEX="store/index";
 	public final static String STORE_NEW="store/new";
 	public final static String STORE_UPDATE="store/update";
@@ -26,30 +26,37 @@ public class ViewRouteHelper {
 	public final static String STORE_CALCULATEDISTANCE="store/calculatedistance";
 	public final static String STORE_NEAR="store/near";
 	
-	// Person
+	// PERSON
 	
     public final static String PERSON_INDEX = "person/index";
 	public final static String PERSON_NEW = "person/new";
 	public final static String PERSON_UPDATE = "person/update";
 		
-		// Client
+	// CLIENT
 		
 	public final static String CLIENT_INDEX = "client/index";
 	public final static String CLIENT_NEW = "client/new";
 	public final static String CLIENT_UPDATE = "client/update";
 	
-	// Employee
+	// EMPLOYEE
 	
 	public final static String EMPLOYEE_INDEX = "employee/index";
 	public final static String EMPLOYEE_NEW = "employee/new";
 	public final static String EMPLOYEE_UPDATE = "employee/update";
 	
-	//  Order
+	//  ORDER
 	
 	public final static String PEDIDO_INDEX = "pedido/index";
 	public final static String PEDIDO_NEW = "pedido/new";
 	public final static String PEDIDO_UPDATE = "pedido/update";
-
+	
+	//STOCK_REQUEST_INDEX
+	
+	public final static String STOCK_REQUEST_INDEX = "stockRequest/index";
+	public final static String STOCK_REQUEST_NEW = "stockRequest/new";
+	public final static String STOCK_REQUEST_UPDATE = "stockRequest/update";
+	
+	// 
 	
 	/**** Redirects ****/
 	public final static String PRODUCT_ROOT = "/product";
@@ -59,4 +66,5 @@ public class ViewRouteHelper {
 	public final static String CLIENT_ROOT="/client";
 	public final static String EMPLOYE_ROOT="/employee";
 	public final static String PEDIDO_ROOT="/pedido";
+	public final static String STOCK_REQUEST_ROOT="/stockRequest";
 }
