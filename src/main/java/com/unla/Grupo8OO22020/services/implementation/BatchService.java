@@ -77,6 +77,15 @@ public class BatchService implements  IBatchService{
 	}
 	
 	@Override
+	public List<BatchModel> findByIdProduct(long idProduct) {
+		List<BatchModel> models = new ArrayList<BatchModel>();
+		for (Batch batch : batchRepository.findByIdProduct(idProduct)) {
+			models.add(batchConverter.entityToModel(batch));
+		}
+		return models;
+	}
+	
+	@Override
 	public boolean remove(long idBatch) {
 		try {
 			batchRepository.deleteById(idBatch);

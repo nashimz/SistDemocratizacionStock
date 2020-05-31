@@ -6,7 +6,7 @@ import java.util.Set;
 import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Employee;
 
-public class StoreModel {
+public class StoreModel{
 	private long idStore;
 	private long phone; 
 	private String address;
@@ -88,6 +88,6 @@ public class StoreModel {
 
 	public void setDistance(double distance) {
 		this.distance = distance;
+		
 	}
-
 }

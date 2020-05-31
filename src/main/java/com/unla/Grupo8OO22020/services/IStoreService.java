@@ -23,4 +23,5 @@ public interface IStoreService {
 
 	List<StoreModel> getNearestStore(StoreModel storeModel);
 
+
 }
