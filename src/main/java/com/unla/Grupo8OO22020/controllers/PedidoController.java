@@ -4,6 +4,7 @@ package com.unla.Grupo8OO22020.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,13 +63,13 @@ public class PedidoController {
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-		if(pedidoService.validarConsumo(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()), pedidoModel.getQuantity(), pedidoModel.getStore().getIdStore())){
+		if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.insert(pedidoModel);
-			pedidoService.consumoStock(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity(),pedidoModel.getStore().getIdStore());
+			pedidoService.consumoStock(pedidoModel);
 		}
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
-		
 	}
+	
 	@GetMapping("/{idPedido}")
 	public ModelAndView get(@PathVariable("idPedido") long idPedido) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_UPDATE);
@@ -80,9 +81,9 @@ public class PedidoController {
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-	    if(pedidoService.validarConsumo(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()), pedidoModel.getQuantity(), pedidoModel.getStore().getIdStore())){
+	    if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.update(pedidoModel);
-			pedidoService.consumoStock(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity(),pedidoModel.getStore().getIdStore());
+			pedidoService.consumoStock(pedidoModel);
 	  }
 	 return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}

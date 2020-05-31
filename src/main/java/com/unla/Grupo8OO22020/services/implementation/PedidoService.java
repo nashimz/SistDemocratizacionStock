@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.services.implementation;
 import java.util.ArrayList;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
-import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.repositories.IPedidoRepository;
 import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
@@ -82,36 +82,36 @@ public class PedidoService implements IPedidoService{
 	}
 	
 	@Override
-	public List<Batch> traerLotesProducto(ProductModel productoModel, long idLocal) {
-		List<Batch> lotesActivos = new ArrayList<Batch>();
+	public List<Batch> getActiveBatches(PedidoModel pedidoModel) {
+		List<Batch> activeBatches = new ArrayList<Batch>();
 			for (Batch b : batchService.getAll()) {
-				if (b.getProduct().getIdProduct() == productoModel.getIdProduct() && b.getStore().getIdStore() == idLocal ) {
-					lotesActivos.add(b);
+				if (b.getProduct().getIdProduct() == pedidoModel.getProduct().getIdProduct() && b.getStore().getIdStore() == pedidoModel.getStore().getIdStore() && b.isActive()) {
+					activeBatches.add(b);
 				}
 			}
-			return lotesActivos;
+			return activeBatches;
 		}
 
 	@Override
-	public int calcularStock(ProductModel productoModel,long idLocal) {
+	public int calculateStock(PedidoModel pedidoModel) {
 		int total = 0;
-			for (Batch b : traerLotesProducto(productoModel, idLocal)) {
+			for (Batch b : getActiveBatches(pedidoModel)) {
 				total += b.getQuantities();
 			}
 			return total;
 		}
 		
     @Override
-	public boolean validarConsumo(ProductModel productoModel,int cantidad, long idLocal) {
-		return (calcularStock(productoModel, idLocal) >= cantidad) ? true : false; 
+	public boolean validarConsumo(PedidoModel pedidoModel) {
+		return (calculateStock(pedidoModel) >= pedidoModel.getQuantity()) ? true : false; 
 		}
 		
 	@Override
-	public void consumoStock(ProductModel productModel, int cantidad, long idLocal ) {
-	     int aux = cantidad;
+	public void consumoStock(PedidoModel pedidoModel) {
+	     int aux = pedidoModel.getQuantity();
 		 int x = 0;
-			while (x < traerLotesProducto(productModel, idLocal).size() && aux > 0) {
-				Batch b = traerLotesProducto(productModel, idLocal).get(x);
+			while (x < getActiveBatches(pedidoModel).size() && aux > 0) {
+				Batch b = getActiveBatches(pedidoModel).get(x);
 				if (b.getQuantities() > aux) {
 					b.setQuantities(b.getQuantities() - aux);
 					aux = 0;
@@ -129,7 +129,6 @@ public class PedidoService implements IPedidoService{
 			}
 		}
 	
-
 	@Override
 	public boolean remove(long idPedido) {
 		try {

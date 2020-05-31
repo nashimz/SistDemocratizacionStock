@@ -2,6 +2,7 @@ package com.unla.Grupo8OO22020.services.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +50,20 @@ public class StoreService  implements IStoreService{
 	
 	@Override
 	public List<StoreModel> getNearestStore(StoreModel storeModel) {
-		List<StoreModel> list = new ArrayList<StoreModel>();
+		List<StoreModel> stores = new ArrayList<StoreModel>();
 		for (Store store : storeRepository.findAll()) {
 			StoreModel model=storeConverter.entityToModel(store);
 			if (model.getIdStore()!=storeModel.getIdStore()){
 				model.setDistance(Store.distanciaCoord(storeModel.getLatitude(), storeModel.getLongitude(), model.getLatitude(), model.getLongitude()));
-				list.add(model);
+				stores.add(model);
+				
 			}
 		}
-		
-		return list;
+		stores.sort(Comparator.comparing(StoreModel::getDistance));
+		//Collections.sort(stores);
+		return stores;
 	}
+	
 	
 		
 	

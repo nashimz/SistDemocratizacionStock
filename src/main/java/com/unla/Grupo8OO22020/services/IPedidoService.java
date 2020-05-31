@@ -2,10 +2,11 @@ package com.unla.Grupo8OO22020.services;
 
 import java.util.List;
 
+
 import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.PedidoModel;
-import com.unla.Grupo8OO22020.models.ProductModel;
+
 
 public interface IPedidoService {
 	
@@ -21,12 +22,12 @@ public interface IPedidoService {
 
 	public PedidoModel findByIdPedido(long idPedido);
 	
-	public List<Batch> traerLotesProducto(ProductModel productoModel, long idLocal);
+	public List<Batch> getActiveBatches(PedidoModel pedidoModel);
 	
-	public int calcularStock(ProductModel productoModel,long idLocal);
+	public int calculateStock(PedidoModel pedidoModel);
 	
-	public boolean validarConsumo(ProductModel productoModel,int cantidad, long idLocal);
+	public boolean validarConsumo(PedidoModel pedidoModel);
 	
-	public void consumoStock(ProductModel productModel, int cantidad, long idLocal );
+	public void consumoStock(PedidoModel pedidoModel );
 
 }

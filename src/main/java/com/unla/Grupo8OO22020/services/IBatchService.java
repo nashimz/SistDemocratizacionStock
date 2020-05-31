@@ -20,5 +20,7 @@ public interface  IBatchService {
 		public  BatchModel findByIdBatch(long idBatch);
 		
 		public  List<BatchModel> findByIdStore(long idStore);
+
+		public List<BatchModel> findByIdProduct(long idProduct);
 		
 }
