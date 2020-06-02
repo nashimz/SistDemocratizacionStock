@@ -15,7 +15,7 @@ public class StockRequestModel {
 	public StockRequestModel() {}
 
 	public StockRequestModel(long idStockRequest, int quantity,ProductModel product,StoreModel store1,StoreModel store2, EmployeeModel employee, EmployeeModel collaborator) {
-		this.idStockRequest=idStockRequest;
+		this.setIdStockRequest(idStockRequest);
 		this.quantity=quantity;
 		this.product=product;
 		this.store1= store1;

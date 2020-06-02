@@ -6,16 +6,19 @@ public class PedidoModel {
 	private int quantity;
 	private ProductModel product;
 	private StoreModel store;
+	private EmployeeModel employee;
+	private double subtotal;
 	
 	
 	public PedidoModel() {}
 
-	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store) {
-		this.idPedido = idPedido;
+	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,double subtotal) {
+		this.setIdPedido(idPedido);
 		this.quantity = quantity;
 		this.product = product;
 		this.store=store;
-	
+		this.employee=employee;
+		this.setSubtotal(subtotal);
 	}
 
 	public long getIdPedido() {
@@ -48,5 +51,21 @@ public class PedidoModel {
 
 	public void setStore(StoreModel store) {
 		this.store = store;
+	}
+
+	public EmployeeModel getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(EmployeeModel employee) {
+		this.employee = employee;
+	}
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
 	}
 }

@@ -5,6 +5,9 @@ package com.unla.Grupo8OO22020.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +20,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.services.IBatchService;
+import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
+import com.unla.Grupo8OO22020.services.IStockRequestService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 
 
@@ -43,6 +48,13 @@ public class PedidoController {
 	@Qualifier("batchService")
 	private IBatchService batchService;
 	
+	@Autowired
+	@Qualifier("employeeService")
+	private IEmployeeService employeeService;
+	
+	@Autowired
+	@Qualifier("stockRequestService")
+	private IStockRequestService stockRequestService;
 	
 	
 	@GetMapping("")
@@ -58,13 +70,14 @@ public class PedidoController {
 		mV.addObject("pedido", new PedidoModel());
 		mV.addObject("products", productService.getAlls());
 		mV.addObject("stores", storeService.getAlls());
+		mV.addObject("employees",employeeService.getAllv());
 		return mV;
 	}
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
 		if(pedidoService.validarConsumo(pedidoModel)){
-			pedidoService.insert(pedidoModel);
+			pedidoService.insert(pedidoModel);	
 			pedidoService.consumoStock(pedidoModel);
 		}
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
@@ -76,6 +89,7 @@ public class PedidoController {
 		mV.addObject("pedido", pedidoService.findByIdPedido(idPedido));
 		mV.addObject("products", productService.getAlls());
 		mV.addObject("stores", storeService.getAlls());
+		mV.addObject("employees",employeeService.getAllv());
 		return mV;
 	}
 	
@@ -83,7 +97,8 @@ public class PedidoController {
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
 	    if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.update(pedidoModel);
-			pedidoService.consumoStock(pedidoModel);
+			//pedidoService.consumoStock(pedidoModel);
+			
 	  }
 	 return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}

@@ -1,23 +1,22 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import java.util.ArrayList;
-
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-
 import com.unla.Grupo8OO22020.converters.PedidoConverter;
 import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Pedido;
+import com.unla.Grupo8OO22020.entities.Product;
+import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.models.BatchModel;
+import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.repositories.IPedidoRepository;
 import com.unla.Grupo8OO22020.services.IBatchService;
+import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
 import com.unla.Grupo8OO22020.services.IStoreService;
@@ -33,6 +32,10 @@ public class PedidoService implements IPedidoService{
 	@Autowired
 	@Qualifier("storeService")
 	private IStoreService storeService;
+	
+	@Autowired
+	@Qualifier("employeeService")
+	private IEmployeeService employeeService;
 	
 	@Autowired
 	@Qualifier("batchService")
@@ -54,6 +57,7 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public PedidoModel insert(PedidoModel pedidoModel) {
+		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
 		pedidoModel.setStore(storeService.findByIdStore(pedidoModel.getStore().getIdStore()));
 		Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
@@ -61,6 +65,7 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public PedidoModel update(PedidoModel pedidoModel) {
+		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
 		pedidoModel.setProduct(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()));
 		pedidoModel.setStore(storeService.findByIdStore(pedidoModel.getStore().getIdStore()));
 	    Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
@@ -70,6 +75,17 @@ public class PedidoService implements IPedidoService{
 	@Override
 	public PedidoModel findByIdPedido(long idPedido) {
 		return pedidoConverter.entityToModel(pedidoRepository.findByIdPedido(idPedido));
+	}
+	
+	
+	@Override
+	public PedidoModel findByProduct(Product product) {
+		return pedidoConverter.entityToModel(pedidoRepository.findByProduct(product));
+	}
+	
+	@Override
+	public PedidoModel findByStore(Store store) {
+		return pedidoConverter.entityToModel(pedidoRepository.findByStore(store));
 	}
 	
 	@Override
@@ -109,6 +125,7 @@ public class PedidoService implements IPedidoService{
 	@Override
 	public void consumoStock(PedidoModel pedidoModel) {
 	     int aux = pedidoModel.getQuantity();
+	     double aux2= productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice();
 		 int x = 0;
 			while (x < getActiveBatches(pedidoModel).size() && aux > 0) {
 				Batch b = getActiveBatches(pedidoModel).get(x);
@@ -127,6 +144,12 @@ public class PedidoService implements IPedidoService{
 				batchService.insert(bM);
 				x++;
 			}
+			
+			double plus = ((aux2 * 5) / 100) * pedidoModel.getQuantity();
+			EmployeeModel employeeModel = employeeService.findById(pedidoModel.getEmployee().getId());
+			employeeModel.setCommission(pedidoModel.getEmployee().getCommission() + plus);
+			employeeService.insertOrUpdate(employeeModel);
+			
 		}
 	
 	@Override

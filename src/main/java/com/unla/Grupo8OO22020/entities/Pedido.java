@@ -1,12 +1,18 @@
 package com.unla.Grupo8OO22020.entities;
 
 import javax.persistence.CascadeType;
+
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
+
 
 @Entity
 @Table(name="pedido")
@@ -15,6 +21,7 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPedido;
 	
+	@Column(name="quantity")
 	private int quantity;
 	
 	@OneToOne(cascade=CascadeType.MERGE)
@@ -22,21 +29,30 @@ public class Pedido {
 	
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Store store;
+	
+	@OneToOne(cascade=CascadeType.MERGE)
+	private Employee employee;
+	
+	@Column(name="subtotal")
+	double subtotal;
 
 	public Pedido() {}
 	
-	public Pedido(long idPedido,int quantity,Product product,Store store) {
+	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,double subtotal) {
 		this.idPedido=idPedido;
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
-		
+		this.employee=employee;
+		this.subtotal=subtotal;
 	}
 	
-	public Pedido(int quantity,Product product,Store store) {
+	public Pedido(int quantity,Product product,Store store,Employee employee,double subtotal) {
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
+		this.employee=employee;
+		this.subtotal=subtotal;
 	}
 
 	public long getIdPedido() {
@@ -71,4 +87,19 @@ public class Pedido {
 		this.store = store;
 	}
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public double getSubtotal() {
+		return this.product.getPrice()*this.quantity;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
 }

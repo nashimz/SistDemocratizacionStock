@@ -1,10 +1,10 @@
 package com.unla.Grupo8OO22020.services;
 
 import java.util.List;
-
-
 import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Pedido;
+import com.unla.Grupo8OO22020.entities.Product;
+import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 
 
@@ -29,5 +29,9 @@ public interface IPedidoService {
 	public boolean validarConsumo(PedidoModel pedidoModel);
 	
 	public void consumoStock(PedidoModel pedidoModel );
+
+	public PedidoModel findByProduct(Product product);
+	
+	public PedidoModel findByStore(Store store);
 
 }

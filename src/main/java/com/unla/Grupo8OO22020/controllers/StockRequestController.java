@@ -51,8 +51,7 @@ public class StockRequestController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STOCK_REQUEST_NEW);
 		mV.addObject("stockRequest", new StockRequestModel());
 		mV.addObject("products", productService.getAlls());
-		mV.addObject("employees", employeeService.getAlls());
-		mV.addObject("collaborators", employeeService.getAlls());
+		mV.addObject("employees", employeeService.getAllv());
 		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}
@@ -68,7 +67,7 @@ public class StockRequestController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STOCK_REQUEST_UPDATE);
 		mV.addObject("stockRequest", stockRequestService.findByIdStockRequest(idStockRequest));
 		mV.addObject("products", productService.getAlls());
-		mV.addObject("employees", employeeService.getAlls());
+		mV.addObject("employees", employeeService.getAllv());
 		mV.addObject("stores", storeService.getAlls());
 		return mV;
 	}

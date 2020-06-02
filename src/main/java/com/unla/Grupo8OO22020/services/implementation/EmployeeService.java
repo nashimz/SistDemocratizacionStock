@@ -66,6 +66,16 @@ public class EmployeeService implements IEmployeeService {
 		}
 		
 		@Override
+		public List<EmployeeModel> getAllv() {
+			List<EmployeeModel> models = new ArrayList<EmployeeModel>();
+			for (Employee employee : employeeRepository.findAll()) {
+				if(!employee.isManager())
+				models.add(employeeConverter.entityToModel(employee));
+			}
+			return models;
+		}
+		
+		@Override
 		public boolean remove(long id) {
 			try {
 				employeeRepository.deleteById(id);
