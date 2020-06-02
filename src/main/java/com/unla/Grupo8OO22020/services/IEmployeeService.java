@@ -20,4 +20,6 @@ public interface IEmployeeService {
 	
 	public  List<EmployeeModel> findByIdStore(long idStore);
 
+	public List<EmployeeModel> getAllv();
+
 }

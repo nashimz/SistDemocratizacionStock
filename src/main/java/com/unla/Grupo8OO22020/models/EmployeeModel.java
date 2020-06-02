@@ -3,7 +3,6 @@ package com.unla.Grupo8OO22020.models;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-
 public class EmployeeModel extends PersonModel{
 
 	private boolean manager;

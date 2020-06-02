@@ -19,14 +19,18 @@ public class PedidoConverter {
 	@Autowired()
 	@Qualifier("storeConverter")
 	private StoreConverter storeConverter;
+	
+	@Autowired()
+	@Qualifier("employeeConverter")
+	private EmployeeConverter employeeConverter;
 
 	
 	public PedidoModel entityToModel(Pedido pedido) {
-		return new PedidoModel(pedido.getIdPedido(),pedido.getQuantity(),productConverter.entityToModel(pedido.getProduct()),storeConverter.entityToModel(pedido.getStore()));
+		return new PedidoModel(pedido.getIdPedido(),pedido.getQuantity(),productConverter.entityToModel(pedido.getProduct()),storeConverter.entityToModel(pedido.getStore()),employeeConverter.entityToModel(pedido.getEmployee()),pedido.getSubtotal());
 	}
 	
 	public Pedido modelToEntity(PedidoModel pedidoModel) {
-		return new Pedido(pedidoModel.getIdPedido(),pedidoModel.getQuantity(),productConverter.modelToEntity(pedidoModel.getProduct()),storeConverter.modelToEntity(pedidoModel.getStore()));
+		return new Pedido(pedidoModel.getIdPedido(),pedidoModel.getQuantity(),productConverter.modelToEntity(pedidoModel.getProduct()),storeConverter.modelToEntity(pedidoModel.getStore()),employeeConverter.modelToEntity(pedidoModel.getEmployee()),pedidoModel.getSubtotal());
 	}
 
 }

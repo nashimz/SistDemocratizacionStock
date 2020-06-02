@@ -17,6 +17,7 @@ import com.unla.Grupo8OO22020.models.StoreModel;
 
 @Service("storeService")
 public class StoreService  implements IStoreService{
+	
 	@Autowired
 	@Qualifier("storeRepository")
 	private IStoreRepository storeRepository;
@@ -56,17 +57,11 @@ public class StoreService  implements IStoreService{
 			if (model.getIdStore()!=storeModel.getIdStore()){
 				model.setDistance(Store.distanciaCoord(storeModel.getLatitude(), storeModel.getLongitude(), model.getLatitude(), model.getLongitude()));
 				stores.add(model);
-				
 			}
 		}
 		stores.sort(Comparator.comparing(StoreModel::getDistance));
-		//Collections.sort(stores);
 		return stores;
 	}
-	
-	
-		
-	
 	
 	@Override
 	public List<StoreModel> getAlls() {
@@ -77,8 +72,6 @@ public class StoreService  implements IStoreService{
 		return models;
 	}
 		
-	
-	
 	@Override
 	public boolean remove(long idStore) {
 		try {

@@ -23,10 +23,10 @@ USE `grupo-8-bdd-oo2-2020` ;
 CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`store` (
   `id_store` BIGINT NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(255) NULL DEFAULT NULL,
+  `distance` DOUBLE NULL DEFAULT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
   `phone` BIGINT NULL DEFAULT NULL,
-  `distance` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id_store`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -93,11 +93,11 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `grupo-8-bdd-oo2-2020`.`employee`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`employee` (
-  `basic_salary` DOUBLE NOT NULL,
-  `commission` DOUBLE NOT NULL,
+  `basic_salary` DOUBLE NULL DEFAULT NULL,
+  `commission` DOUBLE NULL DEFAULT NULL,
   `end_time` TIME NULL DEFAULT NULL,
-  `manager` BIT(1) NOT NULL,
-  `start_time` TIME NULL DEFAULT NULL,
+  `manager` BIT(1) NULL DEFAULT NULL,
+  `star_time` TIME NULL DEFAULT NULL,
   `id` BIGINT NOT NULL,
   `store_id` BIGINT NOT NULL,
   PRIMARY KEY (`id`))
@@ -110,12 +110,15 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`pedido` (
   `id_pedido` BIGINT NOT NULL AUTO_INCREMENT,
-  `quantity` INT NOT NULL,
+  `quantity` INT NULL DEFAULT NULL,
+  `subtotal` DOUBLE NULL DEFAULT NULL,
+  `employee_id` BIGINT NULL DEFAULT NULL,
   `product_id_product` BIGINT NULL DEFAULT NULL,
   `store_id_store` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id_pedido`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
 
 -- -----------------------------------------------------
 -- Table `grupo-8-bdd-oo2-2020`.`stock_request`
@@ -131,6 +134,7 @@ CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`stock_request` (
   PRIMARY KEY (`id_stock_request`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -166,7 +170,7 @@ SELECT *FROM client;
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (1,'Tucuman 2398',35,31,1124369587,0),(2,'Pergamino 2410',34,28,1128569587,0),(3,'29 de Septiembre',34.6,31.5,1128587500,0);
+INSERT INTO `store` VALUES (1,'Tucuman 2398',0,35,31,1124369587),(2,'Pergamino 2410',0,34,28,1128569587),(3,'29 de Septiembre',0,34.6,31.5,1128587500);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +179,7 @@ SELECT *FROM store;
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (42000.0,1900.0,'18:00:00',TRUE,'06:00:00',3,1),(64000.0,1400.0,'19:00:00',TRUE,'06:00:00',4,2),(74000.0,1400.0,'19:00:00',TRUE,'07:00:00',5,3),(24000.0,2400.0,'18:00:00',FALSE,'08:00:00',6,1),(28000.0,1800.0,'19:30:00',FALSE,'07:30:00',7,2),(30000.0,2200.0,'18:30:00',FALSE,'06:30:00',8,3);
+INSERT INTO `employee` VALUES (42000.0,1900.0,'18:00:00',TRUE,'06:00:00',3,1),(64000.0,1400.0,'19:00:00',TRUE,'06:00:00',4,2),(74000.0,1400.0,'19:00:00',TRUE,'07:00:00',5,3),(24000.0,0.0,'18:00:00',FALSE,'08:00:00',6,1),(28000.0,0.0,'19:30:00',FALSE,'07:30:00',7,2),(30000.0,0.0,'18:30:00',FALSE,'06:30:00',8,3);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,8 +195,12 @@ SELECT *FROM batch;
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (1,18,1,1);
+INSERT INTO `pedido` VALUES (1,18,18*3500.0,6,1,1);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
 SELECT *FROM pedido;
+
+
+
+
