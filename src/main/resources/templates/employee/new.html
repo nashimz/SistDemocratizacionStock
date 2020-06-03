@@ -15,11 +15,12 @@
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                  <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
+                 <a class="py-2 d-md-inline-block" href="/stockRequest">Adm.Stock</a> 
             </div>
         </nav>
         
         <h2>Agregar Empleado</h2>
-<div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
+        <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
         <form action="#" th:action="@{/employee/create}" th:object="${employee}" method="post">
             
             <div class="form-group">

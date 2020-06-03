@@ -30,7 +30,7 @@
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                 <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
-                <a class="py-2 d-md-inline-block" href="/stockRequest">Adm.Stock</a>
+                <a class="py-2 d-md-inline-block" href="/stockRequest">Adm.Stock</a> 
 		</div>
 	</nav>
 	<h2>Actualizacion de Pedidos</h2>
@@ -60,14 +60,21 @@
 	            <option th:each="s : ${stores}" th:value="${s.idStore}" th:text="${s.address}"></option>
 	             </select>     
             </div>
-           
+            
             <div class="form-group">
                 <label for="employee">Vendedor</label>
                 <select placeholder="employee" th:field="*{employee.id}">
 	            <option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.surname}"></option>
 	             </select>     
             </div>
-  
+            
+            <div class="form-group">
+                <label for="date">Fecha</label>
+                <input type="date" class="form-control" name="date"  value="" th:field="*{date}" placeholder="Elija una fecha..." >
+            </div>
+              
+            
+            
 				<input class="update" type="submit" value="Editar Pedido" />
 		</form>
 

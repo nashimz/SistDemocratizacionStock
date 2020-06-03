@@ -3,11 +3,6 @@ package com.unla.Grupo8OO22020.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -97,7 +92,7 @@ public class PedidoController {
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
 	    if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.update(pedidoModel);
-			//pedidoService.consumoStock(pedidoModel);
+			pedidoService.consumoStock(pedidoModel);
 			
 	  }
 	 return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
@@ -109,6 +104,5 @@ public class PedidoController {
 		pedidoService.remove(idPedido);
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 		}
-		
 	
 }

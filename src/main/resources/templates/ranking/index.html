@@ -19,53 +19,32 @@
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                 <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
-                <a class="py-2 d-md-inline-block" href="/stockRequest">Adm.Stock</a>
+                <a class="py-2 d-md-inline-block" href="/stockRequest">Adm.Stock</a> 
                 
             </div>
         </nav>
-        <h2>Administracion de Pedidos</h2>
-     <table class="table table-bordered table-stripped table-hover table-sm">
+        <h2>Ranking de Productos</h2>
+        
+        <table class="table table-bordered table-stripped table-hover table-sm">
      
             <thead class="thead-dark">
                 <tr>
                     <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Local</th>
-                    <th>Vendedor</th>
-                    <th>Fecha</th>
-                    <th>Subtotal</th>
+                    <th>Cantidad Vendida</th>
+                   
                     
        
                     
-                    <th colspan="2" class="text-center">
-                        <a href="/pedido/new" class="btn btn-outline-light px-4">
-                            <i class="far fa-plus-square fa-lg mr-2"></i>
-                            Agregar 
-                        </a>
-                    </th>
+                   
                 </tr>
 	<tbody>
-		<tr th:each="pedido : ${pedidos}">
-			<td><span th:text="${pedido.product.description}" /></td>
-			<td><span th:text="${pedido.quantity}" /> </td>
-			<td><span th:text="${pedido.store.address}" /></td>
-			<td><span th:text="${pedido.employee.surname}" /></td>
-			<td><span th:text="${pedido.date}" /></td>
-			<td><span th:text="${pedido.subtotal}" /></td>
+		<tr th:each="r : ${rankingProductos}">
+			<td><span th:text="${r.descripcion}" /></td>
+            <td><span th:text="${r.cantidadVendida}" /></td>
 			
 			
 			
-			<td>
-                        <a th:href="@{/pedido/{idPedido}(idPedido=${pedido.idPedido})}" class="btn btn-outline-secondary px-4">
-                            <i class="far fa-edit fa-lg mr-1"></i>
-                            Ver
-                        </a>
-                    </td>
 
 		</tr>
 	</tbody>
 </table>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
- </html>

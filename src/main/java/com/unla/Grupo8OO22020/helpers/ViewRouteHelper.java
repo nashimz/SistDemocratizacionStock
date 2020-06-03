@@ -58,6 +58,10 @@ public class ViewRouteHelper {
 	
 	// 
 	
+	// RANKING
+	
+	public final static String RANKING_INDEX = "ranking/index";
+	
 	/**** Redirects ****/
 	public final static String PRODUCT_ROOT = "/product";
 	public final static String BATCH_ROOT = "/batch";

@@ -1,5 +1,9 @@
 package com.unla.Grupo8OO22020.models;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PedidoModel {
 	
 	private long idPedido;
@@ -7,17 +11,20 @@ public class PedidoModel {
 	private ProductModel product;
 	private StoreModel store;
 	private EmployeeModel employee;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
 	private double subtotal;
 	
 	
 	public PedidoModel() {}
 
-	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,double subtotal) {
+	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,LocalDate date,double subtotal) {
 		this.setIdPedido(idPedido);
 		this.quantity = quantity;
 		this.product = product;
 		this.store=store;
 		this.employee=employee;
+		this.date=date;
 		this.setSubtotal(subtotal);
 	}
 
@@ -59,6 +66,14 @@ public class PedidoModel {
 
 	public void setEmployee(EmployeeModel employee) {
 		this.employee = employee;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	public double getSubtotal() {

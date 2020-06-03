@@ -110,6 +110,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`pedido` (
   `id_pedido` BIGINT NOT NULL AUTO_INCREMENT,
+  `date` DATE NULL DEFAULT NULL,
   `quantity` INT NULL DEFAULT NULL,
   `subtotal` DOUBLE NULL DEFAULT NULL,
   `employee_id` BIGINT NULL DEFAULT NULL,
@@ -124,14 +125,11 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `grupo-8-bdd-oo2-2020`.`stock_request`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`stock_request` (
-  `id_stock_request` BIGINT NOT NULL AUTO_INCREMENT,
-  `quantity` INT NOT NULL,
-  `id_collaborator` BIGINT NULL DEFAULT NULL,
-  `employee_id` BIGINT NULL DEFAULT NULL,
-  `product_id_product` BIGINT NULL DEFAULT NULL,
-  `store1_id_store` BIGINT NULL DEFAULT NULL,
-  `store2_id_store` BIGINT NULL DEFAULT NULL,
-  PRIMARY KEY (`id_stock_request`))
+  `accept` BIT(1) NOT NULL,
+  `id_pedido` BIGINT NOT NULL,
+  `collaborator_id` BIGINT NULL DEFAULT NULL,
+  `store_collaborator_id_store` BIGINT NULL DEFAULT NULL,
+  PRIMARY KEY (`id_pedido`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -139,6 +137,8 @@ DEFAULT CHARACTER SET = latin1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
 
 
 
@@ -187,20 +187,10 @@ SELECT *FROM employee;
 
 LOCK TABLES `batch` WRITE;
 /*!40000 ALTER TABLE `batch` DISABLE KEYS */;
-INSERT INTO `batch` VALUES (1,TRUE,'2011-12-18',20,20,1,1),(2,TRUE,'2011-12-24',18,18,2,1),(3,TRUE,'2011-12-18',7,7,3,1),(4,TRUE,'2011-12-24',8,8,4,2),(5,TRUE,'2012-01-24',28,28,1,2),(6,TRUE,'2012-08-24',15,15,1,1),(7,TRUE,'2012-02-21',24,24,2,2),(8,TRUE,'2012-10-23',58,58,1,3);
+INSERT INTO `batch` VALUES (1,TRUE,'2011-12-18',20,20,1,1),(2,TRUE,'2011-12-24',18,18,2,1),(3,TRUE,'2011-12-18',7,7,3,1),(4,TRUE,'2011-12-24',8,8,4,2),(5,TRUE,'2012-01-24',28,28,1,2),(6,TRUE,'2012-08-24',15,15,1,1),(7,TRUE,'2012-02-21',24,24,2,2),(8,TRUE,'2012-10-23',58,58,1,3),(9,TRUE,'2019-11-25',40,40,3,3),(10,TRUE,'2019-11-26',28,28,3,2);
 /*!40000 ALTER TABLE `batch` ENABLE KEYS */;
 UNLOCK TABLES;
 
 SELECT *FROM batch;
-
-LOCK TABLES `pedido` WRITE;
-/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (1,18,18*3500.0,6,1,1);
-/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
-UNLOCK TABLES;
-
-SELECT *FROM pedido;
-
-
 
 
