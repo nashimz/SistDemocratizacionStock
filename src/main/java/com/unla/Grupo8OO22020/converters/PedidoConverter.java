@@ -26,11 +26,11 @@ public class PedidoConverter {
 
 	
 	public PedidoModel entityToModel(Pedido pedido) {
-		return new PedidoModel(pedido.getIdPedido(),pedido.getQuantity(),productConverter.entityToModel(pedido.getProduct()),storeConverter.entityToModel(pedido.getStore()),employeeConverter.entityToModel(pedido.getEmployee()),pedido.getSubtotal());
+		return new PedidoModel(pedido.getIdPedido(),pedido.getQuantity(),productConverter.entityToModel(pedido.getProduct()),storeConverter.entityToModel(pedido.getStore()),employeeConverter.entityToModel(pedido.getEmployee()),pedido.getDate(),pedido.getSubtotal());
 	}
 	
 	public Pedido modelToEntity(PedidoModel pedidoModel) {
-		return new Pedido(pedidoModel.getIdPedido(),pedidoModel.getQuantity(),productConverter.modelToEntity(pedidoModel.getProduct()),storeConverter.modelToEntity(pedidoModel.getStore()),employeeConverter.modelToEntity(pedidoModel.getEmployee()),pedidoModel.getSubtotal());
+		return new Pedido(pedidoModel.getIdPedido(),pedidoModel.getQuantity(),productConverter.modelToEntity(pedidoModel.getProduct()),storeConverter.modelToEntity(pedidoModel.getStore()),employeeConverter.modelToEntity(pedidoModel.getEmployee()),pedidoModel.getDate(),pedidoModel.getSubtotal());
 	}
 
 }

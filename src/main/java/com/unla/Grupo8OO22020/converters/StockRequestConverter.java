@@ -27,11 +27,11 @@ public class StockRequestConverter {
 	
 
 	public StockRequestModel entityToModel(StockRequest stockRequest) {
-		return new StockRequestModel(stockRequest.getIdPedido(),stockRequest.getQuantity(),productConverter.entityToModel(stockRequest.getProduct()),storeConverter.entityToModel(stockRequest.getStore()),employeeConverter.entityToModel(stockRequest.getEmployee()),stockRequest.getSubtotal(),storeConverter.entityToModel(stockRequest.getStoreCollaborator()),employeeConverter.entityToModel(stockRequest.getCollaborator()));
+		return new StockRequestModel(stockRequest.getIdPedido(),stockRequest.getQuantity(),productConverter.entityToModel(stockRequest.getProduct()),storeConverter.entityToModel(stockRequest.getStore()),employeeConverter.entityToModel(stockRequest.getEmployee()),stockRequest.getDate(),stockRequest.getSubtotal(),storeConverter.entityToModel(stockRequest.getStoreCollaborator()),employeeConverter.entityToModel(stockRequest.getCollaborator()),stockRequest.isAccept());
 	}
 	
 	public StockRequest modelToEntity(StockRequestModel stockRequestModel) {
-		return new StockRequest(stockRequestModel.getIdPedido(),stockRequestModel.getQuantity(),productConverter.modelToEntity(stockRequestModel.getProduct()),storeConverter.modelToEntity(stockRequestModel.getStore()),employeeConverter.modelToEntity(stockRequestModel.getEmployee()),stockRequestModel.getSubtotal(),storeConverter.modelToEntity(stockRequestModel.getStoreCollaborator()), employeeConverter.modelToEntity(stockRequestModel.getCollaborator()));
+		return new StockRequest(stockRequestModel.getIdPedido(),stockRequestModel.getQuantity(),productConverter.modelToEntity(stockRequestModel.getProduct()),storeConverter.modelToEntity(stockRequestModel.getStore()),employeeConverter.modelToEntity(stockRequestModel.getEmployee()),stockRequestModel.getDate(),stockRequestModel.getSubtotal(),storeConverter.modelToEntity(stockRequestModel.getStoreCollaborator()), employeeConverter.modelToEntity(stockRequestModel.getCollaborator()),stockRequestModel.isAccept());
 	}
 
 }

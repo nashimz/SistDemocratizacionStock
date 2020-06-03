@@ -1,9 +1,8 @@
 package com.unla.Grupo8OO22020.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-//import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -33,26 +31,31 @@ public class Pedido {
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Employee employee;
 	
+	@Column(name="date")
+	LocalDate date;
+	
 	@Column(name="subtotal")
 	double subtotal;
 	
 	public Pedido() {}
 	
-	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,double subtotal) {
+	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal) {
 		this.idPedido=idPedido;
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
 		this.employee=employee;
+		this.date=date;
 		this.subtotal=subtotal;
 	}
 	
-	public Pedido(int quantity,Product product,Store store,Employee employee,double subtotal) {
+	public Pedido(int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal) {
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
 		this.employee=employee;
 		this.subtotal=subtotal;
+		this.date=date;
 	}
 
 	public long getIdPedido() {
@@ -93,6 +96,14 @@ public class Pedido {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	public double getSubtotal() {

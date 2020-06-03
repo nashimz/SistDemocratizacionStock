@@ -32,6 +32,7 @@
                     <th>Cantidad</th>
                     <th>Local</th>
                     <th>Vendedor</th>
+                    <th>Fecha</th>
                     <th>Subtotal</th>
                     
        
@@ -49,6 +50,7 @@
 			<td><span th:text="${pedido.quantity}" /> </td>
 			<td><span th:text="${pedido.store.address}" /></td>
 			<td><span th:text="${pedido.employee.surname}" /></td>
+			<td><span th:text="${pedido.date}" /></td>
 			<td><span th:text="${pedido.subtotal}" /></td>
 			
 			
