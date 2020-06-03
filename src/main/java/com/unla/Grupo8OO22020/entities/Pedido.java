@@ -22,21 +22,33 @@ public class Pedido {
 	
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Store store;
+	
+	private boolean aceptado;
 
 	public Pedido() {}
 	
-	public Pedido(long idPedido,int quantity,Product product,Store store) {
+	public Pedido(long idPedido,int quantity,Product product,Store store, boolean aceptado) {
 		this.idPedido=idPedido;
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
+		this.aceptado=aceptado;
 		
 	}
 	
-	public Pedido(int quantity,Product product,Store store) {
+	public Pedido(int quantity,Product product,Store store,boolean aceptado) {
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
+		this.aceptado=aceptado;
+	}
+
+	public boolean isAceptado() {
+		return aceptado;
+	}
+
+	public void setAceptado(boolean aceptado) {
+		this.aceptado = aceptado;
 	}
 
 	public long getIdPedido() {

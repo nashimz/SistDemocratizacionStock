@@ -31,7 +31,11 @@ public class ViewRouteHelper {
     public final static String PERSON_INDEX = "person/index";
 	public final static String PERSON_NEW = "person/new";
 	public final static String PERSON_UPDATE = "person/update";
+	
+	// RANKING
 		
+	public final static String RANKING_INDEX = "ranking/index";
+	
 	// CLIENT
 		
 	public final static String CLIENT_INDEX = "client/index";

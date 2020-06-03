@@ -6,16 +6,27 @@ public class PedidoModel {
 	private int quantity;
 	private ProductModel product;
 	private StoreModel store;
+	private boolean aceptado;
 	
 	
 	public PedidoModel() {}
 
-	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store) {
+	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,boolean aceptado) {
 		this.idPedido = idPedido;
 		this.quantity = quantity;
 		this.product = product;
 		this.store=store;
+		this.aceptado=aceptado;
 	
+	}
+	
+
+	public boolean isAceptado() {
+		return aceptado;
+	}
+
+	public void setAceptado(boolean aceptado) {
+		this.aceptado = aceptado;
 	}
 
 	public long getIdPedido() {
