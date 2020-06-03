@@ -46,27 +46,25 @@ public class StockRequestService implements IStockRequestService  {
 	}
 	
 	public StockRequestModel insert(StockRequestModel stockRequestModel) {
-		stockRequestModel.setStore1(storeService.findByIdStore(stockRequestModel.getStore1().getIdStore()));
-		stockRequestModel.setStore2(storeService.findByIdStore(stockRequestModel.getStore2().getIdStore()));
-		stockRequestModel.setProduct(productService.findByIdProduct(stockRequestModel.getProduct().getIdProduct()));
-		stockRequestModel.setCollaborator(employeeService.findById(stockRequestModel.getCollaborator().getId()));
 		stockRequestModel.setEmployee(employeeService.findById(stockRequestModel.getEmployee().getId()));
+		stockRequestModel.setCollaborator(employeeService.findById(stockRequestModel.getCollaborator().getId()));
+		stockRequestModel.setStore(storeService.findByIdStore(stockRequestModel.getStore().getIdStore()));
+		stockRequestModel.setStoreCollaborator(storeService.findByIdStore(stockRequestModel.getStoreCollaborator().getIdStore()));
 		StockRequest stockRequest = stockRequestRepository.save(stockRequestConverter.modelToEntity(stockRequestModel));
 		return stockRequestConverter.entityToModel(stockRequest);
 	}
 	
 	public StockRequestModel update(StockRequestModel stockRequestModel) {
-		stockRequestModel.setStore1(storeService.findByIdStore(stockRequestModel.getStore1().getIdStore()));
-		stockRequestModel.setStore2(storeService.findByIdStore(stockRequestModel.getStore2().getIdStore()));
-		stockRequestModel.setProduct(productService.findByIdProduct(stockRequestModel.getProduct().getIdProduct()));
-		stockRequestModel.setCollaborator(employeeService.findById(stockRequestModel.getCollaborator().getId()));
 		stockRequestModel.setEmployee(employeeService.findById(stockRequestModel.getEmployee().getId()));
+		stockRequestModel.setCollaborator(employeeService.findById(stockRequestModel.getCollaborator().getId()));
+		stockRequestModel.setStore(storeService.findByIdStore(stockRequestModel.getStore().getIdStore()));
+		stockRequestModel.setStoreCollaborator(storeService.findByIdStore(stockRequestModel.getStoreCollaborator().getIdStore()));;
 		StockRequest stockRequest = stockRequestRepository.save(stockRequestConverter.modelToEntity(stockRequestModel));
 		return stockRequestConverter.entityToModel(stockRequest);
 	}
 	
-	public  StockRequestModel findByIdStockRequest(long idStockRequest) {
-		return stockRequestConverter.entityToModel(stockRequestRepository.findByIdStockRequest(idStockRequest));
+	public  StockRequestModel findByIdPedido(long idPedido) {
+		return stockRequestConverter.entityToModel(stockRequestRepository.findByIdPedido(idPedido));
 	}
 	
 	@Override
@@ -79,9 +77,9 @@ public class StockRequestService implements IStockRequestService  {
 	}
 	
 	@Override
-	public boolean remove(long idStockRequest) {
+	public boolean remove(long idPedido) {
 		try {
-			stockRequestRepository.deleteById(idStockRequest);
+			stockRequestRepository.deleteById(idPedido);
 			return true;
 		}catch (Exception e) {
 			return false;

@@ -6,6 +6,7 @@ import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.entities.Product;
 import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.models.PedidoModel;
+import com.unla.Grupo8OO22020.models.RankingProductModel;
 
 
 public interface IPedidoService {
@@ -33,5 +34,7 @@ public interface IPedidoService {
 	public PedidoModel findByProduct(Product product);
 	
 	public PedidoModel findByStore(Store store);
+
+	List<RankingProductModel> rankingProducto(List<Pedido> pedidos);
 
 }

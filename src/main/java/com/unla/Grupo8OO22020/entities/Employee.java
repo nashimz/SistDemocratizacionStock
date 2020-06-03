@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.entities;
 import java.time.LocalDate;
 
 
+
 import java.time.LocalTime;
 
 import javax.persistence.Column;

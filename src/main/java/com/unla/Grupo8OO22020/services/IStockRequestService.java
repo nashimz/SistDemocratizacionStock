@@ -12,13 +12,13 @@ public interface IStockRequestService {
 	
 	public List<StockRequestModel> getAlls();
 	
-	public StockRequestModel findByIdStockRequest(long idStockRequest);
+	public StockRequestModel findByIdPedido(long idPedido);
 	
 	public StockRequestModel insert(StockRequestModel stockRequestModel);
 	
 	public StockRequestModel update(StockRequestModel stockRequestModel);
 	
-	public boolean remove(long idStockRequest);
+	public boolean remove(long idPedido);
 
 	
 	

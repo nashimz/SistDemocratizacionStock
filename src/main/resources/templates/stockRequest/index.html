@@ -32,7 +32,8 @@
 			class="py-2 d-md-inline-block" href="/product">Adm.Productos</a> <a
 			class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a> <a
 			class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a> <a
-	        class="py-2 d-md-inline-block" href="/stockRequest">Adm.Solicitudes de Stock</a>
+	        class="py-2 d-md-inline-block" href="/stockRequest">Adm.Stock</a>
+	        
 	</div>
 </nav>
 <h2>Administracion de Solicitudes de Stock</h2>
@@ -41,10 +42,11 @@
 	<thead class="thead-dark">
 		<tr>
 		    <th>Producto</th>
-			<th>Cantidad</th>
-			<th>Local</th>
+            <th>Cantidad</th>
+            <th>Local</th>
+            <th>Vendedor</th>
+            <th>Subtotal</th>
 			<th>Local colaborador</th>
-			<th>Empleado</th>
 			<th>Colaborador</th>
 
 
@@ -58,14 +60,15 @@
 		<tr th:each="stockRequest : ${stockRequests}">
 		    <td><span th:text="${stockRequest.product.description}" /></td>
 			<td><span th:text="${stockRequest.quantity}" /></td>
-			<td><span th:text="${stockRequest.store1.address}" /></td>
-			<td><span th:text="${stockRequest.store2.address}" /></td>
+			<td><span th:text="${stockRequest.store.address}" /></td>
 			<td><span th:text="${stockRequest.employee.surname}" /></td>
+			<td><span th:text="${stockRequest.subtotal}" /></td>
+			<td><span th:text="${stockRequest.storeCollaborator.address}" /></td>
 			<td><span th:text="${stockRequest.collaborator.surname}" /></td>
 
 
 			<td><a
-				th:href="@{/stockRequest/{idStockRequest}(idStockRequest=${stockRequest.idStockRequest})}"
+				th:href="@{/stockRequest/{idPedido}(idPedido=${stockRequest.idPedido})}"
 				class="btn btn-outline-secondary px-4"> <i
 					class="far fa-edit fa-lg mr-1"></i> Ver
 			</a></td>

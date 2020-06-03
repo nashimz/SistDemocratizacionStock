@@ -1,7 +1,11 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +18,7 @@ import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
+import com.unla.Grupo8OO22020.models.RankingProductModel;
 import com.unla.Grupo8OO22020.repositories.IPedidoRepository;
 import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
@@ -151,6 +156,32 @@ public class PedidoService implements IPedidoService{
 			employeeService.insertOrUpdate(employeeModel);
 			
 		}
+	
+	@Override
+	public List<RankingProductModel> rankingProducto(List<Pedido> pedidos){
+		
+		Map<String,Integer> ranking = new HashMap<String,Integer>();
+		List<RankingProductModel> rankingProd = new ArrayList<RankingProductModel>();
+		
+		for(Pedido p: pedidos) {
+			//if(p.isAceptado()) {
+				if(!ranking.containsKey(p.getProduct().getDescription())) {
+					ranking.put(p.getProduct().getDescription(), p.getQuantity());
+				}
+				else {
+					ranking.replace(p.getProduct().getDescription(), ranking.get(p.getProduct().getDescription())+p.getQuantity());
+				}
+			//}
+		}
+
+		for(String key : ranking.keySet()) {
+			rankingProd.add(new RankingProductModel(key, ranking.get(key)));
+		}
+		
+		Collections.sort(rankingProd, Collections.reverseOrder(Comparator.comparing(RankingProductModel::getCantidadVendida)));
+		
+		return rankingProd;
+	}
 	
 	@Override
 	public boolean remove(long idPedido) {

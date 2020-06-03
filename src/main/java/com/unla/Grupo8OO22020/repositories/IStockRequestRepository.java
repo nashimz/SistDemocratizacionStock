@@ -12,7 +12,7 @@ import com.unla.Grupo8OO22020.entities.StockRequest;
 @Repository("stockRequestRepository")
 public interface IStockRequestRepository extends JpaRepository<StockRequest, Serializable> {
  
-	public abstract StockRequest findByIdStockRequest(long idStockRequest);
+	public abstract StockRequest findByIdPedido(long idPedido);
 
 
 }

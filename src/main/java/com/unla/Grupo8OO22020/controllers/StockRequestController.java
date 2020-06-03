@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
 import com.unla.Grupo8OO22020.models.StockRequestModel;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
+import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
 import com.unla.Grupo8OO22020.services.IStockRequestService;
 import com.unla.Grupo8OO22020.services.IStoreService;
@@ -38,6 +39,10 @@ public class StockRequestController {
 	@Qualifier("storeService")
 	private IStoreService storeService;
 	
+	@Autowired
+	@Qualifier("pedidoService")
+	private IPedidoService pedidoService;
+	
 	
 	@GetMapping("")
 	public ModelAndView index() {
@@ -45,6 +50,7 @@ public class StockRequestController {
 		mAV.addObject("stockRequests", stockRequestService.getAlls());
 		return mAV;
 	}
+	
 	
 	@GetMapping("/new")
 	public ModelAndView create() {
@@ -62,10 +68,11 @@ public class StockRequestController {
 		return new RedirectView(ViewRouteHelper.STOCK_REQUEST_ROOT);
 	}
 	
-	@GetMapping("/{idStockRequest}")
-	public ModelAndView get(@PathVariable("idStockRequest") long idStockRequest) {
+	@GetMapping("/{idPedido}")
+	public ModelAndView get(@PathVariable("idPedido") long idPedido) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STOCK_REQUEST_UPDATE);
-		mV.addObject("stockRequest", stockRequestService.findByIdStockRequest(idStockRequest));
+		mV.addObject("stockRequest", stockRequestService.findByIdPedido(idPedido));
+		mV.addObject("stores", storeService.getAlls());
 		mV.addObject("products", productService.getAlls());
 		mV.addObject("employees", employeeService.getAllv());
 		mV.addObject("stores", storeService.getAlls());
@@ -79,9 +86,9 @@ public class StockRequestController {
 		return new RedirectView(ViewRouteHelper.STOCK_REQUEST_ROOT);
 	}
 		
-	@PostMapping("/delete/{idStockRequest}")
-	public RedirectView delete(@PathVariable("idStockRequest") long idStockRequest) {
-		stockRequestService.remove(idStockRequest);
+	@PostMapping("/delete/{idPedido}")
+	public RedirectView delete(@PathVariable("idPedido") long idPedido) {
+		stockRequestService.remove(idPedido);
 		return new RedirectView(ViewRouteHelper.STOCK_REQUEST_ROOT);
 	}
 
