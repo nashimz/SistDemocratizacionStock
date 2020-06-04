@@ -97,7 +97,7 @@ public class StoreController {
 	public ModelAndView calculatedistance(StoresModel stores) {
 		ModelAndView mV=new ModelAndView(ViewRouteHelper.STORE_CALCULATEDISTANCE);
 		double distancia=Store.distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude());
-	    mV.addObject("distancia",distancia);
+	    mV.addObject("distancia",Math.round(distancia*100)/100.00);
 		return mV;	
 	}
 	

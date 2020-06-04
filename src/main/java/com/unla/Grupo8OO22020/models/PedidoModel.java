@@ -14,18 +14,22 @@ public class PedidoModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	private double subtotal;
+	private EmployeeModel collaborator;
+	private boolean accept;
 	
 	
 	public PedidoModel() {}
 
-	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,LocalDate date,double subtotal) {
+	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,LocalDate date,double subtotal,EmployeeModel collaborator,boolean accept) {
 		this.setIdPedido(idPedido);
 		this.quantity = quantity;
 		this.product = product;
 		this.store=store;
 		this.employee=employee;
 		this.date=date;
-		this.setSubtotal(subtotal);
+		this.subtotal=subtotal;
+		this.collaborator=collaborator;
+		this.accept=accept;
 	}
 
 	public long getIdPedido() {
@@ -83,4 +87,22 @@ public class PedidoModel {
 	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
+
+	public EmployeeModel getCollaborator() {
+		return collaborator;
+	}
+
+	public void setCollaborator(EmployeeModel collaborator) {
+		this.collaborator = collaborator;
+	}
+
+	public boolean isAccept() {
+		return accept;
+	}
+
+	public void setAccept(boolean accept) {
+		this.accept = accept;
+	}
+	
+	
 }

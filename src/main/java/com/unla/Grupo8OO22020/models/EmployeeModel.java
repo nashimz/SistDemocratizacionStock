@@ -3,14 +3,23 @@ package com.unla.Grupo8OO22020.models;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class EmployeeModel extends PersonModel{
 
 	private boolean manager;
+    @Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime startTime;
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime endTime;
 	private double basicSalary;
 	private double commission;
-	private StoreModel Store;
+	private StoreModel store;
 	
 	
 	
@@ -25,7 +34,7 @@ public class EmployeeModel extends PersonModel{
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
-		this.Store=store;
+		this.store=store;
 	}
 
 	
@@ -62,12 +71,14 @@ public class EmployeeModel extends PersonModel{
 		this.commission = commission;
 	}
 
+
+
 	public StoreModel getStore() {
-		return Store;
+		return store;
 	}
 
 	public void setStore(StoreModel store) {
-		Store = store;
+		this.store = store;
 	}
 
 	public boolean isManager() {

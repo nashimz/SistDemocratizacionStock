@@ -53,13 +53,7 @@
 	            <option th:each="p : ${products}" th:value="${p.idProduct}" th:text="${p.description}"></option>
 	             </select>
             </div>
-            
-            <div class="form-group">
-                <label for="store">Local</label>
-                <select placeholder="store" th:field="*{store.idStore}">
-	            <option th:each="s : ${stores}" th:value="${s.idStore}" th:text="${s.address}"></option>
-	             </select>     
-            </div>
+           
             
             <div class="form-group">
                 <label for="employee">Vendedor</label>
@@ -67,22 +61,24 @@
 	            <option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.surname}"></option>
 	             </select>     
             </div>
-            
-            <div class="form-group">
-                <label for="date">Fecha</label>
-                <input type="date" class="form-control" name="date"  value="" th:field="*{date}" placeholder="Elija una fecha..." >
-            </div>
+           
               
-            
-            
-				<input class="update" type="submit" value="Editar Pedido" />
+		    <div class="form-group">
+            <strong>Condicion</strong>
+            <input type="checkbox" th:field="*{accept}" />
+           </div>
+           
+            <input type="hidden" th:field="*{collaborator.id}" />
+            <input type="hidden" th:field="*{vendedor.store.idStore}" />
+             <div th:if="${not pedido.accept}" class="text-center">
+            <input class="btn btn-success" type="submit" value="Editar" />
+             </div>
 		</form>
-
-		<form action="#" th:action="@{/pedido/delete/{id}(id=${pedido.idPedido})}"
-			method="post">
+	 <form action="#" th:action="@{/pedido/delete/{id}(id=${pedido.idPedido})}"
+			    method="post">
 			<br>
 			<input class="update" type="submit" value="Borrar Pedido" />
-		</form>
+     </form>
 	</div>
 </body>
 

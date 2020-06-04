@@ -44,19 +44,11 @@ public class ViewRouteHelper {
 	public final static String EMPLOYEE_NEW = "employee/new";
 	public final static String EMPLOYEE_UPDATE = "employee/update";
 	
-	//  ORDER
+	// PEDIDO
 	
 	public final static String PEDIDO_INDEX = "pedido/index";
 	public final static String PEDIDO_NEW = "pedido/new";
 	public final static String PEDIDO_UPDATE = "pedido/update";
-	
-	//STOCK_REQUEST_INDEX
-	
-	public final static String STOCK_REQUEST_INDEX = "stockRequest/index";
-	public final static String STOCK_REQUEST_NEW = "stockRequest/new";
-	public final static String STOCK_REQUEST_UPDATE = "stockRequest/update";
-	
-	// 
 	
 	// RANKING
 	
@@ -70,5 +62,4 @@ public class ViewRouteHelper {
 	public final static String CLIENT_ROOT="/client";
 	public final static String EMPLOYE_ROOT="/employee";
 	public final static String PEDIDO_ROOT="/pedido";
-	public final static String STOCK_REQUEST_ROOT="/stockRequest";
 }

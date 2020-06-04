@@ -62,17 +62,18 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public PedidoModel insert(PedidoModel pedidoModel) {
-		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		pedidoModel.setStore(storeService.findByIdStore(pedidoModel.getStore().getIdStore()));
+		//pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
+		//pedidoModel.setStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore());
+		//pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
 		Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
 	}
 	
 	@Override
 	public PedidoModel update(PedidoModel pedidoModel) {
-		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		pedidoModel.setProduct(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()));
-		pedidoModel.setStore(storeService.findByIdStore(pedidoModel.getStore().getIdStore()));
+		//pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
+		//pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
+		//pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
 	    Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
 	}
@@ -83,15 +84,6 @@ public class PedidoService implements IPedidoService{
 	}
 	
 	
-	@Override
-	public PedidoModel findByProduct(Product product) {
-		return pedidoConverter.entityToModel(pedidoRepository.findByProduct(product));
-	}
-	
-	@Override
-	public PedidoModel findByStore(Store store) {
-		return pedidoConverter.entityToModel(pedidoRepository.findByStore(store));
-	}
 	
 	@Override
 	public List<PedidoModel> getAlls() {
@@ -105,8 +97,9 @@ public class PedidoService implements IPedidoService{
 	@Override
 	public List<Batch> getActiveBatches(PedidoModel pedidoModel) {
 		List<Batch> activeBatches = new ArrayList<Batch>();
+		System.out.println(pedidoModel.getStore().getAddress());
 			for (Batch b : batchService.getAll()) {
-				if (b.getProduct().getIdProduct() == pedidoModel.getProduct().getIdProduct() && b.getStore().getIdStore() == pedidoModel.getStore().getIdStore() && b.isActive()) {
+				if (b.getProduct().getIdProduct() == pedidoModel.getProduct().getIdProduct() && b.getStore().getIdStore() ==pedidoModel.getStore().getIdStore() && b.isActive()) {
 					activeBatches.add(b);
 				}
 			}
@@ -149,39 +142,34 @@ public class PedidoService implements IPedidoService{
 				batchService.insert(bM);
 				x++;
 			}
-			
 			double plus = ((aux2 * 5) / 100) * pedidoModel.getQuantity();
 			EmployeeModel employeeModel = employeeService.findById(pedidoModel.getEmployee().getId());
 			employeeModel.setCommission(pedidoModel.getEmployee().getCommission() + plus);
-			employeeService.insertOrUpdate(employeeModel);
-			
+			employeeService.insertOrUpdate(employeeModel);	
 		}
 	
 	@Override
-	public List<RankingProductModel> rankingProducto(List<Pedido> pedidos){
-		
+	public List<RankingProductModel> rankingProduct(List<Pedido> pedidos){
 		Map<String,Integer> ranking = new HashMap<String,Integer>();
 		List<RankingProductModel> rankingProd = new ArrayList<RankingProductModel>();
-		
 		for(Pedido p: pedidos) {
-			//if(p.isAceptado()) {
+			if(p.isAccept()) {
 				if(!ranking.containsKey(p.getProduct().getDescription())) {
 					ranking.put(p.getProduct().getDescription(), p.getQuantity());
 				}
 				else {
 					ranking.replace(p.getProduct().getDescription(), ranking.get(p.getProduct().getDescription())+p.getQuantity());
 				}
-			//}
+			}
 		}
 
 		for(String key : ranking.keySet()) {
 			rankingProd.add(new RankingProductModel(key, ranking.get(key)));
 		}
 		
-		Collections.sort(rankingProd, Collections.reverseOrder(Comparator.comparing(RankingProductModel::getCantidadVendida)));
-		
+		Collections.sort(rankingProd, Collections.reverseOrder(Comparator.comparing(RankingProductModel::getQuantitySold)));
 		return rankingProd;
-	}
+	}	
 	
 	@Override
 	public boolean remove(long idPedido) {

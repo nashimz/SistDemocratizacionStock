@@ -110,9 +110,11 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`pedido` (
   `id_pedido` BIGINT NOT NULL AUTO_INCREMENT,
+  `accept` BIT(1) NOT NULL,
   `date` DATE NULL DEFAULT NULL,
   `quantity` INT NULL DEFAULT NULL,
   `subtotal` DOUBLE NULL DEFAULT NULL,
+  `id_colaborador` BIGINT NULL DEFAULT NULL,
   `employee_id` BIGINT NULL DEFAULT NULL,
   `product_id_product` BIGINT NULL DEFAULT NULL,
   `store_id_store` BIGINT NULL DEFAULT NULL,
@@ -121,25 +123,9 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
--- -----------------------------------------------------
--- Table `grupo-8-bdd-oo2-2020`.`stock_request`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `grupo-8-bdd-oo2-2020`.`stock_request` (
-  `accept` BIT(1) NOT NULL,
-  `id_pedido` BIGINT NOT NULL,
-  `collaborator_id` BIGINT NULL DEFAULT NULL,
-  `store_collaborator_id_store` BIGINT NULL DEFAULT NULL,
-  PRIMARY KEY (`id_pedido`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
-
 
 
 LOCK TABLES `product` WRITE;
@@ -192,5 +178,3 @@ INSERT INTO `batch` VALUES (1,TRUE,'2011-12-18',20,20,1,1),(2,TRUE,'2011-12-24',
 UNLOCK TABLES;
 
 SELECT *FROM batch;
-
-

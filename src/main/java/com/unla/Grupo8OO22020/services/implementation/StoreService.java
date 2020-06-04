@@ -55,7 +55,8 @@ public class StoreService  implements IStoreService{
 		for (Store store : storeRepository.findAll()) {
 			StoreModel model=storeConverter.entityToModel(store);
 			if (model.getIdStore()!=storeModel.getIdStore()){
-				model.setDistance(Store.distanciaCoord(storeModel.getLatitude(), storeModel.getLongitude(), model.getLatitude(), model.getLongitude()));
+				double distance =Store.distanciaCoord(storeModel.getLatitude(), storeModel.getLongitude(), model.getLatitude(), model.getLongitude());
+				model.setDistance(Math.round(distance*100)/100.00);
 				stores.add(model);
 			}
 		}
