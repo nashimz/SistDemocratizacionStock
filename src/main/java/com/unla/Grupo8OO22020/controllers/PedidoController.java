@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,6 @@ import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
-import com.unla.Grupo8OO22020.services.IStockRequestService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 
 
@@ -47,9 +47,7 @@ public class PedidoController {
 	@Qualifier("employeeService")
 	private IEmployeeService employeeService;
 	
-	@Autowired
-	@Qualifier("stockRequestService")
-	private IStockRequestService stockRequestService;
+
 	
 	
 	@GetMapping("")
@@ -64,18 +62,20 @@ public class PedidoController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_NEW);
 		mV.addObject("pedido", new PedidoModel());
 		mV.addObject("products", productService.getAlls());
-		mV.addObject("stores", storeService.getAlls());
 		mV.addObject("employees",employeeService.getAllv());
 		return mV;
 	}
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
+		pedidoService.setAttributes(pedidoModel);
 		if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.insert(pedidoModel);	
-			pedidoService.consumoStock(pedidoModel);
-		}
-		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
+			 if(pedidoModel.isAccept()) {
+			   pedidoService.consumoStock(pedidoModel);
+			 }
+		 }
+	    return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
 	
 	@GetMapping("/{idPedido}")
@@ -90,12 +90,13 @@ public class PedidoController {
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-	    if(pedidoService.validarConsumo(pedidoModel)){
-			pedidoService.update(pedidoModel);
+		if(pedidoService.validarConsumo(pedidoModel)){
+			pedidoService.insert(pedidoModel);	
+			if(pedidoModel.isAccept()) {
 			pedidoService.consumoStock(pedidoModel);
-			
-	  }
-	 return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
+			}
+		}
+		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
 	
 	

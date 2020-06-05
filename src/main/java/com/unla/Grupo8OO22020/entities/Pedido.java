@@ -2,18 +2,21 @@ package com.unla.Grupo8OO22020.entities;
 
 import java.time.LocalDate;
 
+
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="pedido")
 public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +40,15 @@ public class Pedido {
 	@Column(name="subtotal")
 	double subtotal;
 	
+	@OneToOne(cascade = CascadeType.MERGE, optional=true)
+	@JoinColumn(name="id_colaborador")
+	private Employee collaborator;
+	
+	private boolean accept;
+	
 	public Pedido() {}
 	
-	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal) {
+	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal,Employee collaborator,boolean accept) {
 		this.idPedido=idPedido;
 		this.quantity=quantity;
 		this.product=product;
@@ -47,15 +56,18 @@ public class Pedido {
 		this.employee=employee;
 		this.date=date;
 		this.subtotal=subtotal;
+		this.collaborator=collaborator;
+		this.accept=accept;
 	}
 	
-	public Pedido(int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal) {
+	public Pedido(int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal,boolean accept) {
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
 		this.employee=employee;
 		this.subtotal=subtotal;
 		this.date=date;
+		this.accept=accept;
 	}
 
 	public long getIdPedido() {
@@ -107,10 +119,27 @@ public class Pedido {
 	}
 
 	public double getSubtotal() {
-		return this.product.getPrice()*this.quantity;
+		return subtotal;
 	}
 
 	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
+
+	public Employee getCollaborator() {
+		return collaborator;
+	}
+
+	public void setCollaborator(Employee collaborator) {
+		this.collaborator = collaborator;
+	}
+
+	public boolean isAccept() {
+		return accept;
+	}
+
+	public void setAccept(boolean accept) {
+		this.accept = accept;
+	}
+	
 }

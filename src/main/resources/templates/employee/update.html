@@ -47,19 +47,21 @@
                 <label for="dni">DNI</label>
                 <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." >
               </div>   
+              
+              
               <div class="form-group">
-                <label for="manager">Gerente</label>
-                <input type="text" class="form-control" name="manager"  value="" th:field="*{manager}" placeholder="¿Es gerente?..." >
+            <strong>Gerente</strong>
+            <input type="checkbox" th:field="*{manager}" />
             </div>
             
             <div class="form-group">
                 <label for="starTime">Hora de inicio</label>
-                <input type="text" class="form-control" name="startTime"  value="" th:field="*{startTime}" placeholder="Ingresar hora de inicio..." >
+                <input type="time" class="form-control" name="startTime"  value="" th:field="*{startTime}" placeholder="Ingresar hora de inicio..." >
             </div>
             
             <div class="form-group">
                 <label for="endTime">Hora de finalizacion</label>
-                <input type="text" class="form-control" name="endTime"  value="" th:field="*{endTime}" placeholder="Ingresar hora de finalizacion..." >
+                <input type="time" class="form-control" name="endTime"  value="" th:field="*{endTime}" placeholder="Ingresar hora de finalizacion..." >
             </div>
             
             <div class="form-group">

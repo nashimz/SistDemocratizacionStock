@@ -32,8 +32,10 @@
                     <th>Cantidad</th>
                     <th>Local</th>
                     <th>Vendedor</th>
+                    <th>Colaborador</th>
                     <th>Fecha</th>
                     <th>Subtotal</th>
+                    <th>Condicion</th>
                     
        
                     
@@ -49,9 +51,11 @@
 			<td><span th:text="${pedido.product.description}" /></td>
 			<td><span th:text="${pedido.quantity}" /> </td>
 			<td><span th:text="${pedido.store.address}" /></td>
-			<td><span th:text="${pedido.employee.surname}" /></td>
+			<td><span th:if="${pedido.employee}" th:text="${pedido.employee.surname}" /></td>
+			<td><span th:if="${pedido.collaborator}" th:text="${pedido.collaborator.surname}" /></td>
 			<td><span th:text="${pedido.date}" /></td>
 			<td><span th:text="${pedido.subtotal}" /></td>
+			<td><span th:text="${pedido.accept}" /></td>
 			
 			
 			
@@ -60,7 +64,7 @@
                             <i class="far fa-edit fa-lg mr-1"></i>
                             Ver
                         </a>
-                    </td>
+           </td>
 
 		</tr>
 	</tbody>

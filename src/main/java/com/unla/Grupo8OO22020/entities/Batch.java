@@ -110,10 +110,6 @@ public class Batch {
 	}
 
 	public boolean isActive() {
-		
-		if(this.getQuantities()==0) {
-			active=false;
-		}
 		return active;
 	}
 

@@ -30,7 +30,7 @@ public class RankingController {
 												
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RANKING_INDEX);
 		
-		List<RankingProductModel> ranking = pedidoService.rankingProducto(pedidoService.getAll());
+		List<RankingProductModel> ranking = pedidoService.rankingProduct(pedidoService.getAll());
 
 		mAV.addObject("rankingProductos",ranking);
 		return mAV;		
