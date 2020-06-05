@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.converters.PedidoConverter;
 import com.unla.Grupo8OO22020.entities.Batch;
-import com.unla.Grupo8OO22020.entities.Employee;
 import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
@@ -155,7 +154,7 @@ public class PedidoService implements IPedidoService{
 	
 	
 	public void paySalary(PedidoModel pedidoModel) {
-		System.out.println(pedidoModel.getCollaborator().getDni()+"    "+pedidoModel.getEmployee().getDni());
+		//System.out.println(pedidoModel.getCollaborator().getDni()+"    "+pedidoModel.getEmployee().getDni());
 		EmployeeModel employee=pedidoModel.getEmployee();
 		EmployeeModel collaborator=pedidoModel.getCollaborator();
 		if(employee.getDni()==collaborator.getDni()) {
