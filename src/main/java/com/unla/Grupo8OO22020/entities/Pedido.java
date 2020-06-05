@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.entities;
 import java.time.LocalDate;
 
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import com.sun.istack.Nullable;
+
 
 @Entity
 @Table(name="pedido")

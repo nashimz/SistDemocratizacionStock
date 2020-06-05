@@ -1,6 +1,8 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
 import java.util.ArrayList;
+
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,9 +14,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.converters.PedidoConverter;
 import com.unla.Grupo8OO22020.entities.Batch;
+import com.unla.Grupo8OO22020.entities.Employee;
 import com.unla.Grupo8OO22020.entities.Pedido;
-import com.unla.Grupo8OO22020.entities.Product;
-import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
@@ -61,19 +62,23 @@ public class PedidoService implements IPedidoService{
 	}	
 	
 	@Override
+	public void setAttributes(PedidoModel pedidoModel) {
+		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
+		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getEmployee().getId()));
+		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
+		pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
+		
+	}
+	
+	@Override
 	public PedidoModel insert(PedidoModel pedidoModel) {
-		//pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		//pedidoModel.setStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore());
-		//pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
 		Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
 	}
 	
 	@Override
 	public PedidoModel update(PedidoModel pedidoModel) {
-		//pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		//pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
-		//pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
+		this.setAttributes(pedidoModel);
 	    Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
 	}
@@ -122,31 +127,51 @@ public class PedidoService implements IPedidoService{
 		
 	@Override
 	public void consumoStock(PedidoModel pedidoModel) {
-	     int aux = pedidoModel.getQuantity();
-	     double aux2= productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice();
-		 int x = 0;
-			while (x < getActiveBatches(pedidoModel).size() && aux > 0) {
-				Batch b = getActiveBatches(pedidoModel).get(x);
-				if (b.getQuantities() > aux) {
-					b.setQuantities(b.getQuantities() - aux);
-					aux = 0;
-				} else if (b.getQuantities() < aux) {
-					aux -= b.getQuantities();
+	     int quantity = pedidoModel.getQuantity();
+		 int index = 0;
+			while (index < getActiveBatches(pedidoModel).size() && quantity > 0) {
+				Batch b = getActiveBatches(pedidoModel).get(index);
+				if (b.getQuantities() > quantity) {
+					b.setQuantities(b.getQuantities() - quantity);
+					quantity = 0;
+				} else if (b.getQuantities() < quantity) {
+					quantity -= b.getQuantities();
 					b.setQuantities(0);	
-				} else if (b.getQuantities() == aux) {
-					aux = 0;
+					b.setActive(false);
+				} else if (b.getQuantities() == quantity) {
+					quantity = 0;
 					b.setQuantities(0);
+					b.setActive(false);
 				}
 				BatchModel bM = batchService.findByIdBatch(b.getIdBatch());
 				bM.setQuantities(b.getQuantities());
+				bM.setActive(b.isActive());
 				batchService.insert(bM);
-				x++;
+				index++;
 			}
-			double plus = ((aux2 * 5) / 100) * pedidoModel.getQuantity();
-			EmployeeModel employeeModel = employeeService.findById(pedidoModel.getEmployee().getId());
-			employeeModel.setCommission(pedidoModel.getEmployee().getCommission() + plus);
-			employeeService.insertOrUpdate(employeeModel);	
+			this.paySalary(pedidoModel);
 		}
+	
+	
+	
+	public void paySalary(PedidoModel pedidoModel) {
+		System.out.println(pedidoModel.getCollaborator().getDni()+"    "+pedidoModel.getEmployee().getDni());
+		EmployeeModel employee=pedidoModel.getEmployee();
+		EmployeeModel collaborator=pedidoModel.getCollaborator();
+		if(employee.getDni()==collaborator.getDni()) {
+		employee.setCommission(pedidoModel.getEmployee().getCommission()+pedidoModel.getSubtotal()*0.05);
+		}
+		else
+		{
+			employee.setCommission(pedidoModel.getEmployee().getCommission()+pedidoModel.getSubtotal()*0.03);
+			collaborator.setCommission(pedidoModel.getCollaborator().getCommission()+pedidoModel.getSubtotal()*0.02);
+			employeeService.insertOrUpdate(pedidoModel.getCollaborator());
+		}
+		employeeService.insertOrUpdate(pedidoModel.getEmployee());
+		
+	}
+	
+	
 	
 	@Override
 	public List<RankingProductModel> rankingProduct(List<Pedido> pedidos){
@@ -162,11 +187,9 @@ public class PedidoService implements IPedidoService{
 				}
 			}
 		}
-
 		for(String key : ranking.keySet()) {
 			rankingProd.add(new RankingProductModel(key, ranking.get(key)));
 		}
-		
 		Collections.sort(rankingProd, Collections.reverseOrder(Comparator.comparing(RankingProductModel::getQuantitySold)));
 		return rankingProd;
 	}	
@@ -182,4 +205,4 @@ public class PedidoService implements IPedidoService{
 		
 	}
 
-}
+ }

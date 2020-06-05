@@ -32,4 +32,6 @@ public interface IPedidoService {
 
 	public List<RankingProductModel> rankingProduct(List<Pedido> pedidos);
 
+	public void setAttributes(PedidoModel pedidoModel);
+
 }

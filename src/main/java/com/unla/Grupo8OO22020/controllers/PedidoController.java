@@ -68,17 +68,14 @@ public class PedidoController {
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getEmployee().getId()));
-		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
-		pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
+		pedidoService.setAttributes(pedidoModel);
 		if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.insert(pedidoModel);	
-			if(pedidoModel.isAccept()) {
-			pedidoService.consumoStock(pedidoModel);
-			}
-		}
-		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
+			 if(pedidoModel.isAccept()) {
+			   pedidoService.consumoStock(pedidoModel);
+			 }
+		 }
+	    return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
 	
 	@GetMapping("/{idPedido}")
@@ -93,7 +90,6 @@ public class PedidoController {
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
-		System.out.println(pedidoModel.getQuantity());
 		if(pedidoService.validarConsumo(pedidoModel)){
 			pedidoService.insert(pedidoModel);	
 			if(pedidoModel.isAccept()) {

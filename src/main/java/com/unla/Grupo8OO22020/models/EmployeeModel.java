@@ -88,4 +88,8 @@ public class EmployeeModel extends PersonModel{
 	public void setManager(boolean manager) {
 		this.manager = manager;
 	}
+
+
+	
+	
 }
