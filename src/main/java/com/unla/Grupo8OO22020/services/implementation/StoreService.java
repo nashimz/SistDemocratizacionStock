@@ -1,5 +1,7 @@
 package com.unla.Grupo8OO22020.services.implementation;
 
+import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
@@ -9,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.entities.Store;
+import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 import com.unla.Grupo8OO22020.repositories.IStoreRepository;
 import com.unla.Grupo8OO22020.converters.StoreConverter;
+import com.unla.Grupo8OO22020.models.PedidoModel;
+import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
 
 
@@ -30,6 +35,10 @@ public class StoreService  implements IStoreService{
 	public List<Store> getAll() {
 		return storeRepository.findAll();
 	}
+	
+	@Autowired
+	@Qualifier("pedidoService")
+	private IPedidoService pedidoService;
 	
 	@Override
 	public StoreModel insert(StoreModel storeModel) {
@@ -72,6 +81,24 @@ public class StoreService  implements IStoreService{
 		}
 		return models;
 	}
+	
+	@Override
+	public List<ProductModel> soldProductsBetweenDates(StoreModel store, LocalDate since,LocalDate until) {
+         int index=0;
+         List<ProductModel> products=new ArrayList<ProductModel>();
+         List<PedidoModel> pedidos=pedidoService.getAlls();
+		 while(index<pedidos.size()) {
+			if (pedidos.get(index).getDate().isBefore(until) && pedidos.get(index).getDate().isAfter(since)) {
+				if (pedidos.get(index).isAccept() && pedidos.get(index).getStore().getIdStore()==store.getIdStore()) {
+					products.add(pedidos.get(index).getProduct());
+				}
+			}
+			index++;
+		}
+	  return products;
+	}
+
+
 		
 	@Override
 	public boolean remove(long idStore) {
