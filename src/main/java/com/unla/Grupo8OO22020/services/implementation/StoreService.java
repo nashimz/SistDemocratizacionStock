@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
@@ -11,14 +12,13 @@ import java.util.Comparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 import com.unla.Grupo8OO22020.repositories.IStoreRepository;
 import com.unla.Grupo8OO22020.converters.StoreConverter;
+import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
@@ -83,22 +83,20 @@ public class StoreService  implements IStoreService{
 		return stores;
 	}
 	
-	@Override 
-	public List<StoreModel> getNearestStoreStock(StoreModel storeModel,ProductModel productModel,int quantity){
-		List<StoreModel> storesStock= new ArrayList<StoreModel>();
-		//traigo todos los locales cercanos al local del pedido
-		List<StoreModel> stores=this.getNearestStore(storeModel);
-		//traigo todos los lotes que contienen el producto pedido
-		List<Batch> batches=pedidoService.getActiveBatches(storeModel,productModel);
-		int index=0;
-		while(index<batches.size() && batches.get(index).isActive() && batches.get(index).getStore().getIdStore()==stores.get(index).getIdStore()) {
-			if(quantity<=pedidoService.calculateStock(storeModel,productModel)) {
-				storesStock.add(storeConverter.entityToModel(batches.get(index).getStore()));
+	@Override
+	public List<StoreModel> storeStockRequest(StoreModel storeModel,ProductModel productModel, int cantidad) {
+		List<StoreModel> storeStockRequest= new ArrayList<StoreModel>();
+		for(StoreModel storeM: this.getNearestStore(storeModel)) {
+			for(BatchModel b: pedidoService.getActiveBatches(storeM, productModel)) {
+				if (pedidoService.calculateStock(storeM, productModel)>=cantidad && b.isActive()) {
+					System.out.println("se agregro el local"+storeM.getAddress());
+					storeStockRequest.add(storeM);
+				}
 			}
-			index++;
-		}
-		return storesStock;
+		 }
+      return storeStockRequest;
 	}
+		
 	
 	@Override
 	public List<StoreModel> getAlls() {
@@ -114,7 +112,7 @@ public class StoreService  implements IStoreService{
          int index=0;
          List<ProductModel> products=new ArrayList<ProductModel>();
          List<PedidoModel> pedidos=pedidoService.getAlls();
-		 while(index<pedidos.size()) {
+		 while(index<pedidos.size() ) {
 			if (pedidos.get(index).getDate().isBefore(until) && pedidos.get(index).getDate().isAfter(since)) {
 				if (pedidos.get(index).isAccept() && pedidos.get(index).getStore().getIdStore()==store.getIdStore()) {
 					products.add(pedidos.get(index).getProduct());

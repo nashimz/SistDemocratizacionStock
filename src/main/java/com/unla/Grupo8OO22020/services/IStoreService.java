@@ -27,8 +27,7 @@ public interface IStoreService {
 
 	public List<ProductModel> soldProductsBetweenDates(StoreModel store, LocalDate since, LocalDate until);
 
-
-	public List<StoreModel> getNearestStoreStock(StoreModel storeModel, ProductModel productModel, int quantity);
+	public List<StoreModel> storeStockRequest(StoreModel storeModel, ProductModel productModel, int cantidad);
 
 
 }

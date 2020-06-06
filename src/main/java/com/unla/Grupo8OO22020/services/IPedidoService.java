@@ -1,9 +1,8 @@
 package com.unla.Grupo8OO22020.services;
 
 import java.util.List;
-
-import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Pedido;
+import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
@@ -32,7 +31,7 @@ public interface IPedidoService {
 
 	public void paySalary(EmployeeModel employeeModel,EmployeeModel collaborator,ProductModel productModel,int quantity);
 
-	public List<Batch> getActiveBatches(StoreModel storeModel, ProductModel productModel);
+	public List<BatchModel> getActiveBatches(StoreModel storeModel, ProductModel productModel);
 
 	public int calculateStock(StoreModel storeModel, ProductModel productModel);
 

@@ -85,12 +85,13 @@ public class PedidoController {
 			 }
 		}else { 
 			   int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
-			   List<StoreModel> stores=storeService.getNearestStoreStock(pedidoModel.getStore(),pedidoModel.getProduct(),missing);
-			  
+			   List<StoreModel> stores=storeService.storeStockRequest(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),pedidoModel.getProduct(),missing);
+			   System.out.println(stores.size());
 			    if(stores!=null) {
 				    ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_COLLABORATOR);
 					mV.addObject("stores",storeService.getAlls());
-					mV.addObject("storeswithstock",storeService.getNearestStore(pedidoModel.getStore()));
+					//mV.addObject("storeswithstock",storeService.getNearestStore(pedidoModel.getStore()));
+					mV.addObject("storeswithstock",stores);
 					  if (!stores.isEmpty()) {
 						pedidoService.insert(pedidoModel);
 					  }
@@ -99,7 +100,7 @@ public class PedidoController {
 					return mV;
 			     }
 		}
-		ModelAndView mAV = new ModelAndView("redirect:/pedido");
+		ModelAndView mAV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
 		return mAV;
 	}
 	
@@ -108,10 +109,10 @@ public class PedidoController {
 	@PostMapping("/stockrequest")
 	public RedirectView stockrequest(@ModelAttribute PedidoModel pedidoModel, StoreModel store) {
 		pedidoService.setAttributeRequest(pedidoModel,store);
+		pedidoService.insert(pedidoModel);
 		if (pedidoModel.isAccept()) {
 			pedidoService.consumoStock(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity());
 		}
-		pedidoService.insert(pedidoModel);
 		pedidoService.paySalary(pedidoModel.getEmployee(),pedidoModel.getCollaborator(),pedidoModel.getProduct(),pedidoModel.getQuantity());
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
