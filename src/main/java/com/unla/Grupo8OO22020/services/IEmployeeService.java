@@ -1,8 +1,8 @@
 package com.unla.Grupo8OO22020.services;
 
 import com.unla.Grupo8OO22020.entities.Employee;
-
 import com.unla.Grupo8OO22020.models.EmployeeModel;
+
 
 import java.util.List;
 
@@ -21,5 +21,9 @@ public interface IEmployeeService {
 	public  List<EmployeeModel> findByIdStore(long idStore);
 
 	public List<EmployeeModel> getAllv();
+
+	public EmployeeModel findByIdStores(long idStore);
+
+	
 
 }
