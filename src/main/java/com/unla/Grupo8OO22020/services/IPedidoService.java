@@ -40,4 +40,6 @@ public interface IPedidoService {
 
 	public void consumoStock(StoreModel storeModel, ProductModel productModel, int quantity);
 
+	public void setAttributeRequest(PedidoModel pedidoModel, StoreModel storeModel);
+
 }

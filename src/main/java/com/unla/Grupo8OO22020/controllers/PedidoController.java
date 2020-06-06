@@ -3,7 +3,6 @@ package com.unla.Grupo8OO22020.controllers;
 
 
 import java.time.LocalDate;
-
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
-import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
@@ -78,7 +75,7 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/create")
-	public ModelAndView create(@ModelAttribute("pedido") PedidoModel pedidoModel,Model model) {
+	public ModelAndView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
 		pedidoService.setAttributes(pedidoModel);
 		if(pedidoService.validarConsumo(pedidoModel.getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity())){
 			  pedidoService.insert(pedidoModel);	
@@ -89,47 +86,33 @@ public class PedidoController {
 		}else { 
 			   int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
 			   List<StoreModel> stores=storeService.getNearestStoreStock(pedidoModel.getStore(),pedidoModel.getProduct(),missing);
+			  
 			    if(stores!=null) {
-				    model.addAttribute("stores", storeService.getAlls());
-				    model.addAttribute("storeswithstock", stores);
-				    model.addAttribute("store", new StoreModel());
-				    model.addAttribute("localPrincipal",storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()).getAddress());
 				    ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_COLLABORATOR);
 					mV.addObject("stores",storeService.getAlls());
-					mV.addObject("storeswithstock",stores);
+					mV.addObject("storeswithstock",storeService.getNearestStore(pedidoModel.getStore()));
 					  if (!stores.isEmpty()) {
 						pedidoService.insert(pedidoModel);
 					  }
 					mV.addObject("pedidos", pedidoService.findByIdPedido(pedidoService.getAlls().get(pedidoService.getAlls().size() - 1).getIdPedido()));
-					model.addAttribute("pedidos", pedidoService.findByIdPedido(pedidoService.getAlls().get(pedidoService.getAlls().size() - 1).getIdPedido()));
 					mV.addObject("storev", new StoreModel());
 					return mV;
-			   }
+			     }
 		}
-	   return new ModelAndView(ViewRouteHelper.PEDIDO_ROOT);
+		ModelAndView mAV = new ModelAndView("redirect:/pedido");
+		return mAV;
 	}
 	
 	
 	
 	@PostMapping("/stockrequest")
 	public RedirectView stockrequest(@ModelAttribute PedidoModel pedidoModel, StoreModel store) {
-
-		PedidoModel pedido = pedidoService.findByIdPedido(pedidoModel.getIdPedido());
-		StoreModel stores = storeService.findByIdStore(store.getIdStore());
-		//l.setListaEmpleados(empleadoService.findByLocal(l));
-		EmployeeModel collaborator = employeeService.findByIdStores(stores.getIdStore());
-		pedidoModel.setCollaborator(collaborator);
-		pedidoModel.setProduct(productService.findByIdProduct(pedido.getProduct().getIdProduct()));
-		pedidoModel.setEmployee(employeeService.findById(pedido.getEmployee().getId()));
-		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedido.getEmployee().getId()).getStore().getIdStore()));
-		pedidoModel.setSubtotal(productService.findByIdProduct(pedido.getProduct().getIdProduct()).getPrice() * pedido.getQuantity());
-		pedidoModel.setQuantity(pedido.getQuantity());
-		pedidoModel.setAccept(pedido.isAccept());
-
+		pedidoService.setAttributeRequest(pedidoModel,store);
 		if (pedidoModel.isAccept()) {
 			pedidoService.consumoStock(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity());
 		}
 		pedidoService.insert(pedidoModel);
+		pedidoService.paySalary(pedidoModel.getEmployee(),pedidoModel.getCollaborator(),pedidoModel.getProduct(),pedidoModel.getQuantity());
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}
 	    
