@@ -40,7 +40,7 @@
 </nav>
 
 
-   <h2>Solicitando Stock</h2>
+   <h2>Solicitando stock</h2>
   <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
 
 	<form action="" th:action="@{/pedido/stockrequest}" method="post">
@@ -52,13 +52,13 @@
                 </select>
              </div>
        
-           <p>Pedido a resolver:</p>
+           <p>Pedido con fecha:</p>
 		 <select placeholder="pedido" th:field="*{pedido.idPedido}" class="form-control form-control-sm">
           <option th:each= "p : ${pedidos}" th:value="${p.idPedido}" th:text= "${p.date}"></option> 
            </select>
              
 		<input type="hidden" th:field="*{pedido.idPedido}"/>
-            <input class="btn btn-success" type="submit" value="Guardar"/>
+            <input class="btn btn-success" type="submit" value="Solicitar Pedido"/>
         </form>
 		 
 		 <br>

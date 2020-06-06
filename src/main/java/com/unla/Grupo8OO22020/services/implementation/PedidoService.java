@@ -72,6 +72,20 @@ public class PedidoService implements IPedidoService{
 	}
 	
 	@Override
+	public void setAttributeRequest(PedidoModel pedidoModel,StoreModel storeModel) {
+		PedidoModel pedido =this.findByIdPedido(pedidoModel.getIdPedido());
+		StoreModel stores = storeService.findByIdStore(storeModel.getIdStore());
+		pedidoModel.setCollaborator(employeeService.findByIdStores(stores.getIdStore()));
+		pedidoModel.setProduct(productService.findByIdProduct(pedido.getProduct().getIdProduct()));
+		pedidoModel.setEmployee(employeeService.findById(pedido.getEmployee().getId()));
+		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedido.getEmployee().getId()).getStore().getIdStore()));
+		pedidoModel.setSubtotal(productService.findByIdProduct(pedido.getProduct().getIdProduct()).getPrice() * pedido.getQuantity());
+		pedidoModel.setQuantity(pedido.getQuantity());
+		pedidoModel.setDate(pedido.getDate());
+		pedidoModel.setAccept(pedido.isAccept());
+	}
+	
+	@Override
 	public PedidoModel insert(PedidoModel pedidoModel) {
 		Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
@@ -99,17 +113,6 @@ public class PedidoService implements IPedidoService{
 		}
 		return models;
 	}
-	
-	/*@Override
-	public List<Batch> getActiveBatches(PedidoModel pedidoModel) {
-		List<Batch> activeBatches = new ArrayList<Batch>();
-			for (Batch b : batchService.getAll()) {
-				if (b.getProduct().getIdProduct() == pedidoModel.getProduct().getIdProduct() && b.getStore().getIdStore() ==pedidoModel.getStore().getIdStore() && b.isActive()) {
-					activeBatches.add(b);
-				}
-			}
-			return activeBatches;
-		}*/
 	
 	@Override
 	public List<Batch> getActiveBatches(StoreModel storeModel,ProductModel productModel) {
@@ -165,12 +168,11 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public void paySalary(EmployeeModel employeeModel,EmployeeModel collaborator,ProductModel productModel, int quantity) {
-		double subtotal=productModel.getPrice()*quantity;
+		double subtotal=productService.findByIdProduct(productModel.getIdProduct()).getPrice()*quantity;
 		if(employeeModel.getDni()==collaborator.getDni()) {
 		employeeModel.setCommission(employeeModel.getCommission()+subtotal*0.05);
 		}
-		else
-		{
+		else{
 			employeeModel.setCommission(employeeModel.getCommission()+subtotal*0.03);
 			collaborator.setCommission(collaborator.getCommission()+subtotal*0.02);
 			employeeService.insertOrUpdate(collaborator);
