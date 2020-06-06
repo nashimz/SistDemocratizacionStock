@@ -2,15 +2,19 @@ package com.unla.Grupo8OO22020.services.implementation;
 
 import java.time.LocalDate;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Store;
+import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IStoreService;
 import com.unla.Grupo8OO22020.repositories.IStoreRepository;
@@ -31,6 +35,7 @@ public class StoreService  implements IStoreService{
 	@Qualifier("storeConverter")
 	private StoreConverter storeConverter;
 	
+	
 	@Override
 	public List<Store> getAll() {
 		return storeRepository.findAll();
@@ -39,6 +44,11 @@ public class StoreService  implements IStoreService{
 	@Autowired
 	@Qualifier("pedidoService")
 	private IPedidoService pedidoService;
+	
+	@Autowired
+	@Qualifier("batchService")
+	private IBatchService batchService;
+	
 	
 	@Override
 	public StoreModel insert(StoreModel storeModel) {
@@ -71,6 +81,23 @@ public class StoreService  implements IStoreService{
 		}
 		stores.sort(Comparator.comparing(StoreModel::getDistance));
 		return stores;
+	}
+	
+	@Override 
+	public List<StoreModel> getNearestStoreStock(StoreModel storeModel,ProductModel productModel,int quantity){
+		List<StoreModel> storesStock= new ArrayList<StoreModel>();
+		//traigo todos los locales cercanos al local del pedido
+		List<StoreModel> stores=this.getNearestStore(storeModel);
+		//traigo todos los lotes que contienen el producto pedido
+		List<Batch> batches=pedidoService.getActiveBatches(storeModel,productModel);
+		int index=0;
+		while(index<batches.size() && batches.get(index).isActive() && batches.get(index).getStore().getIdStore()==stores.get(index).getIdStore()) {
+			if(quantity<=pedidoService.calculateStock(storeModel,productModel)) {
+				storesStock.add(storeConverter.entityToModel(batches.get(index).getStore()));
+			}
+			index++;
+		}
+		return storesStock;
 	}
 	
 	@Override

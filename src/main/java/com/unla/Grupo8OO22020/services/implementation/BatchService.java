@@ -2,6 +2,7 @@ package com.unla.Grupo8OO22020.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.services.IBatchService;
@@ -52,6 +53,7 @@ public class BatchService implements  IBatchService{
 	    Batch batch=batchRepository.save(batchConverter.modelToEntity(batchModel));
 		return batchConverter.entityToModel(batch);
 	}
+	
 	
 	@Override
 	public BatchModel findByIdBatch(long idBatch) {

@@ -18,7 +18,9 @@ import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
+import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.RankingProductModel;
+import com.unla.Grupo8OO22020.models.StoreModel;
 import com.unla.Grupo8OO22020.repositories.IPedidoRepository;
 import com.unla.Grupo8OO22020.services.IBatchService;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
@@ -98,38 +100,49 @@ public class PedidoService implements IPedidoService{
 		return models;
 	}
 	
-	@Override
+	/*@Override
 	public List<Batch> getActiveBatches(PedidoModel pedidoModel) {
 		List<Batch> activeBatches = new ArrayList<Batch>();
-		System.out.println(pedidoModel.getStore().getAddress());
 			for (Batch b : batchService.getAll()) {
 				if (b.getProduct().getIdProduct() == pedidoModel.getProduct().getIdProduct() && b.getStore().getIdStore() ==pedidoModel.getStore().getIdStore() && b.isActive()) {
 					activeBatches.add(b);
 				}
 			}
 			return activeBatches;
+		}*/
+	
+	@Override
+	public List<Batch> getActiveBatches(StoreModel storeModel,ProductModel productModel) {
+		List<Batch> activeBatches = new ArrayList<Batch>();
+			for (Batch b : batchService.getAll()) {
+				if (b.getProduct().getIdProduct() ==productModel.getIdProduct() && b.getStore().getIdStore() ==storeModel.getIdStore() && b.isActive()) {
+					activeBatches.add(b);
+				}
+			}
+			return activeBatches;
 		}
+	
+	
 
 	@Override
-	public int calculateStock(PedidoModel pedidoModel) {
+	public int calculateStock(StoreModel storeModel,ProductModel productModel) {
 		int total = 0;
-			for (Batch b : getActiveBatches(pedidoModel)) {
+			for (Batch b : getActiveBatches(storeModel,productModel) ){
 				total += b.getQuantities();
 			}
 			return total;
 		}
 		
     @Override
-	public boolean validarConsumo(PedidoModel pedidoModel) {
-		return (calculateStock(pedidoModel) >= pedidoModel.getQuantity()) ? true : false; 
+	public boolean validarConsumo(StoreModel storeModel,ProductModel productModel,int quantity) {
+		return (calculateStock(storeModel,productModel) >= quantity) ? true : false; 
 		}
 		
 	@Override
-	public void consumoStock(PedidoModel pedidoModel) {
-	     int quantity = pedidoModel.getQuantity();
+	public void consumoStock(StoreModel storeModel,ProductModel productModel, int quantity) {
 		 int index = 0;
-			while (index < getActiveBatches(pedidoModel).size() && quantity > 0) {
-				Batch b = getActiveBatches(pedidoModel).get(index);
+			while (index < getActiveBatches(storeModel,productModel).size() && quantity > 0) {
+				Batch b = getActiveBatches(storeModel,productModel).get(index);
 				if (b.getQuantities() > quantity) {
 					b.setQuantities(b.getQuantities() - quantity);
 					quantity = 0;
@@ -148,29 +161,23 @@ public class PedidoService implements IPedidoService{
 				batchService.insert(bM);
 				index++;
 			}
-			this.paySalary(pedidoModel);
 		}
 	
-	
-	
-	public void paySalary(PedidoModel pedidoModel) {
-		//System.out.println(pedidoModel.getCollaborator().getDni()+"    "+pedidoModel.getEmployee().getDni());
-		EmployeeModel employee=pedidoModel.getEmployee();
-		EmployeeModel collaborator=pedidoModel.getCollaborator();
-		if(employee.getDni()==collaborator.getDni()) {
-		employee.setCommission(pedidoModel.getEmployee().getCommission()+pedidoModel.getSubtotal()*0.05);
+	@Override
+	public void paySalary(EmployeeModel employeeModel,EmployeeModel collaborator,ProductModel productModel, int quantity) {
+		double subtotal=productModel.getPrice()*quantity;
+		if(employeeModel.getDni()==collaborator.getDni()) {
+		employeeModel.setCommission(employeeModel.getCommission()+subtotal*0.05);
 		}
 		else
 		{
-			employee.setCommission(pedidoModel.getEmployee().getCommission()+pedidoModel.getSubtotal()*0.03);
-			collaborator.setCommission(pedidoModel.getCollaborator().getCommission()+pedidoModel.getSubtotal()*0.02);
-			employeeService.insertOrUpdate(pedidoModel.getCollaborator());
+			employeeModel.setCommission(employeeModel.getCommission()+subtotal*0.03);
+			collaborator.setCommission(collaborator.getCommission()+subtotal*0.02);
+			employeeService.insertOrUpdate(collaborator);
 		}
-		employeeService.insertOrUpdate(pedidoModel.getEmployee());
+		employeeService.insertOrUpdate(employeeModel);
 		
 	}
-	
-	
 	
 	@Override
 	public List<RankingProductModel> rankingProduct(List<Pedido> pedidos){

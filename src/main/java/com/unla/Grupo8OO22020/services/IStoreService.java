@@ -1,7 +1,6 @@
 package com.unla.Grupo8OO22020.services;
 
 import com.unla.Grupo8OO22020.entities.Store;
-
 import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
 
@@ -26,8 +25,10 @@ public interface IStoreService {
 
 	public List<StoreModel> getNearestStore(StoreModel storeModel);
 
-
 	public List<ProductModel> soldProductsBetweenDates(StoreModel store, LocalDate since, LocalDate until);
+
+
+	public List<StoreModel> getNearestStoreStock(StoreModel storeModel, ProductModel productModel, int quantity);
 
 
 }
