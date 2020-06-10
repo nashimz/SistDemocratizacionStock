@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.services.implementation;
 import java.util.ArrayList;
 
 
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.converters.PedidoConverter;
-import com.unla.Grupo8OO22020.entities.Batch;
 import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.BatchModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
@@ -64,8 +64,9 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public void setAttributes(PedidoModel pedidoModel) {
+		pedidoModel.setProduct(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()));
 		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getEmployee().getId()));
+		
 		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
 		pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
 		
@@ -93,7 +94,6 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public PedidoModel update(PedidoModel pedidoModel) {
-		this.setAttributes(pedidoModel);
 	    Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
 	}
@@ -114,26 +114,27 @@ public class PedidoService implements IPedidoService{
 		return models;
 	}
 	
+	
+	//trae la lista de todos los lotes activos del local que contienen ese producto
 	@Override
-	public List<Batch> getActiveBatches(StoreModel storeModel,ProductModel productModel) {
-		List<Batch> activeBatches = new ArrayList<Batch>();
-			for (Batch b : batchService.getAll()) {
+	public List<BatchModel> getActiveBatches(StoreModel storeModel,ProductModel productModel) {
+		List<BatchModel> activeBatches = new ArrayList<BatchModel>();
+			for (BatchModel b : batchService.getAlls()) {
 				if (b.getProduct().getIdProduct() ==productModel.getIdProduct() && b.getStore().getIdStore() ==storeModel.getIdStore() && b.isActive()) {
 					activeBatches.add(b);
 				}
 			}
 			return activeBatches;
 		}
-	
-	
 
 	@Override
 	public int calculateStock(StoreModel storeModel,ProductModel productModel) {
 		int total = 0;
-			for (Batch b : getActiveBatches(storeModel,productModel) ){
-				total += b.getQuantities();
+			for (BatchModel batchModel : getActiveBatches(storeModel,productModel) ){
+				total += batchModel.getQuantities();
 			}
 			return total;
+			
 		}
 		
     @Override
@@ -143,13 +144,12 @@ public class PedidoService implements IPedidoService{
 		
 	@Override
 	public void consumoStock(StoreModel storeModel,ProductModel productModel, int quantity) {
-		 int index = 0;
-			while (index < getActiveBatches(storeModel,productModel).size() && quantity > 0) {
-				Batch b = getActiveBatches(storeModel,productModel).get(index);
+			
+		 for(BatchModel b: this.getActiveBatches(storeModel, productModel)) {
 				if (b.getQuantities() > quantity) {
-					b.setQuantities(b.getQuantities() - quantity);
+					b.setQuantities(b.getQuantities()-quantity);
 					quantity = 0;
-				} else if (b.getQuantities() < quantity) {
+				} else if (b.getQuantities() < quantity) { 
 					quantity -= b.getQuantities();
 					b.setQuantities(0);	
 					b.setActive(false);
@@ -162,8 +162,8 @@ public class PedidoService implements IPedidoService{
 				bM.setQuantities(b.getQuantities());
 				bM.setActive(b.isActive());
 				batchService.insert(bM);
-				index++;
 			}
+			
 		}
 	
 	@Override

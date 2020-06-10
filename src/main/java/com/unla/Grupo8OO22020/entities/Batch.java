@@ -98,9 +98,7 @@ public class Batch {
 	public void setQuantities(int quantities) {
 		this.quantities = quantities;
 	}
-
 	
-
 	public LocalDate getDate() {
 		return date;
 	}

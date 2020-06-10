@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sun.istack.Nullable;
+
 public class PedidoModel {
 	
 	private long idPedido;
@@ -14,6 +16,7 @@ public class PedidoModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	private double subtotal;
+	@Nullable
 	private EmployeeModel collaborator;
 	private boolean accept;
 	
