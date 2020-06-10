@@ -1,9 +1,6 @@
 package com.unla.Grupo8OO22020.entities;
 
 import java.time.LocalDate;
-
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.Nullable;
 
 
 @Entity
@@ -28,7 +27,8 @@ public class Pedido {
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Product product;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
+	//@OneToOne(cascade=CascadeType.MERGE)
+	@OneToOne
 	private Store store;
 	
 	@OneToOne(cascade=CascadeType.MERGE)
@@ -40,6 +40,7 @@ public class Pedido {
 	@Column(name="subtotal")
 	double subtotal;
 	
+	@Nullable
 	@OneToOne(cascade = CascadeType.MERGE, optional=true)
 	@JoinColumn(name="id_colaborador")
 	private Employee collaborator;

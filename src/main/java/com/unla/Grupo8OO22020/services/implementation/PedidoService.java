@@ -64,8 +64,9 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public void setAttributes(PedidoModel pedidoModel) {
+		pedidoModel.setProduct(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()));
 		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getEmployee().getId()));
+		
 		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
 		pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
 		
@@ -93,7 +94,6 @@ public class PedidoService implements IPedidoService{
 	
 	@Override
 	public PedidoModel update(PedidoModel pedidoModel) {
-		this.setAttributes(pedidoModel);
 	    Pedido pedido=pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
 		return pedidoConverter.entityToModel(pedido);
 	}
@@ -134,6 +134,7 @@ public class PedidoService implements IPedidoService{
 				total += batchModel.getQuantities();
 			}
 			return total;
+			
 		}
 		
     @Override
@@ -143,9 +144,8 @@ public class PedidoService implements IPedidoService{
 		
 	@Override
 	public void consumoStock(StoreModel storeModel,ProductModel productModel, int quantity) {
-		 int index = 0;
-			while (index < getActiveBatches(storeModel,productModel).size() && quantity>0) {
-				BatchModel b = getActiveBatches(storeModel,productModel).get(index);
+			
+		 for(BatchModel b: this.getActiveBatches(storeModel, productModel)) {
 				if (b.getQuantities() > quantity) {
 					b.setQuantities(b.getQuantities()-quantity);
 					quantity = 0;
@@ -162,8 +162,6 @@ public class PedidoService implements IPedidoService{
 				bM.setQuantities(b.getQuantities());
 				bM.setActive(b.isActive());
 				batchService.insert(bM);
-				index++;
-				System.out.println(getActiveBatches(storeModel,productModel).size());
 			}
 			
 		}

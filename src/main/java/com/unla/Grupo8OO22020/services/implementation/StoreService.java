@@ -49,13 +49,11 @@ public class StoreService  implements IStoreService{
 	@Qualifier("batchService")
 	private IBatchService batchService;
 	
-	
 	@Override
 	public StoreModel insert(StoreModel storeModel) {
 		Store store = storeRepository.save(storeConverter.modelToEntity(storeModel));
 		return storeConverter.entityToModel(store);
 	}
-	
 	
 	@Override
 	public StoreModel update(StoreModel storeModel) {
@@ -89,7 +87,6 @@ public class StoreService  implements IStoreService{
 		for(StoreModel storeM: this.getNearestStore(storeModel)) {
 			for(BatchModel b: pedidoService.getActiveBatches(storeM, productModel)) {
 				if (pedidoService.calculateStock(storeM, productModel)>=cantidad && b.isActive()) {
-					System.out.println("se agregro el local"+storeM.getAddress());
 					storeStockRequest.add(storeM);
 				}
 			}
@@ -97,7 +94,6 @@ public class StoreService  implements IStoreService{
       return storeStockRequest;
 	}
 		
-	
 	@Override
 	public List<StoreModel> getAlls() {
 		List<StoreModel> models = new ArrayList<StoreModel>();
@@ -123,8 +119,6 @@ public class StoreService  implements IStoreService{
 	  return products;
 	}
 
-
-		
 	@Override
 	public boolean remove(long idStore) {
 		try {

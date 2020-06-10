@@ -73,10 +73,10 @@
             </div>
             
             
-            <div class="form-group">
-                <label for="active">Activo</label>
-                <input type="text" class="form-control" name="active"  value="" th:field="*{active}" placeholder="Escribi si esta activo..." >
-            </div>
+           <div class="form-group">
+            <strong>Activo</strong>
+            <input type="checkbox" th:field="*{active}" />
+           </div>
             
 				<input class="update" type="submit" value="Editar Lote" />
 		</form>
