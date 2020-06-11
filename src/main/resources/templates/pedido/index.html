@@ -26,6 +26,10 @@
             
             
         </nav>
+       
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+        </div>
+        
         <h2>Administracion de Pedidos</h2>
      <table class="table table-bordered table-stripped table-hover table-sm">
      
