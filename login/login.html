@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card bg-light col-md-3 mt-6 p-3 mx-auto " class="containerLog">
+        <form action="#" th:action="@{/product/create}" th:object="${product}" method="post">
+            <img src="/user-png-icon-male-user-icon-512.png" alt="" class="user">
+            
+            <div class="form-group mt-4">
+                
+                <h4>Inicio de sesión</h4>
+                
+                <label for="description">Usuario</label>
+                <input type="text" class="form-control" name="user"  value="" th:field="*{user}" placeholder="Escribi tu usuario..." >
+            </div>
+            
+             <div class="form-group">
+                <label for="price">Contraseña</label>
+                <input type="password" class="form-control" name="password"  value="" th:field="*{password}" placeholder="Escribe tu contraseña..." >
+            </div>
+            <br>
+       
+            <button type="submit" class="btn btn-success ml-6 px-4 ">
+                
+            Ingresar
+            </button>
+           
+
+
+        </form>
+        </div>
+</body>
+</html>
