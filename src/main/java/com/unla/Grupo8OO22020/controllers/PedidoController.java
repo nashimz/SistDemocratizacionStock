@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
 import com.unla.Grupo8OO22020.models.PedidoModel;
@@ -77,7 +79,7 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/create")
-	public ModelAndView create(@ModelAttribute("pedido") PedidoModel pedidoModel) {
+	public ModelAndView create(@ModelAttribute("pedido") PedidoModel pedidoModel,RedirectAttributes redirectAttrs) {
 		pedidoService.setAttributes(pedidoModel);
 		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getEmployee().getId()));
 		if(pedidoService.validarConsumo(pedidoModel.getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity())) {
@@ -87,20 +89,37 @@ public class PedidoController {
 			    pedidoService.paySalary(pedidoModel.getEmployee(),pedidoModel.getCollaborator(),pedidoModel.getProduct(),pedidoModel.getQuantity());
 			 }
 		}else { 
-			   int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
-			   List<StoreModel> stores=storeService.storeStockRequest(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),pedidoModel.getProduct(),missing);
-			   System.out.println(stores.size());
+			
+	          List<StoreModel> stores=new ArrayList<StoreModel>();
+			try {
+				 int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
+				 stores=storeService.storeStockRequest(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),pedidoModel.getProduct(),missing);
 			    if(stores!=null) {
 				    ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_COLLABORATOR);
 					mV.addObject("stores",storeService.getAlls());
 					mV.addObject("storeswithstock",stores);
-					  if (!stores.isEmpty()) {
+					 if (!stores.isEmpty()) {
 						pedidoService.insert(pedidoModel);
 					  }
 					mV.addObject("pedidos", pedidoService.findByIdPedido(pedidoService.getAlls().get(pedidoService.getAlls().size() - 1).getIdPedido()));
 					mV.addObject("storev", new StoreModel());
 					return mV;
-			     }
+			    }
+			    } catch (Exception e) {
+					redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ",sepa disculpar las molestias.");
+					redirectAttrs.addFlashAttribute("clase", "danger");
+					ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
+					return mV;
+
+				} finally {
+					if (stores.isEmpty()) {
+						redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ",sepa disculpar las molestias.");
+						redirectAttrs.addFlashAttribute("clase", "danger");
+						ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
+						return mV;
+					}
+			    
+		}
 		}
 		ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
 		return mV;
@@ -136,19 +155,30 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel) {
+	public RedirectView update(@ModelAttribute("pedido") PedidoModel pedidoModel,RedirectAttributes redirectAttrs) {
 		pedidoService.setAttributes(pedidoModel);
-		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getCollaborator().getId()));
 		pedidoModel.setDate(pedidoModel.getDate());
-	    pedidoService.update(pedidoModel);
-	    int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
-		 if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni()==pedidoModel.getEmployee().getDni()) {
-			pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity());
-		 } else if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni() !=pedidoModel.getEmployee().getDni()) {
-			 pedidoService.consumoStock(employeeService.findById(pedidoModel.getEmployee().getId()).getStore(),pedidoModel.getProduct(),pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct()));
-			pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),missing);
-			}
-		    pedidoService.paySalary(pedidoModel.getEmployee(),pedidoModel.getCollaborator(),pedidoModel.getProduct(),pedidoModel.getQuantity());
+		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getCollaborator().getId()));
+		pedidoModel.getCollaborator().setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()));
+		int stockTotal=pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct())+pedidoService.calculateStock(pedidoModel.getCollaborator().getStore(),pedidoModel.getProduct());
+		if(pedidoModel.getQuantity()<=stockTotal || pedidoService.validarConsumo(pedidoModel.getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity())) {
+		  pedidoService.update(pedidoModel);
+	      int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
+	      if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni()==pedidoModel.getEmployee().getDni()) {
+			  pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity());
+			  
+		} else if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni() !=pedidoModel.getEmployee().getDni()) {
+			      pedidoService.consumoStock(employeeService.findById(pedidoModel.getEmployee().getId()).getStore(),pedidoModel.getProduct(),pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct()));
+			      pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),missing);
+			      
+			    }
+	      pedidoService.paySalary(pedidoModel.getEmployee(),pedidoModel.getCollaborator(),pedidoModel.getProduct(),pedidoModel.getQuantity());
+		}else {
+			redirectAttrs.addFlashAttribute("mensaje","El pedido excede la capacidad de nuestros locales. Si desea comprar una cantidad superior a "+stockTotal+ " realice otro pedido.");
+			redirectAttrs.addFlashAttribute("clase", "danger");
+			pedidoService.remove(pedidoModel.getIdPedido());
+			return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
+		}
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}		
 	
