@@ -19,6 +19,7 @@ public class EmployeeModel extends PersonModel{
 	private LocalTime endTime;
 	private double basicSalary;
 	private double commission;
+	private double fullSalary;
 	private StoreModel store;
 	
 	
@@ -27,13 +28,14 @@ public class EmployeeModel extends PersonModel{
 	}
 
 	public EmployeeModel(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission,StoreModel store) {
+			LocalTime endTime, double basicSalary, double commission,double fullSalary,StoreModel store) {
 		super(id,name,surname,dateBirth,dni);
 		this.manager = manager;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
+		this.fullSalary=fullSalary;
 		this.store=store;
 	}
 
@@ -70,8 +72,18 @@ public class EmployeeModel extends PersonModel{
 	public void setCommission(double commission) {
 		this.commission = commission;
 	}
+	
+	
 
 
+
+	public double getFullSalary() {
+		return fullSalary;
+	}
+
+	public void setFullSalary(double fullSalary) {
+		this.fullSalary = fullSalary;
+	}
 
 	public StoreModel getStore() {
 		return store;

@@ -41,4 +41,6 @@ public interface IPedidoService {
 
 	public void setAttributeRequest(PedidoModel pedidoModel, StoreModel storeModel);
 
+	public List<EmployeeModel> paySalary(int month, int year);
+
 }

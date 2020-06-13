@@ -52,6 +52,8 @@ public class ViewRouteHelper {
 	public final static String PEDIDO_PRODUCT_BETWEEN_DATES = "pedido/productbetweendates";
 	public final static String PEDIDO_INDEX_BETWEEN_DATES = "pedido/getproductbetweendates";
 	public final static String PEDIDO_COLLABORATOR = "pedido/collaborator";
+	public final static String PEDIDO_SALARY = "pedido/salary";
+	public final static String PEDIDO_ENDINGOFMONTH = "pedido/endingofmonth";
 	
 	// RANKING
 	
