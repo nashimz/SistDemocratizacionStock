@@ -3,11 +3,10 @@
 <head>
      <link rel="stylesheet" href="/css/estilos.css">
      <link rel="stylesheet" href="/css/home.css">
-     
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <!-- Navigation -->
+  <!-- Navigation -->
      <nav class="site-header sticky-top py-1">
             <div class="container d-flex flex-column flex-md-row justify-content-between">
             
@@ -18,17 +17,22 @@
                 
                <a class="py-2 d-md-inline-block" href="/client">Adm.Clientes</a> 
                 <a class="py-2 d-md-inline-block" href="/employee">Adm.Empleados</a>
-                <a class="py-2 d-md-inline-block" href="/person">Adm.Personas</a> 
                 <a class="py-2 d-md-inline-block" href="/store">Adm.Locales</a>
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                  <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
-                 
+                <li class="py-2 d-md-inline-block"><a aria-expanded="false"
+						aria-haspopup="true" class="nav-link dropdown-toggle"
+						data-toggle="dropdown" href="#" id="navbarDropdownBlog">User
+							<span th:text="${username}" /></a>					
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor: pointer" type="submit" value="Logout" />
+							</form>
+				
+                    </div></li>
             </div>
         </nav>
-        
-        
-        
        
         
        <div class="card" style="width: 18rem;" >
