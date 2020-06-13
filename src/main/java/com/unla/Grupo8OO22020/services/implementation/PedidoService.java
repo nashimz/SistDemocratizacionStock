@@ -216,17 +216,17 @@ public class PedidoService implements IPedidoService{
 		for(EmployeeModel e:listSalary) {
 		   for(PedidoModel p:this.getAlls()) {
 			  if(p.isAccept() && p.getDate().getMonthValue()==month && p.getDate().getYear()==year) {
-				if(p.getCollaborator().getDni()==p.getEmployee().getDni()) {
+				if(p.getCollaborator().getDni()==p.getEmployee().getDni() && p.getEmployee().getDni()==e.getDni()) {
 					commission=p.getSubtotal()*0.05;
-					
-			     }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() &&e.getDni()==p.getEmployee().getDni()) {
+			     }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() && e.getDni()==p.getEmployee().getDni()) {
 					      commission=p.getSubtotal()*0.03;
-					     
-			            }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() &&e.getDni()==p.getCollaborator().getDni())
+			            }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() && e.getDni()==p.getCollaborator().getDni())
 				                  commission=p.getSubtotal()*0.02;
+			            
 		      }
-	          e.setCommission(commission);
-	          System.out.println(e.getCommission());
+	          e.setCommission(e.getCommission()+commission);
+	          commission=0;
+	         
 	        }
 		   e.setFullSalary(e.getFullSalary()+e.getCommission());
 		   salaryEmployees.add(e);
