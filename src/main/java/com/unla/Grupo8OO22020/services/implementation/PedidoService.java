@@ -202,6 +202,38 @@ public class PedidoService implements IPedidoService{
 		return rankingProd;
 	}	
 	
+	
+	@Override
+	public List<EmployeeModel> paySalary(int month,int year){
+		List<EmployeeModel> salaryEmployees=new ArrayList<EmployeeModel>();
+		List<EmployeeModel> listSalary=employeeService.getAllv();
+		double commission=0;
+		for(EmployeeModel e:listSalary) {
+			e.setCommission(0);
+			e.setFullSalary(e.getBasicSalary());
+		}
+		
+		for(EmployeeModel e:listSalary) {
+		   for(PedidoModel p:this.getAlls()) {
+			  if(p.isAccept() && p.getDate().getMonthValue()==month && p.getDate().getYear()==year) {
+				if(p.getCollaborator().getDni()==p.getEmployee().getDni()) {
+					commission=p.getSubtotal()*0.05;
+					
+			     }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() &&e.getDni()==p.getEmployee().getDni()) {
+					      commission=p.getSubtotal()*0.03;
+					     
+			            }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() &&e.getDni()==p.getCollaborator().getDni())
+				                  commission=p.getSubtotal()*0.02;
+		      }
+	          e.setCommission(commission);
+	          System.out.println(e.getCommission());
+	        }
+		   e.setFullSalary(e.getFullSalary()+e.getCommission());
+		   salaryEmployees.add(e);
+		}
+		return salaryEmployees;   
+	}
+	
 	@Override
 	public boolean remove(long idPedido) {
 		try {

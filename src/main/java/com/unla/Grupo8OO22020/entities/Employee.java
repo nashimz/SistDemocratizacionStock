@@ -31,6 +31,9 @@ public class Employee extends Person{
 	@Column(name="commission")
 	private double commission;
 	
+	@Column(name="fullSalary")
+	private double fullSalary;
+	
 	//lado propietario
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="store_id", nullable=false)
@@ -40,13 +43,14 @@ public class Employee extends Person{
 	public Employee() {}
 
 	public Employee(long id, String name, String surname, LocalDate dateBirth, long dni, boolean manager, LocalTime startTime,
-			LocalTime endTime, double basicSalary, double commission,Store store) {
+			LocalTime endTime, double basicSalary, double commission,double fullSalary,Store store) {
 		super(id,name,surname,dateBirth,dni);
 		this.manager = manager;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.basicSalary = basicSalary;
 		this.commission = commission;
+		this.fullSalary=fullSalary;
 		this.store=store;
 	}
 	
@@ -89,6 +93,17 @@ public class Employee extends Person{
 
 	public void setCommission(double commission) {
 		this.commission = commission;
+	}
+	
+	
+	
+
+	public double getFullSalary() {
+		return fullSalary;
+	}
+
+	public void setFullSalary(double fullSalary) {
+		this.fullSalary = fullSalary;
 	}
 
 	public Store getStore() {

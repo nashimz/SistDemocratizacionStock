@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
+import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
@@ -202,6 +203,22 @@ public class PedidoController {
 		return mV;
 	}
 	
+
+	@GetMapping("/salary")
+	public ModelAndView salary() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PEDIDO_SALARY);
+		return mAV;		
+	}
+	
+	@RequestMapping(value="/endingofmonth", method=RequestMethod.POST)
+	public ModelAndView endingofmonth(@RequestParam("month") int month, @RequestParam("year") int year) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PEDIDO_ENDINGOFMONTH);
+		List<EmployeeModel> listEmployees= pedidoService.paySalary(month, year);
+		mAV.addObject("employees", listEmployees);
+		return mAV;
+	}
+	
+	
 	
 	@PostMapping("/delete/{idPedido}")
 	public RedirectView delete(@PathVariable("idPedido") long idPedido) {
@@ -210,46 +227,3 @@ public class PedidoController {
 		}
 	
 }
-
-
-// Validaciones usando redirects y model
-
-/*if (pedidoModel.getCollaborator().getId() != 0) {
-pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getCollaborator().getId()));
-pedidoModel.getCollaborator().setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()));
-} else {
-pedidoModel.setCollaborator(null);
-}
-if (!pedidoService.validarConsumo(pedidoModel.getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity()) && pedidoModel.getCollaborator() == null) {
-
-if (pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct())==0) {
-
-	redirectAttrs.addFlashAttribute("mensaje","No se pudo realizar el pedido debido a que no hay stock de " + productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getDescription()+ " en ningun local.");
-	redirectAttrs.addFlashAttribute("clase", "danger");
-
-	return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
-
-} else {
-
-	redirectAttrs.addFlashAttribute("mensaje","El pedido excede la capacidad del local. Si desea comprar una cantidad superior a "+ pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct())+ " realice otro pedido.");
-	redirectAttrs.addFlashAttribute("clase", "danger");
-	return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
-}
-}else if (pedidoModel.getCollaborator() != null) {
-
-	if (!pedidoService.validarConsumo(pedidoModel.getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity())) {
-
-		if (pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct())==0) {
-
-			redirectAttrs.addFlashAttribute("mensaje","No se pudo realizar el pedido debido a que no hay stock de " + productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getDescription()+ " en ningun local.");
-			redirectAttrs.addFlashAttribute("clase", "danger");
-			return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
-
-		} else {
-			redirectAttrs.addFlashAttribute("mensaje","El pedido excede la capacidad del local. Si desea comprar una cantidad superior a "+ pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct())+ " realice otro pedido.");
-			redirectAttrs.addFlashAttribute("clase", "danger");
-			return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
-
-		  }
-	  }
-  }*/
