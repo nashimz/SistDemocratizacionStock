@@ -202,7 +202,6 @@ public class PedidoService implements IPedidoService{
 		return rankingProd;
 	}	
 	
-	
 	@Override
 	public List<EmployeeModel> paySalary(int month,int year){
 		List<EmployeeModel> salaryEmployees=new ArrayList<EmployeeModel>();
@@ -222,11 +221,9 @@ public class PedidoService implements IPedidoService{
 					      commission=p.getSubtotal()*0.03;
 			            }else if(p.getCollaborator().getDni()!=p.getEmployee().getDni() && e.getDni()==p.getCollaborator().getDni())
 				                  commission=p.getSubtotal()*0.02;
-			            
 		      }
 	          e.setCommission(e.getCommission()+commission);
 	          commission=0;
-	         
 	        }
 		   e.setFullSalary(e.getFullSalary()+e.getCommission());
 		   salaryEmployees.add(e);
