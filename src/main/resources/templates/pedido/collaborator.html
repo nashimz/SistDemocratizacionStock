@@ -1,0 +1,69 @@
+<head>
+<link rel="stylesheet" href="/css/estilos.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+
+
+
+<!-- Navigation -->
+<nav class="site-header sticky-top py-1">
+	<div
+		class="container d-flex flex-column flex-md-row justify-content-between">
+		<a class="py-2" href="/"> <svg xmlns="http://www.w3.org/2000/svg"
+				width="24" height="24" viewBox="0 0 24 24" fill="none"
+				stroke="currentColor" stroke-width="2" stroke-linecap="round"
+				stroke-linejoin="round" class="d-block mx-auto">
+				<circle cx="12" cy="12" r="10"></circle>
+				<line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+				<line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+				<line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+				<line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+				<line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+				<line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+		       </a> 
+		        <a class="py-2 d-md-inline-block" href="/client">Adm.Clientes</a> 
+                <a class="py-2 d-md-inline-block" href="/employee">Adm.Empleados</a>
+                <a class="py-2 d-md-inline-block" href="/store">Adm.Locales</a>
+                <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
+                <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
+                <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
+        
+	</div>
+</nav>
+
+
+   <h2>Solicitando stock</h2>
+  <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
+
+	<form action="" th:action="@{/pedido/stockrequest}" method="post">
+
+	     	<div class="form-group">
+            <strong>Local</strong>
+            <select placeholder="storev" th:field="*{storev.idStore}" class="form-control form-control-sm">
+                    <option th:each="s : ${storeswithstock}" th:value="${s.idStore}" th:text="${s.address}"></option>
+                </select>
+             </div>
+       
+           <p>Pedido con fecha:</p>
+		 <select placeholder="pedido" th:field="*{pedido.idPedido}" class="form-control form-control-sm">
+          <option th:each= "p : ${pedidos}" th:value="${p.idPedido}" th:text= "${p.date}"></option> 
+           </select>
+             
+		<input type="hidden" th:field="*{pedido.idPedido}"/>
+            <input class="btn btn-success" type="submit" value="Solicitar Pedido"/>
+        </form>
+		 
+		 <br>
+        <form action="#" th:action="@{/pedido}" method="post">
+            <input class="btn btn-info" type="submit" value="Volver al panel de pedidos" />
+        </form>
+       
+	
+</div>

@@ -98,9 +98,7 @@ public class Batch {
 	public void setQuantities(int quantities) {
 		this.quantities = quantities;
 	}
-
 	
-
 	public LocalDate getDate() {
 		return date;
 	}
@@ -110,10 +108,6 @@ public class Batch {
 	}
 
 	public boolean isActive() {
-		
-		if(this.getQuantities()==0) {
-			active=false;
-		}
 		return active;
 	}
 

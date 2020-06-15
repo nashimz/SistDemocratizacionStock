@@ -88,6 +88,63 @@ public class StoreModel{
 
 	public void setDistance(double distance) {
 		this.distance = distance;
-		
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Employees == null) ? 0 : Employees.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((batches == null) ? 0 : batches.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(distance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (int) (idStore ^ (idStore >>> 32));
+		temp = Double.doubleToLongBits(latitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(longitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (int) (phone ^ (phone >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StoreModel other = (StoreModel) obj;
+		if (Employees == null) {
+			if (other.Employees != null)
+				return false;
+		} else if (!Employees.equals(other.Employees))
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (batches == null) {
+			if (other.batches != null)
+				return false;
+		} else if (!batches.equals(other.batches))
+			return false;
+		if (Double.doubleToLongBits(distance) != Double.doubleToLongBits(other.distance))
+			return false;
+		if (idStore != other.idStore)
+			return false;
+		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
+			return false;
+		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
+			return false;
+		if (phone != other.phone)
+			return false;
+		return true;
+	}
+	
+	
 }

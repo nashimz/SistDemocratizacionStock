@@ -1,6 +1,7 @@
 package com.unla.Grupo8OO22020.services.implementation;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,8 @@ public class EmployeeService implements IEmployeeService {
 			return employeeConverter.entityToModel(employeeRepository.findById(id));
 		}
 		
+		
+		@Override
 		public  List<EmployeeModel> findByIdStore(long idStore){
 			List<EmployeeModel> models = new ArrayList<EmployeeModel>();
 			for (Employee employee : employeeRepository.findByIdStore(idStore)) {
@@ -57,9 +60,31 @@ public class EmployeeService implements IEmployeeService {
 		}
 		
 		@Override
+		public  EmployeeModel findByIdStores(long idStore){
+			EmployeeModel e=null;
+			for (Employee employee : employeeRepository.findByIdStore(idStore)) {
+				if(!employee.isManager()) {
+				e=employeeConverter.entityToModel(employee);
+				}
+			}
+			return e;
+		}
+		
+		
+		@Override
 		public List<EmployeeModel> getAlls() {
 			List<EmployeeModel> models = new ArrayList<EmployeeModel>();
 			for (Employee employee : employeeRepository.findAll()) {
+				models.add(employeeConverter.entityToModel(employee));
+			}
+			return models;
+		}
+		
+		@Override
+		public List<EmployeeModel> getAllv() {
+			List<EmployeeModel> models = new ArrayList<EmployeeModel>();
+			for (Employee employee : employeeRepository.findAll()) {
+				if(!employee.isManager())
 				models.add(employeeConverter.entityToModel(employee));
 			}
 			return models;

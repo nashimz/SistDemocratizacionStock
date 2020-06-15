@@ -31,11 +31,7 @@ public class ViewRouteHelper {
     public final static String PERSON_INDEX = "person/index";
 	public final static String PERSON_NEW = "person/new";
 	public final static String PERSON_UPDATE = "person/update";
-	
-	// RANKING
 		
-	public final static String RANKING_INDEX = "ranking/index";
-	
 	// CLIENT
 		
 	public final static String CLIENT_INDEX = "client/index";
@@ -48,19 +44,24 @@ public class ViewRouteHelper {
 	public final static String EMPLOYEE_NEW = "employee/new";
 	public final static String EMPLOYEE_UPDATE = "employee/update";
 	
-	//  ORDER
+	// PEDIDO
 	
 	public final static String PEDIDO_INDEX = "pedido/index";
 	public final static String PEDIDO_NEW = "pedido/new";
 	public final static String PEDIDO_UPDATE = "pedido/update";
+	public final static String PEDIDO_PRODUCT_BETWEEN_DATES = "pedido/productbetweendates";
+	public final static String PEDIDO_INDEX_BETWEEN_DATES = "pedido/getproductbetweendates";
+	public final static String PEDIDO_COLLABORATOR = "pedido/collaborator";
+	public final static String PEDIDO_SALARY = "pedido/salary";
+	public final static String PEDIDO_ENDINGOFMONTH = "pedido/endingofmonth";
 	
-	//STOCK_REQUEST_INDEX
+	// RANKING
 	
-	public final static String STOCK_REQUEST_INDEX = "stockRequest/index";
-	public final static String STOCK_REQUEST_NEW = "stockRequest/new";
-	public final static String STOCK_REQUEST_UPDATE = "stockRequest/update";
+	public final static String RANKING_INDEX = "ranking/index";
 	
-	// 
+	//
+	public final static String USER_LOGIN="user/login";
+	public final static String USER_LOGOUT="user/logout";
 	
 	/**** Redirects ****/
 	public final static String PRODUCT_ROOT = "/product";
@@ -70,5 +71,4 @@ public class ViewRouteHelper {
 	public final static String CLIENT_ROOT="/client";
 	public final static String EMPLOYE_ROOT="/employee";
 	public final static String PEDIDO_ROOT="/pedido";
-	public final static String STOCK_REQUEST_ROOT="/stockRequest";
 }

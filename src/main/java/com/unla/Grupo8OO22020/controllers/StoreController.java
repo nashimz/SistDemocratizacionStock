@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.unla.Grupo8OO22020.entities.Store;
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
 import com.unla.Grupo8OO22020.services.IBatchService;
@@ -97,9 +98,10 @@ public class StoreController {
 	public ModelAndView calculatedistance(StoresModel stores) {
 		ModelAndView mV=new ModelAndView(ViewRouteHelper.STORE_CALCULATEDISTANCE);
 		double distancia=Store.distanciaCoord(storeService.findByIdStore(stores.getStore1().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore1().getIdStore()).getLongitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLatitude(),storeService.findByIdStore(stores.getStore2().getIdStore()).getLongitude());
-	    mV.addObject("distancia",distancia);
+	    mV.addObject("distancia",Math.round(distancia*100)/100.00);
 		return mV;	
 	}
+	
 	
 	@PostMapping("/delete/{idStore}")
 	public RedirectView delete(@PathVariable("idStore") long idStore) {

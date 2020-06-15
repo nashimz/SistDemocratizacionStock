@@ -1,9 +1,11 @@
 package com.unla.Grupo8OO22020.services;
 
 import com.unla.Grupo8OO22020.entities.Store;
-
+import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
 
+
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -15,13 +17,17 @@ public interface IStoreService {
 	
 	public StoreModel findByIdStore(long idStore);
 	
-	StoreModel insert(StoreModel storeModel);
+	public StoreModel insert(StoreModel storeModel);
 	
-	StoreModel update(StoreModel storeModel);
+	public StoreModel update(StoreModel storeModel);
 	
 	public boolean remove(long idStore);
 
-	List<StoreModel> getNearestStore(StoreModel storeModel);
+	public List<StoreModel> getNearestStore(StoreModel storeModel);
+
+	public List<ProductModel> soldProductsBetweenDates(StoreModel store, LocalDate since, LocalDate until);
+
+	public List<StoreModel> storeStockRequest(StoreModel storeModel, ProductModel productModel, int cantidad);
 
 
 }

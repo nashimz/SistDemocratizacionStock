@@ -1,38 +1,47 @@
 package com.unla.Grupo8OO22020.models;
 
 public class RankingProductModel {
-    private int idProducto;
-    private String descripcion;
-    private int cantidadVendida;
+    private long idProduct;
+    private String description;
+    private long quantitySold;
 
     public RankingProductModel() {
     	
     }
     
-    public RankingProductModel(String descripcion, int cantidadVendida) {
-        super();
-        this.descripcion = descripcion;
-        this.cantidadVendida = cantidadVendida;
+    public RankingProductModel(String description,long quantitySold) {
+        this.description = description;
+        this.quantitySold=quantitySold;
     }
 
-    public int getIdProducto() {
-        return idProducto;
-    }
-    protected void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String nombre) {
-        this.descripcion = nombre;
-    }
-    public int getCantidadVendida() {
-        return cantidadVendida;
-    }
-    public void setCantidadVendida(int cantidadVendida) {
-        this.cantidadVendida = cantidadVendida;
-    }
+	public long getIdProduct() {
+		return idProduct;
+	}
+
+	public void setIdProduct(long idProduct) {
+		this.idProduct = idProduct;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public long getQuantitySold() {
+		return quantitySold;
+	}
+
+	public void setQuantitySold(long quantitySold) {
+		this.quantitySold = quantitySold;
+	}
+    
+    
+
+  
+  
 
 
 }

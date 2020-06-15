@@ -13,7 +13,6 @@ public class BatchModel {
 	private int quantity;
 	
 	private int quantities;
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	
