@@ -13,7 +13,7 @@ public class HomeController {
 	
 	
 	
-	
+
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mV= new ModelAndView(ViewRouteHelper.HOME_INDEX);
