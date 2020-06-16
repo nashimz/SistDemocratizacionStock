@@ -107,14 +107,14 @@ public class PedidoController {
 					return mV;
 			    }
 			    } catch (Exception e) {
-					redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ",sepa disculpar las molestias.");
+					redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ", sepa disculpar las molestias.");
 					redirectAttrs.addFlashAttribute("clase", "danger");
 					ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
 					return mV;
 
 				} finally {
 					if (stores.isEmpty()) {
-						redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ",sepa disculpar las molestias.");
+						redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ", sepa disculpar las molestias.");
 						redirectAttrs.addFlashAttribute("clase", "danger");
 						ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
 						return mV;
