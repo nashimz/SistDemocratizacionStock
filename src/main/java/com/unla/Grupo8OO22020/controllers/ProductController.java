@@ -27,7 +27,7 @@ public class ProductController {
 	@Qualifier("productService")
 	private IProductService productService;
 	
-	//metodo simple que me trae una vista que me lista a todos los productos existentes y me permite hacer consultas
+
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
@@ -35,7 +35,6 @@ public class ProductController {
 		return mV;
 	}
 	
-	//metodo que me traer una vista para generar un un formulario para un producto nuevo
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_NEW);
@@ -43,15 +42,13 @@ public class ProductController {
 		return mV;
 	}
 	
-	// metodo para crear un producto nuevo haciendo un post al servidor
-	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("product") ProductModel productModel) {
 		productService.insertOrUpdate(productModel);
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
 	}
 	
-	//metodo para consultar productos a traves de su id
+	
 	
 	@GetMapping("/{idProduct}")
 	public ModelAndView get(@PathVariable("idProduct") int idProduct) {
@@ -60,7 +57,7 @@ public class ProductController {
 		return mV;
 	}
 	
-	//metodo para consultar todos los productos que tienen la descripción especifica.
+	
 	@GetMapping("/description/{description_name}")
 	public ModelAndView getByDescriptionName(@PathVariable("description_name") String descriptionName) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
@@ -68,7 +65,7 @@ public class ProductController {
 		return mV;
 	}
 	
-	//metodo para consultar todos los productos que tienen el talle especifico.
+	
 	@GetMapping("/size/{size_name}")
 	public ModelAndView getBySizeName(@PathVariable("size_name") String sizeName) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
@@ -76,14 +73,14 @@ public class ProductController {
 		return mV;
 	}
 	
-	//metodo para poder actualizar un producto
+	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("product") ProductModel productModel) {
 		productService.insertOrUpdate(productModel);
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
 	}
 	
-	//metodo para poder eliminar un producto
+	
 	@PostMapping("/delete/{idProduct}")
 	public RedirectView delete(@PathVariable("idProduct") long idProduct) {
 		productService.remove(idProduct);

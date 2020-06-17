@@ -1,7 +1,10 @@
 package com.unla.Grupo8OO22020.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.unla.Grupo8OO22020.helpers.*;
 import com.unla.Grupo8OO22020.models.*;
 import com.unla.Grupo8OO22020.services.*;
@@ -26,6 +28,7 @@ public class EmployeeController {
 	@Qualifier("storeService")
 	private IStoreService storeService;
 	
+	
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.EMPLOYEE_INDEX);
@@ -33,6 +36,7 @@ public class EmployeeController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.EMPLOYEE_NEW);
@@ -41,11 +45,13 @@ public class EmployeeController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("employee") EmployeeModel employeeModel) {
 		employeeService.insertOrUpdate(employeeModel);
 		return new RedirectView(ViewRouteHelper.EMPLOYE_ROOT);
 	}
+	
 	
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") long id) {
@@ -55,11 +61,13 @@ public class EmployeeController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("employee") EmployeeModel employeeModel) {
 		employeeService.insertOrUpdate(employeeModel);
 		return new RedirectView(ViewRouteHelper.EMPLOYE_ROOT);
 	}
+	
 	
 	@GetMapping("/store/{store_id}")
 	public ModelAndView getByStoreId(@PathVariable("store_id") long storeId) {
@@ -68,6 +76,7 @@ public class EmployeeController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") long id) {
 		employeeService.remove(id);

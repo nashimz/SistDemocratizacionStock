@@ -4,12 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.unla.Grupo8OO22020.helpers.ViewRouteHelper;
+
 
 
 @Controller
 public class UserController {
+	
 
 	@GetMapping("/login")
 	public String login(Model model,

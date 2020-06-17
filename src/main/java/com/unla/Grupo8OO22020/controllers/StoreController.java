@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,6 +50,7 @@ public class StoreController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_NEW);
@@ -58,6 +60,7 @@ public class StoreController {
 		return mV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("store") StoreModel storeModel) {
 		storeService.insert(storeModel);
@@ -73,6 +76,7 @@ public class StoreController {
 		return mV;
 	}
 	
+	
 	@GetMapping("/consultNearby{idStore}")
 	public ModelAndView consultNearby(@PathVariable("idStore") long idStore) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.STORE_NEAR);
@@ -81,6 +85,7 @@ public class StoreController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("store") StoreModel storeModel) {
 		storeService.update(storeModel);
@@ -102,7 +107,7 @@ public class StoreController {
 		return mV;	
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{idStore}")
 	public RedirectView delete(@PathVariable("idStore") long idStore) {
 		storeService.remove(idStore);
