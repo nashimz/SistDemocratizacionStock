@@ -15,6 +15,7 @@ public interface IBatchRepository extends JpaRepository<Batch, Serializable> {
 	
 	public abstract Batch findByIdBatch(long idBatch);
 	
+
 	//Consulta que trae una lista de lotes con ese id de local
 	@Query("SELECT b FROM Batch b JOIN FETCH b.store s WHERE s.idStore = (:idStore)")
 	public abstract List<Batch> findByIdStore(long idStore);

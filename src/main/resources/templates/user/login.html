@@ -9,7 +9,7 @@
 		
 	</head>
 <body>
-    <div class="card bg-light col-md-3 mt-6 p-4 mx-auto " >
+    <div class="card bg-light col-md-4 mt-6 p-4 mx-auto " >
         
              
             <form th:action="@{/loginprocess}" method="post">
@@ -36,11 +36,10 @@
          <div th:if="${error != null}" class="alert alert-danger mt-4">
 		    	Username o password incorrecto. Por favor, intentelo nuevamente.
 		    </div>
-
         </form>
-        
         </div>
-        
-      
+     <footer>
+             Grupo 8-Cusato Facundo,Ramirez Ruescas Barbara,Fretes Rocio & San Martin Miguel
+     </footer>   
 </body>
 </html>

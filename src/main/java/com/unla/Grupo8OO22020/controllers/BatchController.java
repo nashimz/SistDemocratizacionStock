@@ -1,10 +1,8 @@
 package com.unla.Grupo8OO22020.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,6 +43,7 @@ public class BatchController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.BATCH_NEW);
@@ -54,6 +53,7 @@ public class BatchController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("batch") BatchModel batchModel) {
 		batchService.insert(batchModel);
@@ -69,6 +69,7 @@ public class BatchController {
 		return mV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("batch") BatchModel batchModel) {
 	    batchService.update(batchModel);
@@ -82,7 +83,7 @@ public class BatchController {
 		return mV;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{idBatch}")
 	public RedirectView delete(@PathVariable("idBatch") long idBatch) {
 	    batchService.remove(idBatch);

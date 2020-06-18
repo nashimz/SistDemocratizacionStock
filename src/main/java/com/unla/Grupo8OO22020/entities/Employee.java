@@ -95,9 +95,6 @@ public class Employee extends Person{
 		this.commission = commission;
 	}
 	
-	
-	
-
 	public double getFullSalary() {
 		return fullSalary;
 	}

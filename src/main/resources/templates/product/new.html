@@ -24,12 +24,14 @@
             
             <div class="form-group">
                 <label for="description">Descripcion</label>
-                <input type="text" class="form-control" name="description"  value="" th:field="*{description}" placeholder="Escribi la descripcion..." >
+                <input type="text" class="form-control" name="description"  value="" th:field="*{description}" placeholder="Escribi la descripcion..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
              <div class="form-group">
                 <label for="price">Precio</label>
-                <input type="text" class="form-control" name="price"  value="" th:field="*{price}" placeholder="Escribi el precio..." >
+                <input type="number" data-toggle="validator" id="price" min="1" class="form-control" name="price"  value="" th:field="*{price}" placeholder="Escribi el precio..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
@@ -39,15 +41,16 @@
             
             <div class="form-group">
                 <label for="startDate">Fecha de alta</label>
-                <input type="date" class="form-control" name="startDate"  value="" th:field="*{startDate}" placeholder="Escribi la fecha..." >
+                <input type="date" class="form-control" name="startDate"  value="" th:field="*{startDate}" placeholder="Escribi la fecha..." required>
+                <div class="invalid-feedback"></div>
             </div>
               
             <br>
-            <button type="submit" class="btn btn-dark px-4">
+            <button type="submit" class="btn btn-success px-4">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
                 Agregar Producto
             </button>
-            <a href="/product" class="btn btn-outline-secondary ml-3">
+            <a href="/product" class="btn btn-primary ml-3">
                 Volver al panel de Productos
             </a>
 

@@ -5,6 +5,7 @@ package com.unla.Grupo8OO22020.controllers;
 import java.time.LocalDate;
 
 
+
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -203,13 +205,14 @@ public class PedidoController {
 		return mV;
 	}
 	
-
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/salary")
 	public ModelAndView salary() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PEDIDO_SALARY);
 		return mAV;		
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value="/endingofmonth", method=RequestMethod.POST)
 	public ModelAndView endingofmonth(@RequestParam("month") int month, @RequestParam("year") int year) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PEDIDO_ENDINGOFMONTH);
@@ -227,3 +230,4 @@ public class PedidoController {
 		}
 	
 }
+	

@@ -3,7 +3,9 @@ package com.unla.Grupo8OO22020.services.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.services.IBatchService;
 import java.util.ArrayList;
@@ -38,6 +40,8 @@ public class BatchService implements  IBatchService{
 	public List<Batch> getAll() {
 		return batchRepository.findAll();
 	}	
+	
+
 	
 	@Override
 	public BatchModel insert(BatchModel batchModel) {

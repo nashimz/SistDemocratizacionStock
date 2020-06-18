@@ -29,7 +29,7 @@
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                 <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
-                
+               
 		</div>
 	</nav>
 	<h2>Actualizacion de Productos</h2>
@@ -41,37 +41,42 @@
 			<input type="hidden" th:field="*{idProduct}"  />
 
 			<div class="form-group">
-				<label for="description">Descripcion</label> <input type="text"
-					class="form-control" name="description" value="" th:field="*{description}"
-					placeholder="Escribi la descripcion..." />
-			</div>
-
-			<div class="form-group">
-				<label for="price">Precio</label> <input type="text"
-					class="form-control" name="price" th:field="*{price}"
-					placeholder="Escribi el precio..." />
-			</div>
+                <label for="description">Descripcion</label>
+                <input type="text" class="form-control" name="description"  value="" th:field="*{description}" placeholder="Escribi la descripcion..." required>
+                <div class="invalid-feedback"></div>
+            </div>
             
-            <div class="form-group">
-				<label for="size">Talle</label> <input type="text"
-					class="form-control" name="size" th:field="*{size}"
-					placeholder="Escribi el talle..." />
+             <div class="form-group">
+                <label for="price">Precio</label>
+                <input type="number" data-toggle="validator" id="price" min="1" class="form-control" name="price"  value="" th:field="*{price}" placeholder="Escribi el precio..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
-				<label for="startDate">Fecha de alta</label> <input type="date"
-					class="form-control" name="startDate" th:field="*{startDate}"
-					placeholder="Escribi la fecha..." />
+                <label for="size">Talle</label>
+                <input type="text" class="form-control" name="size"  value="" th:field="*{size}" placeholder="Escribi el talle..." required>
+                <div class="invalid-feedback"></div>
             </div>
-				<input class="update" type="submit" value="Editar Producto" />
+            
+            <div class="form-group">
+                <label for="startDate">Fecha de alta</label>
+                <input type="date" class="form-control" name="startDate"  value="" th:field="*{startDate}" placeholder="Escribi la fecha..." required>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div>
+				<input class="btn btn-warning float-left" type="submit" value="Editar Producto" />
 		</form>
 
 		<form action="#" th:action="@{/product/delete/{id}(id=${product.idProduct})}"
 			method="post">
-			<br>
-			<input class="update" type="submit" value="Borrar Lote" />
+			
+			<input class="btn btn-danger float-left ml-3" type="submit" value="Borrar Producto" />
+			
 		</form>
-	</div>
+		</div>
+		
+		
+	
 </body>
 
 </html>

@@ -18,77 +18,96 @@
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                  <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
                  
+                      <a aria-expanded="false"
+						aria-haspopup="true" class="nav-link dropdown-toggle"
+						data-toggle="dropdown" href="#" id="navbarDropdownBlog">User<span th:text="${username}" />
+					   </a>					
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor: pointer" type="submit" value="Salir" />
+							</form>
+                        </div>
+                       
+                 
             </div>
         </nav>
         
         <h2>Actualizacion de Empleados</h2>
   <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">  
-   <form action="#" th:action="@{/employee/update}" th:object="${employee}"
-	method="post">
+   <form action="#" th:action="@{/employee/update}" th:object="${employee}" method="post">
 	<input type="hidden" th:field="*{id}" />
 	
              <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." >
+                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
              <div class="form-group">
                 <label for="surname">Apellido</label>
-                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." >
+                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="dateBirth">Fecha de Nacimiento</label>
-                <input type="date" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." >
+                <input type="date" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." >
-              </div>   
-              
-              
-              <div class="form-group">
+                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" pattern="[0-9]{8}" placeholder="Escribi tu DNI..." required/>
+                <div class="invalid-feedback"></div>
+            </div>
+            
+            <div class="form-group">
             <strong>Gerente</strong>
             <input type="checkbox" th:field="*{manager}" />
             </div>
             
+            
+            
             <div class="form-group">
                 <label for="starTime">Hora de inicio</label>
-                <input type="time" class="form-control" name="startTime"  value="" th:field="*{startTime}" placeholder="Ingresar hora de inicio..." >
+                <input type="time" class="form-control" name="startTime"  value="" th:field="*{startTime}" placeholder="Ingresar hora de inicio..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="endTime">Hora de finalizacion</label>
-                <input type="time" class="form-control" name="endTime"  value="" th:field="*{endTime}" placeholder="Ingresar hora de finalizacion..." >
+                <input type="time" class="form-control" name="endTime"  value="" th:field="*{endTime}" placeholder="Ingresar hora de finalizacion..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="basicSalary">Salario basico</label>
-                <input type="text" class="form-control" name="basicSalary"  value="" th:field="*{basicSalary}" placeholder="Ingresar salario basico..." >
+                <input type="number" min="17000" class="form-control" name="basicSalary"  value="" th:field="*{basicSalary}" placeholder="Ingresar salario basico..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
-            <div class="form-group">
-                <label for="commission">Comision</label>
-                <input type="text" class="form-control" name="commission"  value="" th:field="*{commission}" placeholder="Ingresar comision: " >
-            </div>  
             
-              <div class="form-group">
+            <div class="form-group">
+                <label for="name">Comision</label>
+                <input type="number" min="0" class="form-control" name="commission"  value="" th:field="*{commission}" placeholder="Ingresar comision: " required>
+                <div class="invalid-feedback"></div>
+            </div>
+            
+             <div class="form-group">
                 <label for="store">Local</label>
                 <select placeholder="store" th:field="*{store.idStore}">
 	            <option th:each="s : ${stores}" th:value="${s.idStore}" th:text="${s.address}"></option>
 	             </select>     
             </div>
-            
-             
-        </div>
-	<input class="update" type="submit" value="Editar Persona" />
-</form>
-<form action="#" th:action="@{/employee/delete/{id}(id=${employee.id})}" method="post">
-	<input class="update" type="submit" value="Borrar Persona" />
-</form>
-</div>
-
+            <div>
+            <input class="btn btn-warning float-left " type="submit" value="Editar Persona" /> 
+            </form>
+            <form action="#" th:action="@{/employee/delete/{id}(id=${employee.id})}" method="post">
+	   <input class="btn btn-danger float-left ml-3  " type="submit" value="Borrar Persona" />
+      </form>
+      </div>
+           
     
-    </body>
+     
+ </body>
 </html>
