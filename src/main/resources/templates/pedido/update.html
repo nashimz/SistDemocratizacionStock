@@ -41,9 +41,10 @@
 			<input type="hidden" th:field="*{idPedido}" th:value="*{idPedido}" />
 
 			<div class="form-group">
-				<label for="quantity">Cantidad</label> <input type="text"
-					class="form-control" name="quantity" value="" th:field="*{quantity}"
-					placeholder="Escribi la cantidad..." />
+				<label for="quantity">Cantidad</label> 
+				<input type="number" min="1" class="form-control" name="quantity" value="" th:field="*{quantity}"
+					placeholder="Escribi la cantidad..." required/>
+					<div class="invalid-feedback"></div>
 			</div>
 
 			<div class="form-group">
@@ -63,7 +64,8 @@
             
             <div class="form-group">
                 <label for="date">Fecha</label>
-                <input type="date" class="form-control" name="date"  value="" th:field="*{date}" placeholder="Elija una fecha..." >
+                <input type="date" class="form-control" name="date"  value="" th:field="*{date}" placeholder="Elija una fecha..." required>
+                <div class="invalid-feedback"></div>
             </div>
            
               
@@ -75,13 +77,13 @@
             <input type="hidden" th:field="*{collaborator.id}" />
             <input type="hidden" th:field="*{employee.store.idStore}" />
              <div th:if="${not pedido.accept}" class="text-center">
-            <input class="btn btn-success" type="submit" value="Editar" />
+            <input class="btn btn-warning" type="submit" value="Editar" />
              </div>
 		</form>
 	 <form action="#" th:action="@{/pedido/delete/{id}(id=${pedido.idPedido})}"
 			    method="post">
 			<br>
-			<input class="update" type="submit" value="Borrar Pedido" />
+			<input class="btn btn-danger" type="submit" value="Borrar Pedido" />
      </form>
 	</div>
 </body>

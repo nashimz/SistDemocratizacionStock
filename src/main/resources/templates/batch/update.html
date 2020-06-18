@@ -87,14 +87,12 @@
             <strong>Activo</strong>
             <input type="checkbox" th:field="*{active}" />
            </div>
-            
-				<input class="update" type="submit" value="Editar Lote" />
+				<input class="btn btn-warning" type="submit" value="Editar Lote" />
 		</form>
-
 		<form action="#" th:action="@{/batch/delete/{id}(id=${batch.idBatch})}"
 			method="post">
 			<br>
-			<input class="update" type="submit" value="Borrar Lote" />
+			<input class="btn btn-danger" type="submit" value="Borrar Lote" />
 		</form>
 	</div>
 </body>
