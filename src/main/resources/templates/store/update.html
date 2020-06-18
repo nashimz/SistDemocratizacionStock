@@ -49,32 +49,37 @@
 			method="post">
 			<input type="hidden" th:field="*{idStore}" />
 			<div class="form-group">
-				<label for="phone">Telefono</label> <input type="text"
-					class="form-control" name="phone" value="" th:field="*{phone}"
-					placeholder="Escribi su telefono..." />
-			</div>
-			<div class="form-group">
-				<label for="address">Ubicacion</label> <input type="text"
-					class="form-control" name="address" th:field="*{address}"
-					placeholder="Escribi su direccion..." />
-			</div>
-			<div class="form-group">
-				<label for="latitude">Latitud</label> <input type="text"
-					class="form-control" name="latitude" value=""
-					th:field="*{latitude}" placeholder="Escribi la latitud..." />
-			</div>
-			<div class="form-group">
-				<label for="longitude">Longitud</label> <input type="text"
-					class="form-control" name="longitude" value=""
-					th:field="*{longitude}" placeholder="Escribi la longitud..." /> 
-          
-            		<input class="update" type="submit" value="Edit Local" />
+			<label for="phone">Telefono</label> <input type="text"
+				class="form-control" name="phone" value="" th:field="*{phone}"
+				placeholder="Escribi el telefono..." required/>
+				<div class="invalid-feedback"></div>
+		</div>
+		<label for="name">Ubicacion:</label>
+		<div class="form-group">
+			<label for="address">Direccion</label> <input type="text"
+				class="form-control" name="address" th:field="*{address}"
+				placeholder="Escribi la direccion..." required/>
+				<div class="invalid-feedback"></div>
+		</div>
+		<div class="form-group">
+			<label for="latitude">Latitud</label> <input type="text"
+				class="form-control" name="latitude" value="" th:field="*{latitude}"
+				placeholder="Escribi la latitud..."required/>
+				<div class="invalid-feedback"></div>
+		</div>
+		<div class="form-group">
+			<label for="longitude">Longitud</label> <input type="text"
+				class="form-control" name="longitude" value="" th:field="*{longitude}"
+				placeholder="Escribi la longitud..." required/>
+				<div class="invalid-feedback"></div>
+		</div>  
+            		<input class="btn btn-warning" type="submit" value="Editar Local" />
 		</form>
 
 		<form action="#" th:action="@{/store/delete/{id}(id=${store.idStore})}"
 			method="post">
 			<br>
-			<input class="update" type="submit" value="Borrar Local" />
+			<input class="btn btn-danger" type="submit" value="Borrar Local" />
 		</form>
 		<h4>Empleados</h4>
      <table class="table table-bordered table-stripped table-hover table-sm">
@@ -85,7 +90,7 @@
 			        <th>Es Gerente</th>
                    
                     <th colspan="2" class="text-center">
-			<a href="/employee/new" class="btn btn-outline-light px-4"> 
+			<a href="/employee/new" class="btn btn-success px-4"> 
 			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
 			</a></th>   
 		</tr>
@@ -97,7 +102,7 @@
 			<td><span th:text="${employee.manager}" /></td>
 			
 			<td><a th:href="@{/employee/{id}(id=${employee.id})}"
-				class="btn btn-outline-secondary px-4"><i
+				class="btn btn-info px-4"><i
 					class="far fa-edit fa-lg mr-1"></i> Ver</a></td>
 		</tr>
 	  </tbody>
@@ -113,7 +118,7 @@
                     <th>Fecha de Ingreso</th>
                     <th>Activo</th>
                     <th colspan="2" class="text-center">
-			<a href="/batch/new" class="btn btn-outline-light px-4"> 
+			<a href="/batch/new" class="btn btn-success px-4"> 
 			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
 			</a></th>   
 		</tr>
@@ -128,7 +133,7 @@
 			<td><span th:text="${batch.active}" /> </td>
  
 			<td><a th:href="@{/batch/{idBatch}(idBatch=${batch.idBatch})}"
-				class="btn btn-outline-secondary px-4"><i
+				class="btn btn-info px-4"><i
 					class="far fa-edit fa-lg mr-1"></i> Ver</a></td>
 		</tr>
 	  </tbody>

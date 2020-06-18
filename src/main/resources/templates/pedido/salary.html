@@ -55,17 +55,20 @@
 
 	     <div class="form-group">
                 <strong>Mes</strong>
-                <input type="number" name="month" min="1" max="12" class="form-control form-control-sm" placeholder="Ingrese el mes en el que desea liquidar" />
+                <input type="number" name="month" min="1" max="12" class="form-control form-control-sm" placeholder="Ingrese el mes en el que desea liquidar" required/>
+                 <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
                 <strong>A&ntilde;o</strong>
-                <input type="number" name="year" class="form-control form-control-sm" placeholder="Ingrese el a&ntilde;o" />
+                <input type="number" name="year" min="1" max="2020" class="form-control form-control-sm" placeholder="Ingrese el a&ntilde;o" required/>
+                 <div class="invalid-feedback"></div>
             </div>	
 		<br>
-		 <button type="submit" class="btn btn-dark px-4">
+		 <button type="submit" class="btn btn-primary">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
                 Listar recibos de sueldo
             </button>
        
 	</form>
+	
 </div>

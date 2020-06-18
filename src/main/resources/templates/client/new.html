@@ -24,37 +24,42 @@
             
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." >
+                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
              <div class="form-group">
                 <label for="surname">Apellido</label>
-                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." >
+                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="dateBirth">Fecha de Nacimiento</label>
-                <input type="date" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." >
+                <input type="date" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." >
+                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="name">Mail</label>
-                <input type="email" class="form-control" name="mail"  value="" th:field="*{mail}" placeholder="Escribi tu mail..." >
+                <input type="email" class="form-control" name="mail"  value="" th:field="*{mail}" placeholder="Escribi tu mail..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
           
             
             <br>
-            <button type="submit" class="btn btn-dark px-4">
+            <button type="submit" class="btn btn-success">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
                 Agregar Cliente
             </button>
-            <a href="/client" class="btn btn-outline-secondary ml-3">
+            <a href="/client" class="btn btn-primary">
                 Volver al panel de Cliente
             </a>
 

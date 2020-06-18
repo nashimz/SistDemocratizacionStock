@@ -61,14 +61,15 @@
 			<th>Direccion</th>
 			<th>Latitud</th>
 			<th>Longitud</th>
+			<th>
+			<a href="/store/distanceStores" class="btn btn-info px-4"> 
+			<i class="far fa-plus-square fa-lg mr-2"></i> Calcular Distancia
+			</a></th>
 			<th colspan="2" class="text-center">
 			<a href="/store/new" class="btn btn-outline-light px-4"> 
 			<i class="far fa-plus-square fa-lg mr-2"></i> Agregar
 			</a></th>
-			<th>
-			<a href="/store/distanceStores" class="btn btn-outline-light px-4"> 
-			<i class="far fa-plus-square fa-lg mr-2"></i> Calcular Distancia
-			</a></th>
+			
 		</tr>
 	<tbody>
 		<tr th:each="store : ${stores}">
@@ -78,15 +79,18 @@
 			<td><span th:text="${store.longitude}" /></td>
 			
 			<td><a th:href="@{/store/{idStore}(idStore=${store.idStore})}"
-				class="btn btn-outline-secondary px-4"><i
+				class="btn btn-info px-4"><i
 					class="far fa-edit fa-lg mr-1"></i> Ver lotes y empleados</a></td>
 			<td><a th:href="@{/store/consultNearby{idStore}(idStore=${store.idStore})}"
-				class="btn btn-outline-secondary px-6"><i
+				class="btn btn-info px-6"><i
 					class="far fa-edit fa-lg mr-1"></i> Ver locales cercanos</a></td>		
 		</tr>
 	</tbody>
 	
 </table>
+          <footer>
+             Grupo 8-Cusato Facundo,Ramirez Ruescas Barbara,Fretes Rocio & San Martin Miguel
+          </footer>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>

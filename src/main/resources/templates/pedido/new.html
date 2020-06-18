@@ -24,7 +24,8 @@
             
             <div class="form-group">
                 <label for="quantity">Cantidad</label>
-                <input type="text" class="form-control" name="quantity"  value="" th:field="*{quantity}" placeholder="Escribi la cantidad..." >
+                <input type="number" min="1" class="form-control" name="quantity"  value="" th:field="*{quantity}" placeholder="Escribi la cantidad..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             
@@ -45,7 +46,8 @@
             
             <div class="form-group">
                 <label for="date">Fecha</label>
-                <input type="date" class="form-control" name="date"  value="" th:field="*{date}" placeholder="Elija una fecha..." >
+                <input type="date" class="form-control" name="date"  value="" th:field="*{date}" placeholder="Elija una fecha..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             
@@ -57,11 +59,11 @@
           
             <br>
             <input type="hidden" th:field="*{employee.store.idStore}" />
-            <button type="submit" class="btn btn-dark px-4">
+            <button type="submit" class="btn btn-success">
                 <i class="far fa-plus-square fa-lg mr-2"></i>
                 Agregar Pedido
             </button>
-            <a href="/pedido" class="btn btn-outline-secondary ml-3">
+            <a href="/pedido" class="btn btn-primary">
                  Volver al panel de Pedidos
             </a>
             
