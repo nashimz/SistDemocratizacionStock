@@ -53,7 +53,7 @@
             
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." required>
+                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" pattern="[0-9]{8}" placeholder="Escribi tu DNI..." required/>
                 <div class="invalid-feedback"></div>
             </div>
             

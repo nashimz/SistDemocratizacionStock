@@ -48,36 +48,31 @@
 		<form action="#" th:action="@{/store/update}" th:object="${store}"
 			method="post">
 			<input type="hidden" th:field="*{idStore}" />
+			
 			<div class="form-group">
-			<label for="phone">Telefono</label> <input type="text"
-				class="form-control" name="phone" value="" th:field="*{phone}"
-				placeholder="Escribi el telefono..." required/>
+			<label for="phone">Telefono</label> 
+			<input type="text" class="form-control" name="phone" value="" th:field="*{phone}" placeholder="Escribi el telefono"required/>
 				<div class="invalid-feedback"></div>
-		</div>
-		<label for="name">Ubicacion:</label>
-		<div class="form-group">
-			<label for="address">Direccion</label> <input type="text"
-				class="form-control" name="address" th:field="*{address}"
-				placeholder="Escribi la direccion..." required/>
+		   </div>
+		   <label for="name">Ubicacion:</label>
+		    <div class="form-group">
+			 <label for="address">Direccion</label> 
+			 <input type="text" class="form-control" name="address" th:field="*{address}" placeholder="Escribi la direccion..." required/>
 				<div class="invalid-feedback"></div>
-		</div>
-		<div class="form-group">
-			<label for="latitude">Latitud</label> <input type="text"
-				class="form-control" name="latitude" value="" th:field="*{latitude}"
-				placeholder="Escribi la latitud..."required/>
+		   </div>
+		   <div class="form-group">
+			<label for="latitude">Latitud</label> 
+			<input type="number" step="any" class="form-control" name="latitude"  value="" th:field="*{latitude}" placeholder="Escribi la latitud..." required/>
 				<div class="invalid-feedback"></div>
-		</div>
-		<div class="form-group">
-			<label for="longitude">Longitud</label> <input type="text"
-				class="form-control" name="longitude" value="" th:field="*{longitude}"
-				placeholder="Escribi la longitud..." required/>
+		    </div>
+		    <div class="form-group">
+			<label for="longitude">Longitud</label> 
+			<input type="number" step="any" class="form-control" name="longitude" value="" th:field="*{longitude}" placeholder="Escribi la longitud..." required/>
 				<div class="invalid-feedback"></div>
-		</div>  
+		    </div>  
             		<input class="btn btn-warning" type="submit" value="Editar Local" />
 		</form>
-
-		<form action="#" th:action="@{/store/delete/{id}(id=${store.idStore})}"
-			method="post">
+		<form action="#" th:action="@{/store/delete/{id}(id=${store.idStore})}" method="post">
 			<br>
 			<input class="btn btn-danger" type="submit" value="Borrar Local" />
 		</form>
@@ -111,7 +106,7 @@
      <table class="table table-bordered table-stripped table-hover table-sm">
 	<thead class="thead-dark">
 		<tr>
-		            <th>IdLote</th>
+		            
 			        <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Cantidad Total</th>
@@ -125,7 +120,6 @@
 		</thead>
 	<tbody>
 		<tr th:each="batch : ${batches}">
-		    <td><span th:text="${batch.idBatch}"/></span></td>
 			<td><span th:text="${batch.product.description}" /></td>
 			<td><span th:text="${batch.quantity}" /> </td>
 			<td><span th:text="${batch.quantities}" /> </td>
