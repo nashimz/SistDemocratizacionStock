@@ -115,7 +115,7 @@ public class PedidoService implements IPedidoService{
 	}
 	
 	
-	//trae la lista de todos los lotes activos del local que contienen ese producto
+	
 	@Override
 	public List<BatchModel> getActiveBatches(StoreModel storeModel,ProductModel productModel) {
 		List<BatchModel> activeBatches = new ArrayList<BatchModel>();

@@ -54,7 +54,8 @@
             
             <div class="form-group">
                 <label for="size">Talle</label>
-                <input type="text" class="form-control" name="size"  value="" th:field="*{size}" placeholder="Escribi el talle..." >
+                <input type="text" class="form-control" name="size"  value="" th:field="*{size}" placeholder="Escribi el talle..." required>
+                <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
@@ -69,7 +70,7 @@
 		<form action="#" th:action="@{/product/delete/{id}(id=${product.idProduct})}"
 			method="post">
 			<br>
-			<input class="btn btn-danger" type="submit" value="Borrar Lote" />
+			<input class="btn btn-danger" type="submit" value="Borrar Producto" />
 		</form>
 	</div>
 </body>

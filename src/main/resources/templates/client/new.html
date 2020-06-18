@@ -24,31 +24,31 @@
             
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." required>
+                <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." required/>
                 <div class="invalid-feedback"></div>
             </div>
             
              <div class="form-group">
                 <label for="surname">Apellido</label>
-                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." required>
+                <input type="text" class="form-control" name="surname"  value="" th:field="*{surname}" placeholder="Escribi tu apellido..." required/>
                 <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="dateBirth">Fecha de Nacimiento</label>
-                <input type="date" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." required>
+                <input type="date" class="form-control" name="dateBirth"  value="" th:field="*{dateBirth}" placeholder="Escribi tu Fecha de Nacimiento..." required/>
                 <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" placeholder="Escribi tu DNI..." required>
+                <input type="text" class="form-control" name="dni"  value="" th:field="*{dni}" pattern="[0-9]{8}" placeholder="Escribi tu DNI..." required/>
                 <div class="invalid-feedback"></div>
             </div>
             
             <div class="form-group">
                 <label for="name">Mail</label>
-                <input type="email" class="form-control" name="mail"  value="" th:field="*{mail}" placeholder="Escribi tu mail..." required>
+                <input type="email" class="form-control" name="mail"  value="" th:field="*{mail}" placeholder="Escribi tu mail..." required/>
                 <div class="invalid-feedback"></div>
             </div>
             
