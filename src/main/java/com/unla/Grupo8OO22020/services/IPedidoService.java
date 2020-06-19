@@ -3,6 +3,7 @@ package com.unla.Grupo8OO22020.services;
 import java.util.List;
 import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.BatchModel;
+import com.unla.Grupo8OO22020.models.ClientModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
@@ -41,5 +42,8 @@ public interface IPedidoService {
 	public void setAttributeRequest(PedidoModel pedidoModel, StoreModel storeModel);
 
 	public List<EmployeeModel> paySalary(int month, int year);
+
+
+	public List<PedidoModel> getAllsP(ClientModel clientModel);
 
 }

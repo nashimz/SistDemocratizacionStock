@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 
 
+
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,7 @@ import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
 import com.unla.Grupo8OO22020.services.IBatchService;
+import com.unla.Grupo8OO22020.services.IClientService;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
@@ -62,6 +64,9 @@ public class PedidoController {
 	@Qualifier("employeeService")
 	private IEmployeeService employeeService;
 	
+	@Autowired
+	@Qualifier("clientService")
+	private IClientService clientService;
 
 	
 	
@@ -76,6 +81,7 @@ public class PedidoController {
 	public ModelAndView create() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_NEW);
 		mV.addObject("pedido", new PedidoModel());
+		mV.addObject("clients", clientService.getAlls());
 		mV.addObject("products", productService.getAlls());
 		mV.addObject("employees",employeeService.getAllv());
 		return mV;
@@ -151,6 +157,7 @@ public class PedidoController {
 	public ModelAndView get(@PathVariable("idPedido") long idPedido) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_UPDATE);
 		mV.addObject("pedido", pedidoService.findByIdPedido(idPedido));
+		mV.addObject("clients", clientService.getAlls());
 		mV.addObject("products", productService.getAlls());
 		mV.addObject("stores", storeService.getAlls());
 		mV.addObject("employees",employeeService.getAllv());
@@ -193,7 +200,6 @@ public class PedidoController {
 		return mV;
 	}
 	
-	
 	@RequestMapping(value ="/producbetweendates", method = RequestMethod.POST)
 	public ModelAndView productbetweendates(@ModelAttribute("store") StoreModel store,@RequestParam("since") @DateTimeFormat(pattern = "yy-MM-dd") Date since,@RequestParam("until") @DateTimeFormat(pattern = "yy-MM-dd")Date until) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.PEDIDO_PRODUCT_BETWEEN_DATES);
@@ -220,9 +226,7 @@ public class PedidoController {
 		mAV.addObject("employees", listEmployees);
 		return mAV;
 	}
-	
-	
-	
+
 	@PostMapping("/delete/{idPedido}")
 	public RedirectView delete(@PathVariable("idPedido") long idPedido) {
 		pedidoService.remove(idPedido);

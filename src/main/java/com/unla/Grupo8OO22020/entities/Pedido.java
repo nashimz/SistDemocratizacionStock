@@ -47,9 +47,12 @@ public class Pedido {
 	
 	private boolean accept;
 	
+	@OneToOne(cascade=CascadeType.MERGE)
+	private Client client;
+	
 	public Pedido() {}
 	
-	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal,Employee collaborator,boolean accept) {
+	public Pedido(long idPedido,int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal,Employee collaborator,boolean accept,Client client) {
 		this.idPedido=idPedido;
 		this.quantity=quantity;
 		this.product=product;
@@ -59,9 +62,10 @@ public class Pedido {
 		this.subtotal=subtotal;
 		this.collaborator=collaborator;
 		this.accept=accept;
+		this.client=client;
 	}
 	
-	public Pedido(int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal,boolean accept) {
+	public Pedido(int quantity,Product product,Store store,Employee employee,LocalDate date,double subtotal,boolean accept,Client client) {
 		this.quantity=quantity;
 		this.product=product;
 		this.store=store;
@@ -69,6 +73,7 @@ public class Pedido {
 		this.subtotal=subtotal;
 		this.date=date;
 		this.accept=accept;
+		this.client=client;
 	}
 
 	public long getIdPedido() {
@@ -142,5 +147,15 @@ public class Pedido {
 	public void setAccept(boolean accept) {
 		this.accept = accept;
 	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
+	
 	
 }

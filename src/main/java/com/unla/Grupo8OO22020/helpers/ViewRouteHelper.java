@@ -37,6 +37,7 @@ public class ViewRouteHelper {
 	public final static String CLIENT_INDEX = "client/index";
 	public final static String CLIENT_NEW = "client/new";
 	public final static String CLIENT_UPDATE = "client/update";
+	public final static String CLIENT_INDEX_INVOICE = "client/generateinvoice";
 	
 	// EMPLOYEE
 	
@@ -54,6 +55,7 @@ public class ViewRouteHelper {
 	public final static String PEDIDO_COLLABORATOR = "pedido/collaborator";
 	public final static String PEDIDO_SALARY = "pedido/salary";
 	public final static String PEDIDO_ENDINGOFMONTH = "pedido/endingofmonth";
+	
 	
 	// RANKING
 	
