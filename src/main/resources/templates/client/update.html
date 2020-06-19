@@ -27,7 +27,7 @@
 	method="post">
 	<input type="hidden" th:field="*{id}" />
 	
- <div class="form-group">
+ 
                 <div class="form-group">
                 <label for="name">Nombre</label>
                 <input type="text" class="form-control" name="name"  value="" th:field="*{name}" placeholder="Escribi tu nombre..." required/>
@@ -57,13 +57,20 @@
                 <input type="email" class="form-control" name="mail"  value="" th:field="*{mail}" placeholder="Escribi tu mail..." required/>
                 <div class="invalid-feedback"></div>
             </div>
-         </div>
-	<input class="btn btn-warning" type="submit" value="Editar Persona" />
-</form>
-<form action="#" th:action="@{/client/delete/{id}(id=${client.id})}" method="post">
-	<input class="btn btn-danger" type="submit" value="Borrar Persona" />
+           
+           <div>
+            <input class="btn btn-warning float-left" type="submit" value="Editar Persona" />
+            </form>
+            
+            <form action="#" th:action="@{/client/delete/{id}(id=${client.id})}" method="post">
+	<input class="btn btn-danger float-left ml-3  " type="submit" value="Borrar Persona" />
 </form>
 </div>
+        
+	
+
+
+
 
     
     </body>

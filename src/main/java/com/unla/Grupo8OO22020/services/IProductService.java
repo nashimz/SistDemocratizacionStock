@@ -1,13 +1,8 @@
 package com.unla.Grupo8OO22020.services;
 
-
 import java.util.List;
-
 import com.unla.Grupo8OO22020.entities.Product;
 import com.unla.Grupo8OO22020.models.ProductModel;
-
-
-
 
 public interface IProductService {
 
