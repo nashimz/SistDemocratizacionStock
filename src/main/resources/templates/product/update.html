@@ -29,7 +29,7 @@
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                 <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
-                
+               
 		</div>
 	</nav>
 	<h2>Actualizacion de Productos</h2>
@@ -63,16 +63,20 @@
                 <input type="date" class="form-control" name="startDate"  value="" th:field="*{startDate}" placeholder="Escribi la fecha..." required>
                 <div class="invalid-feedback"></div>
             </div>
-            
-				<input class="btn btn-warning" type="submit" value="Editar Producto" />
+            <div>
+				<input class="btn btn-warning float-left" type="submit" value="Editar Producto" />
 		</form>
 
 		<form action="#" th:action="@{/product/delete/{id}(id=${product.idProduct})}"
 			method="post">
-			<br>
-			<input class="btn btn-danger" type="submit" value="Borrar Producto" />
+			
+			<input class="btn btn-danger float-left ml-3" type="submit" value="Borrar Producto" />
+			
 		</form>
-	</div>
+		</div>
+		
+		
+	
 </body>
 
 </html>

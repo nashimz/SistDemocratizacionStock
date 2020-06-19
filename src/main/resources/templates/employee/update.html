@@ -17,17 +17,17 @@
                 <a class="py-2 d-md-inline-block" href="/product">Adm.Productos</a>
                 <a class="py-2 d-md-inline-block" href="/batch">Adm.Lotes</a>
                  <a class="py-2 d-md-inline-block" href="/pedido">Adm.Pedidos</a>
-                 <li class="py-2 d-md-inline-block">
+                 
                       <a aria-expanded="false"
 						aria-haspopup="true" class="nav-link dropdown-toggle"
 						data-toggle="dropdown" href="#" id="navbarDropdownBlog">User<span th:text="${username}" />
 					   </a>					
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
 							<form th:action="@{/logout}" method="post">
-								<input class="dropdown-item" style="cursor: pointer" type="submit" value="Logout" />
+								<input class="dropdown-item" style="cursor: pointer" type="submit" value="Salir" />
 							</form>
                         </div>
-                       </li> 
+                       
                  
             </div>
         </nav>
@@ -99,11 +99,15 @@
 	            <option th:each="s : ${stores}" th:value="${s.idStore}" th:text="${s.address}"></option>
 	             </select>     
             </div>
-      </div>
-          <input class="btn btn-warning" type="submit" value="Editar Persona" />  
-    </form>
-     <form action="#" th:action="@{/employee/delete/{id}(id=${employee.id})}" method="post">
-	   <input class="btn btn-danger" type="submit" value="Borrar Persona" />
+            <div>
+            <input class="btn btn-warning float-left " type="submit" value="Editar Persona" /> 
+            </form>
+            <form action="#" th:action="@{/employee/delete/{id}(id=${employee.id})}" method="post">
+	   <input class="btn btn-danger float-left ml-3  " type="submit" value="Borrar Persona" />
       </form>
+      </div>
+           
+    
+     
  </body>
 </html>

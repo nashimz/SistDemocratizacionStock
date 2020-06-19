@@ -6,7 +6,6 @@ import java.util.*;
 
 public interface IPersonService {
 	
-	
     public List<Person> getAll();
 
     public List<PersonModel> getAlls();

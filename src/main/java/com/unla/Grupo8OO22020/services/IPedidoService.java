@@ -24,7 +24,6 @@ public interface IPedidoService {
 
 	public PedidoModel findByIdPedido(long idPedido);
 	
-
 	public List<RankingProductModel> rankingProduct(List<Pedido> pedidos);
 
 	public void setAttributes(PedidoModel pedidoModel);
