@@ -45,6 +45,7 @@
      
             <thead class="thead-dark">
                 <tr>
+                    <th>Cliente</th>
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Local</th>
@@ -65,6 +66,7 @@
                 </tr>
 	<tbody>
 		<tr th:each="pedido : ${pedidos}">
+		    <td><span th:text="${pedido.client.name} +' ' +${pedido.client.surname}"/></td>
 			<td><span th:text="${pedido.product.description}" /></td>
 			<td><span th:text="${pedido.quantity}" /> </td>
 			<td><span th:text="${pedido.store.address}" /></td>

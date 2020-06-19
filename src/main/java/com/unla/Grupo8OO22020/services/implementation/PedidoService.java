@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.unla.Grupo8OO22020.converters.PedidoConverter;
 import com.unla.Grupo8OO22020.entities.Pedido;
 import com.unla.Grupo8OO22020.models.BatchModel;
+import com.unla.Grupo8OO22020.models.ClientModel;
 import com.unla.Grupo8OO22020.models.EmployeeModel;
 import com.unla.Grupo8OO22020.models.PedidoModel;
 import com.unla.Grupo8OO22020.models.ProductModel;
@@ -23,6 +24,7 @@ import com.unla.Grupo8OO22020.models.RankingProductModel;
 import com.unla.Grupo8OO22020.models.StoreModel;
 import com.unla.Grupo8OO22020.repositories.IPedidoRepository;
 import com.unla.Grupo8OO22020.services.IBatchService;
+import com.unla.Grupo8OO22020.services.IClientService;
 import com.unla.Grupo8OO22020.services.IEmployeeService;
 import com.unla.Grupo8OO22020.services.IPedidoService;
 import com.unla.Grupo8OO22020.services.IProductService;
@@ -43,6 +45,10 @@ public class PedidoService implements IPedidoService{
 	@Autowired
 	@Qualifier("employeeService")
 	private IEmployeeService employeeService;
+	
+	@Autowired
+	@Qualifier("clientService")
+	private IClientService clientService;
 	
 	@Autowired
 	@Qualifier("batchService")
@@ -66,7 +72,7 @@ public class PedidoService implements IPedidoService{
 	public void setAttributes(PedidoModel pedidoModel) {
 		pedidoModel.setProduct(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()));
 		pedidoModel.setEmployee(employeeService.findById(pedidoModel.getEmployee().getId()));
-		
+		pedidoModel.setClient(clientService.findById(pedidoModel.getClient().getId()));
 		pedidoModel.setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()));
 		pedidoModel.setSubtotal(productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()).getPrice()*pedidoModel.getQuantity());
 		
@@ -76,6 +82,7 @@ public class PedidoService implements IPedidoService{
 	public void setAttributeRequest(PedidoModel pedidoModel,StoreModel storeModel) {
 		PedidoModel pedido =this.findByIdPedido(pedidoModel.getIdPedido());
 		StoreModel stores = storeService.findByIdStore(storeModel.getIdStore());
+		pedidoModel.setClient(clientService.findById(pedido.getClient().getId()));
 		pedidoModel.setCollaborator(employeeService.findByIdStores(stores.getIdStore()));
 		pedidoModel.setProduct(productService.findByIdProduct(pedido.getProduct().getIdProduct()));
 		pedidoModel.setEmployee(employeeService.findById(pedido.getEmployee().getId()));
@@ -230,6 +237,18 @@ public class PedidoService implements IPedidoService{
 		}
 		return salaryEmployees;   
 	}
+	
+	@Override
+	public List<PedidoModel> getAllsP(ClientModel clientModel) {
+		List<PedidoModel> models = new ArrayList<PedidoModel>();
+		for (Pedido pedido : pedidoRepository.findAll()) {
+			if(pedido.getClient().getDni()==clientModel.getDni() && pedido.isAccept()) {
+			models.add(pedidoConverter.entityToModel(pedido));
+			}
+		}
+		return models;
+	}
+
 	
 	@Override
 	public boolean remove(long idPedido) {

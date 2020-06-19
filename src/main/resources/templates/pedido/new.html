@@ -21,6 +21,14 @@
         <h2>Agregar Pedido</h2>
 <div class="card bg-light col-md-7 mt-5 p-3 mx-auto">
         <form action="#" th:action="@{/pedido/create}" th:object="${pedido}" method="post">
+        
+        <div class="form-group">
+                <label for="client">Cliente</label>
+                <select placeholder="client" th:field="*{client.id}">
+	            <option th:each="c : ${clients}" th:value="${c.id}" th:text="${c.name} +' ' +${c.surname}"></option>
+	             </select>     
+            </div>
+        
             
             <div class="form-group">
                 <label for="quantity">Cantidad</label>

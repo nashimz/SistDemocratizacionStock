@@ -39,6 +39,13 @@
        <form action="#" th:action="@{/pedido/update}" th:object="${pedido}"
 			method="post">
 			<input type="hidden" th:field="*{idPedido}" th:value="*{idPedido}" />
+			
+			<div class="form-group">
+                <label for="client">Cliente</label>
+                <select placeholder="client" th:field="*{client.id}">
+	            <option th:each="c : ${clients}" th:value="${c.id}" th:text="${c.name} +' ' +${c.surname}"></option>
+	             </select>     
+            </div>
 
 			<div class="form-group">
 				<label for="quantity">Cantidad</label> 

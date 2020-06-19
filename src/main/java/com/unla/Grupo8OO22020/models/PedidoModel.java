@@ -19,11 +19,12 @@ public class PedidoModel {
 	@Nullable
 	private EmployeeModel collaborator;
 	private boolean accept;
+	private ClientModel client;
 	
 	
 	public PedidoModel() {}
 
-	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,LocalDate date,double subtotal,EmployeeModel collaborator,boolean accept) {
+	public PedidoModel(long idPedido, int quantity, ProductModel product,StoreModel store,EmployeeModel employee,LocalDate date,double subtotal,EmployeeModel collaborator,boolean accept,ClientModel client) {
 		this.setIdPedido(idPedido);
 		this.quantity = quantity;
 		this.product = product;
@@ -33,6 +34,7 @@ public class PedidoModel {
 		this.subtotal=subtotal;
 		this.collaborator=collaborator;
 		this.accept=accept;
+		this.client=client;
 	}
 
 	public long getIdPedido() {
@@ -105,6 +107,14 @@ public class PedidoModel {
 
 	public void setAccept(boolean accept) {
 		this.accept = accept;
+	}
+
+	public ClientModel getClient() {
+		return client;
+	}
+
+	public void setClient(ClientModel client) {
+		this.client = client;
 	}
 	
 	

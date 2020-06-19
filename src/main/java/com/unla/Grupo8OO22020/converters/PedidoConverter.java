@@ -23,14 +23,18 @@ public class PedidoConverter {
 	@Autowired()
 	@Qualifier("employeeConverter")
 	private EmployeeConverter employeeConverter;
+	
+	@Autowired()
+	@Qualifier("clientConverter")
+	private ClientConverter clientConverter;
 
 	
 	public PedidoModel entityToModel(Pedido pedido) {
-		return new PedidoModel(pedido.getIdPedido(),pedido.getQuantity(),productConverter.entityToModel(pedido.getProduct()),storeConverter.entityToModel(pedido.getStore()),employeeConverter.entityToModel(pedido.getEmployee()),pedido.getDate(),pedido.getSubtotal(),employeeConverter.entityToModel(pedido.getCollaborator()),pedido.isAccept());
+		return new PedidoModel(pedido.getIdPedido(),pedido.getQuantity(),productConverter.entityToModel(pedido.getProduct()),storeConverter.entityToModel(pedido.getStore()),employeeConverter.entityToModel(pedido.getEmployee()),pedido.getDate(),pedido.getSubtotal(),employeeConverter.entityToModel(pedido.getCollaborator()),pedido.isAccept(),clientConverter.entityToModel(pedido.getClient()));
 	}
 	
 	public Pedido modelToEntity(PedidoModel pedidoModel) {
-		return new Pedido(pedidoModel.getIdPedido(),pedidoModel.getQuantity(),productConverter.modelToEntity(pedidoModel.getProduct()),storeConverter.modelToEntity(pedidoModel.getStore()),employeeConverter.modelToEntity(pedidoModel.getEmployee()),pedidoModel.getDate(),pedidoModel.getSubtotal(),employeeConverter.modelToEntity(pedidoModel.getCollaborator()),pedidoModel.isAccept());
+		return new Pedido(pedidoModel.getIdPedido(),pedidoModel.getQuantity(),productConverter.modelToEntity(pedidoModel.getProduct()),storeConverter.modelToEntity(pedidoModel.getStore()),employeeConverter.modelToEntity(pedidoModel.getEmployee()),pedidoModel.getDate(),pedidoModel.getSubtotal(),employeeConverter.modelToEntity(pedidoModel.getCollaborator()),pedidoModel.isAccept(),clientConverter.modelToEntity(pedidoModel.getClient()));
 	}
 
 }
