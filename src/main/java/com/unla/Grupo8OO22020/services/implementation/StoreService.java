@@ -109,7 +109,7 @@ public class StoreService  implements IStoreService{
          List<ProductModel> products=new ArrayList<ProductModel>();
          List<PedidoModel> pedidos=pedidoService.getAlls();
 		 while(index<pedidos.size() ) {
-			if (pedidos.get(index).getDate().isBefore(until) && pedidos.get(index).getDate().isAfter(since)) {
+			if (pedidos.get(index).getDate().compareTo(since)>=0 && pedidos.get(index).getDate().compareTo(until)<=0){
 				if (pedidos.get(index).isAccept() && pedidos.get(index).getStore().getIdStore()==store.getIdStore()) {
 					products.add(pedidos.get(index).getProduct());
 				}

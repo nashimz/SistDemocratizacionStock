@@ -170,13 +170,12 @@ public class PedidoController {
 		pedidoModel.setDate(pedidoModel.getDate());
 		pedidoModel.setCollaborator(employeeService.findById(pedidoModel.getCollaborator().getId()));
 		pedidoModel.getCollaborator().setStore(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()));
-		int stockTotal=pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct())+pedidoService.calculateStock(pedidoModel.getCollaborator().getStore(),pedidoModel.getProduct());
+		int stockTotal=pedidoService.calculateStockTotal(pedidoModel.getProduct());
 		if(pedidoModel.getQuantity()<=stockTotal || pedidoService.validarConsumo(pedidoModel.getStore(),pedidoModel.getProduct(),pedidoModel.getQuantity())) {
 		  pedidoService.update(pedidoModel);
 	      int missing=pedidoModel.getQuantity()-pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct());
 	      if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni()==pedidoModel.getEmployee().getDni()) {
 			  pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity());
-			  
 		   } else if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni() !=pedidoModel.getEmployee().getDni()) {
 			      pedidoService.consumoStock(employeeService.findById(pedidoModel.getEmployee().getId()).getStore(),pedidoModel.getProduct(),pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct()));
 			      pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),missing);   

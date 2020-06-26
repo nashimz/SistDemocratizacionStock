@@ -43,7 +43,8 @@ public interface IPedidoService {
 
 	public List<EmployeeModel> paySalary(int month, int year);
 
-
 	public List<PedidoModel> getAllsP(ClientModel clientModel);
+
+	public int calculateStockTotal(ProductModel productModel);
 
 }

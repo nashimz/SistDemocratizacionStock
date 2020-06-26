@@ -143,6 +143,18 @@ public class PedidoService implements IPedidoService{
 			return total;
 			
 		}
+	
+	@Override
+	public int calculateStockTotal(ProductModel productModel) {
+		int total=0;
+		for(BatchModel batchModel: batchService.getAlls()) {
+			if(batchModel.getProduct().getIdProduct()==productModel.getIdProduct()) {
+				total +=batchModel.getQuantities();
+			}
+			
+		}
+		return total;
+	}
 		
     @Override
 	public boolean validarConsumo(StoreModel storeModel,ProductModel productModel,int quantity) {
