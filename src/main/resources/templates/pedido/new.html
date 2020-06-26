@@ -48,7 +48,7 @@
              <div class="form-group">
                 <label for="employee">Vendedor</label>
                 <select placeholder="employee" th:field="*{employee.id}">
-	            <option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.surname}"></option>
+	            <option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.surname}+'-> Local :  ' +${e.store.address}"></option>
 	             </select>     
             </div>
             

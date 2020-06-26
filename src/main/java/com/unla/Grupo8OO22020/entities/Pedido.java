@@ -27,11 +27,10 @@ public class Pedido {
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Product product;
 	
-	//@OneToOne(cascade=CascadeType.MERGE)
 	@OneToOne
 	private Store store;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
+	@OneToOne
 	private Employee employee;
 	
 	@Column(name="date")
