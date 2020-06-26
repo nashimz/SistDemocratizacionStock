@@ -6,4 +6,4 @@ Grupo-8
 
 Democratizacón de Stock
 
-Cusato Facundo, Ruescas Ramirez Barbara, Fretes Rocio & San Martin Miguel.
+Cusato Facundo, Fretes Rocio, Ruescas Ramirez Barbara & San Martin Miguel.
