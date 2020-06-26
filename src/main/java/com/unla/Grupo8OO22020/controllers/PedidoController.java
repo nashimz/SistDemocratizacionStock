@@ -115,14 +115,14 @@ public class PedidoController {
 					return mV;
 			    }
 			    } catch (Exception e) {
-					redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ", sepa disculpar las molestias.");
+			    	redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + " , entre su local de origen " +pedidoModel.getStore().getAddress()+ " y el mas cercano.Disculpe las molestias e intente desde otro local, gracias.");
 					redirectAttrs.addFlashAttribute("clase", "danger");
 					ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
 					return mV;
 
 				} finally {
 					if (stores.isEmpty()) {
-						redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + ", sepa disculpar las molestias.");
+						redirectAttrs.addFlashAttribute("mensaje", "No tenemos el stock disponible para su pedido de " + pedidoModel.getProduct().getDescription() + " , entre su local de origen " +pedidoModel.getStore().getAddress()+ " y el mas cercano. Disculpe las molestias e intente desde otro local, gracias.");
 						redirectAttrs.addFlashAttribute("clase", "danger");
 						ModelAndView mV = new ModelAndView(new RedirectView(ViewRouteHelper.PEDIDO_ROOT));
 						return mV;
@@ -177,18 +177,18 @@ public class PedidoController {
 	      if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni()==pedidoModel.getEmployee().getDni()) {
 			  pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getEmployee().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),pedidoModel.getQuantity());
 			  
-		} else if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni() !=pedidoModel.getEmployee().getDni()) {
+		   } else if (pedidoModel.isAccept() && pedidoModel.getCollaborator().getDni() !=pedidoModel.getEmployee().getDni()) {
 			      pedidoService.consumoStock(employeeService.findById(pedidoModel.getEmployee().getId()).getStore(),pedidoModel.getProduct(),pedidoService.calculateStock(pedidoModel.getStore(),pedidoModel.getProduct()));
-			      pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),missing);
-			      
+			      pedidoService.consumoStock(storeService.findByIdStore(employeeService.findById(pedidoModel.getCollaborator().getId()).getStore().getIdStore()),productService.findByIdProduct(pedidoModel.getProduct().getIdProduct()),missing);   
 			    }
 	      pedidoService.paySalary(pedidoModel.getEmployee(),pedidoModel.getCollaborator(),pedidoModel.getProduct(),pedidoModel.getQuantity());
 		}else {
-			redirectAttrs.addFlashAttribute("mensaje","El pedido excede la capacidad de nuestros locales. Si desea comprar una cantidad superior a "+stockTotal+ " realice otro pedido.");
+			redirectAttrs.addFlashAttribute("mensaje","El pedido excede la capacidad de nuestros locales. Si desea comprar una cantidad superior a " +stockTotal+ " realice otro pedido. En caso de ser inferior a nuestro stock, elija otro local de origen.");
 			redirectAttrs.addFlashAttribute("clase", "danger");
 			pedidoService.remove(pedidoModel.getIdPedido());
 			return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 		}
+		
 		return new RedirectView(ViewRouteHelper.PEDIDO_ROOT);
 	}		
 	

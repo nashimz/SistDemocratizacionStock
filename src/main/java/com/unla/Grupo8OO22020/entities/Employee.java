@@ -34,7 +34,6 @@ public class Employee extends Person{
 	@Column(name="fullSalary")
 	private double fullSalary;
 	
-	//lado propietario
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="store_id", nullable=false)
 	private Store store;
